@@ -1,3 +1,5 @@
-# Independent code review
+# Огляд коду без змін
 
-Read `AGENTS.md`, `docs/ARCHITECTURE.md`, `docs/LESSON_CONTRACT.md` and changed files versus previous Git commit. Provide findings ordered by severity, including file paths and concrete reproduction when possible. Focus on untrusted JS execution, lost learner data, false-positive checks, broken lesson prerequisites, regression of cumulative project, and inaccessible UI. Do not modify files; distinguish proven issues from hypotheses.
+Визнач базу порівняння з доручення, перевір working tree та релевантний diff. За AGENTS.md завантажуй тільки документацію змінених меж: runner/security → ARCHITECTURE і P03_RUNNER; уроки → LESSON_CONTRACT; storage → відповідні ADR. Не запускай повний набір перевірок лише через запит на review; чинні обмеження користувача залишаються.
+
+Надай конкретні findings за важливістю, з файлом/рядком, наслідком і доказом або способом відтворення. Пріоритет: execution isolation, втрата даних, stale writes/proofs, хибний pass, progression, cumulative regressions, доступність. Відрізняй доведене від припущень; не вигадуй findings. Не змінюй файли.

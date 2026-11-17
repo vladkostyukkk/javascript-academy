@@ -1,7 +1,7 @@
-# Fresh Codex session — no context assumptions
+# Продовження роботи в новій сесії
 
-Act as the engineer continuing an existing project, not starting from scratch.
-1. Read `AGENTS.md`, `docs/STATE.md`, `docs/PRODUCT.md`, `docs/ARCHITECTURE.md`, `docs/ROADMAP.md`, `docs/LESSON_CONTRACT.md`, `docs/DECISIONS.md` and relevant code. Check `git status`, recent commits and test scripts.
-2. In <=12 lines report: current phase, what is already implemented, last verified commands/results, blockers, next concrete task. Explicitly flag outdated or contradictory docs.
-3. **Do not modify code yet.** Wait for a new bounded instruction or suggest the next uncompleted acceptance criterion from `docs/STATE.md`.
-4. Do not assume old chat history is available. Trust the repository and verified tests, and ask only for truly blocking product decisions.
+Продовжуй наявний проєкт за кореневим AGENTS.md. Прочитай docs/STATE.md, перевір `git status --short` і, за потреби, останні релевантні коміти. Зістав одну наступну дію з поточним дорученням; далі відкрий лише потрібні файли та розділи документації.
+
+Якщо користувач доручив продовжувати розробку, виконай цю обмежену задачу до завершення без окремого дозволу після огляду. Якщо запит лише на статус/аудит — залишайся в цьому обсязі. Не повторюй завершені фази й не розширюй задачу до всього roadmap.
+
+Чинні обмеження, зокрема відкладені продуктові тести, зберігай. Повідомляй лише важливі розбіжності стану/коду та справжні блокери. Онови STATE при значущому результаті або передачі незавершеної роботи.

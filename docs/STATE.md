@@ -1,73 +1,24 @@
 # Поточний стан — JavaScript Academy
 
-- **Фаза:** P05, п’ята частина — явний імпорт JSON-копії чернетки, 2026-11-17. P00–P04 завершено раніше. **P05 ще не завершено; поведінковий gate не перевірено.**
-- **Доручення:** «Продовжуй далі, але поки що роби без тестів продукту». Продуктові тести не додавали, не змінювали й не запускали: unit, E2E, browser smoke, axe, ручний браузер. Чинне виключення користувача з AGENTS.md.
-- **Обсяг:** вибір JSON чернетки/файлового архіву, валідація, перегляд, підтвердження, атомарне резервування поточної чернетки та імпорт.
-- **Git:** приватний репозиторій `https://github.com/vladkostyukkk/javascript-academy`, remote `origin`, основна гілка `main`. Користувач явно доручив створити репозиторій, зробити перший коміт і завантажити поточну версію. Початковий коміт охоплює наявний код P01–P05, контент, тести й документацію; SHA див. у `git log -1`.
-- **Збережено:** попередні drafts/backups, quiz, completed/checkpoints/forks, runner, starter/reference/hashes, 60 ID; js-02…js-60 залишаються заблокованими. Повний пакет є тільки для js-01.
-- **Блокери розробки:** немає. Продуктові перевірки відкладені; публічний runner заблокований ризиками P03.
+## Продовження
+- Фаза продукту: **P05, частини 1–5 реалізовано; поведінковий gate не пройдено.** P00–P04 завершено раніше. До P06 не переходити без gate або явної зміни плану.
+- Чинне доручення щодо продукту: **поки не додавати, не змінювати й не запускати продуктові тести**, включно з unit/E2E, browser smoke, axe та ручним QA. Доречні статичні перевірки дозволені. Це тимчасове обмеження користувача, не постійна норма AGENTS.
+- Остання задача (2026-11-17): оптимізація правил/skills/workflow, **лише агентні файли й документація**. Архів quiz не реалізовано: початкову неінтегровану заготовку прибрано при переключенні на цей аудит.
+- Git: приватний `vladkostyukkk/javascript-academy`, origin, main; початковий коміт `aa0d5ed`. Аудит правил залишено без нового commit/push — попереднє доручення було разовим. Історію деталей див. через Git, не відновлюй її з чату.
 
-## Створені та змінені файли цього кроку
+## Фактично реалізовано
+- Next.js/React/TS shell, roadmap із 60 ID; повний пакет **тільки js-01**, js-02…js-60 заблоковані. Registry/Markdown/quiz та контракти — `lib/lessons/`, `content/lessons/`.
+- Monaco, Run/Check, feedback, console, hints, reset; ізольований runner — `components/workspace/`, `lib/runner/`. JS js-01 працює у Worker всередині opaque iframe; HTML/CSS preview не виконує learner JS.
+- P05: IndexedDB autosave/recovery/CAS, immutable completed/checkpoint, окремий fork, історія /project; quiz/tab persistence та completed на roadmap. Файлові backups: список/ручна копія/restore/JSON import із підтвердженням, сумісністю й атомарним резервуванням.
+- База v3; snapshots v1. Не переписувати старі records, не підміняти read-only основу або відкривати наступні уроки. Details: ADR-013–017 у DECISIONS; авторизація/cloud/ZIP та inheritance між різними уроками ще відсутні.
 
-- Новий `components/workspace/draft-import.tsx`: вибір файла, обмеження розміру, скасування/захист від застарілого читання, текстовий preview, modal підтвердження, повідомлення й фокус.
-- `lib/progress/draft-backups.ts`: parseDraftImport, спільна перевірка сумісності, restoreDraftFiles для локального архіву та JSON, reason json-import для резервування попереднього запису.
-- `components/workspace/use-draft-storage.ts`: спільна операція restoreFiles, inspection імпорту, чинні guards/черга/CAS.
-- `components/workspace/use-workspace.ts`: обидва джерела через спільне скасування runner/proof/results; importDraft.
-- `components/workspace/draft-backups.tsx`: інтеграція імпорту, оновлення відкритого списку після успіху, назва причини архівації.
-- `app/globals.css`: обмеження ширини input і перенесення довгих назв.
-- `README.md`, `docs/LESSON_CONTRACT.md`, `docs/DECISIONS.md` (ADR-017), `docs/STATE.md`.
-- Тести, залежності, database version, runner, навчальний контент і curriculum не змінені під час п’ятої частини P05. Перелік вище описує правки розробки до першого коміту.
+## Перевірки та ризики
+- Остання перевірка **продуктового коду P05.5 до aa0d5ed**: lint, typecheck, format:check, build — успішно; build створив 67 сторінок. Prebuild перевірив 60 ID / 1 пакет / SHA-256 і зібрав assets. Це не підтверджує поведінку P05.
+- Останні продуктові тести — P04: 65 unit, 65 E2E passed / 2 skipped; P05 не перевірявся. Для цього документаційного аудиту продукт не запускався; результати перевірки правил — у [WORKFLOW_AUDIT.md](WORKFLOW_AUDIT.md).
+- **Release blockers P03:** hostile DOM loop може блокувати host; iframe self-navigation може дати egress. Потрібні сильніша ізоляція/окремий origin, threat model і security review (ADR-010, P03_RUNNER). Local completed — не anti-cheating proof.
+- P05 потребує поведінкових доказів migrations/reload/CAS/quota/restore/fork/quiz/import. Немає UI learning-backups; hints/cursor/Undo/Check results після reload не відновлюються. Архів без auto-prune; очищення браузера стирає локальні дані.
+- Firefox/Safari та ручний screen-reader аудит не виконані; питання curriculum 07/09 і 46/54 відкриті. Runtime audit востаннє в P04: 0 runtime / 7 moderate dev; ESLint deprecated. Нового audit не робили.
+- Windows: build раніше потребував ескалації через tsx uv_os_get_passwd; Git поза sandbox — адресного safe.directory через ownership. Не вмикай глобальні обходи. Доречні команди — QUALITY.
 
-## Передача поточної версії в GitHub
-
-- Окреме доручення користувача після P05: підключений акаунт `vladkostyukkk`, створення приватного репозиторію `javascript-academy`, перший коміт і push. Нової розробки в цьому кроці немає; змінено лише Git-відомості в цьому файлі та README.
-- Репозиторій створено через офіційний GitHub API з чинною авторизацією Git Credential Manager. Облікові дані не записуються в файли, URL remote або коміт.
-- `.gitignore` виключає node_modules, .next, generated Monaco/runner assets, результати тестів і `.env*` (крім `.env.example`). Переглянуто перелік файлів; пошук поширених форматів токенів і приватних ключів не дав збігів. Це не повний аудит секретів.
-- Фактичний стан публікації перевіряється порівнянням `git rev-parse HEAD` з `git ls-remote origin refs/heads/main` та `git status --short --branch`.
-- `git diff --cached --check` перед початковим комітом пройшов; підготовлено 130 файлів. Для Git-команд поза sandbox використано `-c safe.directory` лише з абсолютним шляхом цього проєкту через різних Windows-власників `.git` і процесу; глобальні налаштування довіри не змінено.
-- Продуктові тести й повторну збірку для цього Git-завдання не запускали: код не змінено, результати попередньої перевірки наведені нижче. Стан P05 і наступна дія збережені.
-
-## Реалізована поведінка — без продуктового підтвердження
-
-- «Практика» → «Резервні копії файлів» → «Імпорт JSON-копії». Підтримуються bare DraftSnapshot v1 та обгортка завантаженого запису draft-backups із валідним original.
-- Ліміт файла 2 MiB перевіряється до читання; парсер також перевіряє UTF-8 розмір. Ліміти коду залишаються 64 KiB на файл / 256 KiB разом. Перевіряються strict schema, урок, версія матеріалів, canonical paths і read-only основа.
-- Вибір файла лише показує текст React pre/code; не пише в IndexedDB, не змінює редактор, не виконує код і не надсилає файл на сервер. Несумісна копія доступна для текстового перегляду, але не для підтвердження.
-- Новий вибір/скасування відкидає попереднє асинхронне читання; unmount також відкидає результат. Скасування modal лишає preview для повторного рішення.
-- Імпорт потребує окремого modal-підтвердження та завершеного autosave. Використовує той самий захист операцій/поколінь autosave, що й локальний restore.
-- Спільна транзакція повторно перевіряє сумісність і CAS поточного target. Архівування raw target (reason json-import) та put нової чернетки атомарні. Зовнішній id не є локальним ключем; revision/token/updatedAt створюються локально. Помилка скасовує запис.
-- Завершений main захищений, у тому числі від застарілої вкладки. Імпорт у fork вимагає валідної пари checkpoint/progress. Quiz, completed, checkpoint і старі backups не змінюються.
-- Перед заміною скасовуються runner і старий Check; після імпорту потрібна нова перевірка коду. Успіх показується тільки після commit.
-- Попередні P05 частини збережено: autosave/recovery, completed/checkpoint/fork, quiz/tab restore, completed на roadmap, локальний файловий архів по 20 записів, ручне резервування/download/restore.
-
-## Перевірки цього кроку
-
-| Команда / дія | Результат |
-|---|---|
-| `npm run lint` | Успішно, включно з фінальним повтором після правок UI |
-| `npm run typecheck` | Успішно; фінальна збірка також виконала TypeScript |
-| `npm run format:check` | Успішно після форматування змінених TS/TSX/CSS |
-| `npm run build` | Успішно: compile/TypeScript, 67 сторінок |
-| `validate:content` у prebuild | 60 ID, один повний пакет, SHA-256 коректні; JS не виконується |
-| `build:runner`, `build:editor` у prebuild | Успішно |
-| Unit / E2E / browser smoke / axe / ручний браузер | **Не запускали за дорученням користувача** |
-
-Lint/typecheck/build помилок цього кроку не мали. Build запущено поза Windows sandbox через раніше встановлену проблему tsx/uv_os_get_passwd. Сервери для QA не запускали, відкриту користувачем сторінку не використовували й не закривали.
-
-Останні продуктові результати належать **P04**: 65 unit і 65 E2E passed / 2 skipped. Вони не підтверджують P05.
-
-## Міграція та відомі межі
-
-- ADR-017: IndexedDB v3, draft snapshot v1; міграція не потрібна. Попередні записи не переписуються. Новий reason json-import сумісний із наявним draft-backups; старий workspace без значення читається як main.
-- Імпорт не є ZIP-export або переносом прогресу. Checkpoint JSON, quiz JSON, пошкоджені/невідомі snapshots відхиляються. Немає silent patch або автоматичного merge.
-- File picker, preview, modal/focus, cancellation races, quota rollback, CAS, stale autosave, completed/fork isolation та повторний Check **не перевірені поведінково**.
-- Локальний архів може зростати; auto-prune/delete немає. Очищення браузера видаляє локальні дані. JSON-копії варто зберігати окремо.
-- Немає cloud sync, ZIP, UI learning-backups або успадкування checkpoint між різними уроками. Після reload відкривається main; fork можна відкрити повторно. Hints/cursor/Undo/Check results не відновлюються після reload.
-- Не починати P06 до приймального gate P05 або явної зміни плану користувачем. Чинне прохання не тестувати залишається.
-- Local completed/checkpoints не є anti-cheating доказом. Невалідна пара checkpoint/progress блокує читання без видалення.
-- P03 release blockers незмінні: DOM infinite loop може заблокувати host, self-navigation iframe може створити зовнішній запит. Потрібні сильніша ізоляція, threat model egress, окремий sandbox origin і security review. js-01 JS виконується тільки у Worker всередині opaque iframe.
-- Runtime audit востаннє у P04: 0 runtime, 7 moderate dev, deprecated ESLint 9.39.5. Залежності не змінено, audit не повторювали.
-- Firefox/Safari й ручний screen-reader аудит не виконані. Педагогічні питання curriculum 07/09 і 46/54 залишаються.
-
-## Одна наступна дія
-
-**Продовжити P05 обмеженим підзавданням: перегляд і явне відновлення навчального стану з наявного learning-backups із повторним обчисленням quiz gate, архівуванням поточного стану й без зміни файлів/completed/checkpoints. Зберегти чинне прохання не робити продуктові тести, доки користувач його не змінить.**
+## Наступна дія
+**Один bounded subtask P05: перегляд і явне відновлення навчального стану з learning-backups із повторною оцінкою quiz, архівуванням поточного стану й без зміни файлів/completed/checkpoints.** Почни з `lib/progress/learning-store.ts`, `components/course/use-learning-session.ts`, `lesson-experience.tsx`; використовуй існуючий reducer і підхід файлового архіву. Зберігай чинне обмеження на продуктові тести. Не розширюй задачу до нових уроків або решти roadmap.

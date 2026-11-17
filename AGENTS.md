@@ -1,31 +1,27 @@
-# Repository instructions — JavaScript Academy
+# JavaScript Academy — правила репозиторію
 
-## Goal
-Build a Ukrainian-language JavaScript learning platform with 60 progressive lessons. Every lesson adds to one exportable vanilla-JS pet project, **FocusBoard**. Platform code uses TypeScript; student exercises use JavaScript, HTML, and CSS.
+## Продукт і межі
+Мета: 60 послідовних уроків українською та один накопичувальний vanilla-JS проєкт FocusBoard. Це ціль, а не заява про готовність усіх уроків.
+Платформа: Next.js App Router, React, TypeScript, Tailwind, Radix/shadcn-style UI, Monaco, Zod; локальне сховище IndexedDB. Учень пише JavaScript/HTML/CSS. Версії й команди — у `package.json`.
+`app/` — маршрути; `components/` — UI/hooks; `lib/lessons/` — контракти/registry; `lib/runner/` — ізоляція; `lib/progress/` — збереження; `content/lessons/` — матеріали; `curriculum/manifest.json` — канонічні ID/порядок.
 
-## Read before work
-1. `docs/STATE.md` — current phase, blockers, next task.
-2. `docs/PRODUCT.md` — UX and scope.
-3. `docs/ARCHITECTURE.md` — architecture and security.
-4. `docs/ROADMAP.md` — gates and order.
-5. `docs/LESSON_CONTRACT.md` — mandatory lesson shape.
-6. `docs/CURRICULUM.md` and `curriculum/manifest.json` when working on curriculum.
-7. `docs/DECISIONS.md` for previously approved choices.
+## Вибір контексту
+- Перед редагуванням перевір `git status --short` і відповідні наявні функції/компоненти. Починай з `rg --files` та пошуку символів; не скануй залежності, caches або generated assets без конкретної причини.
+- Для продовження після перерви, вибору наступної задачі чи зміни кількох модулів читай `docs/STATE.md`. Для точної локальної правки достатньо пов’язаного коду й інструкцій; не перечитуй усю документацію.
+- UX/обсяг → потрібний розділ `docs/PRODUCT.md`; межі модулів/безпека → `docs/ARCHITECTURE.md`; зміна фази → відповідний gate `docs/ROADMAP.md`; перевірки → `docs/QUALITY.md`.
+- Контент → `docs/LESSON_CONTRACT.md`, відповідні записи `docs/CURRICULUM.md` і маніфесту. Рішення шукай за темою в `docs/DECISIONS.md`, читай релевантний ADR, а не весь журнал. Пізніші ADR можуть уточнювати історичні обмеження.
+- Проєктні skills: `academy-lesson-development` для авторингу/валідації уроку, `academy-code-execution` для runner/editor execution/checker. Завантажуй тільки потрібний `.agents/skills/<name>/SKILL.md`. Для звичайного debugging достатньо `prompts/REPAIR.md`.
 
-## Mandatory process
-- Work on **one requested phase or one bounded subtask** at a time. If it is large, split and report a small plan before editing.
-- Inspect existing code before making changes. Never replace working architecture merely to simplify a prompt.
-- Preserve existing user code, lesson solutions, checkpoints, and progress. Schema changes require a migration plan.
-- Implement a vertical slice; no fake buttons, placeholder pass messages, or success claims without verification.
-- Create/adjust tests for new behavior. Run relevant tests, lint, typecheck, and build when available. Report what actually ran and what failed.
-- Prefer simple readable code over clever abstractions. No `any` or disabling lint/types without a documented reason.
-- Never execute learner-supplied JS in the Next.js server, app origin, or an unsandboxed iframe. Follow `docs/ARCHITECTURE.md`.
-- For each lesson, provide meaningful feedback, 2+ edge cases, reference solution, and a tested cumulative checkpoint.
-- Do not automatically unlock later curriculum or silently patch the learner's workspace.
-- A stage is complete only after its documented acceptance criteria are satisfied.
+## Реалізація
+- Одна логічно завершена задача за раз. Для складної зміни дай короткий план і критерії готовності; просту правку виконуй без окремого планування. Завершуй уже доручену роботу без зайвого перепідтвердження.
+- Використовуй наявні компоненти, контракти й патерни. Не переписуй робочу архітектуру; не додавай залежності чи абстракції без конкретної технічної потреби. Зміни поза обсягом мінімізуй.
+- Зберігай код учня, solutions, checkpoints і прогрес. Зміна persistent schema потребує міграції та плану відновлення; заборонено мовчазно підміняти workspace або автоматично відкривати пізніші уроки.
+- Учнівський JS ніколи не виконується на сервері Next.js, в app origin чи unsandboxed iframe. Не послаблюй ізоляцію, CSP, перевірки повідомлень або ліміти заради зручності. Перед зміною цієї межі читай ARCHITECTURE і `docs/P03_RUNNER.md`.
+- Не імітуй працюючі кнопки або успішні перевірки. Для уроку потрібні змістовний feedback, щонайменше 2 edge cases, reference solution і перевірений cumulative checkpoint.
+- Пиши просто; не додавай `any` і не вимикай lint/types без поясненої причини. Українська — для UI, помилок і документації; англійська — для ідентифікаторів/API.
 
-## Context handoff after EACH task
-Update `docs/STATE.md` with phase, implemented files, verification commands/results, blockers and **one explicit next action**. Record material architectural decisions in `docs/DECISIONS.md`. Keep `AGENTS.md` short; do not paste chat logs here. Show changed files and concise validation report. Commit only if explicitly asked or the current prompt authorizes it.
-
-## Language
-User-facing copy, lessons, errors, feedback and docs primarily Ukrainian. Code identifiers and API schemas in English.
+## Перевірка і завершення
+- Перевіряй змінену поведінку та ризикові межі за `docs/QUALITY.md`: спочатку адресні перевірки, ширші — за інтеграційним ризиком. Не повторюй успішні команди без нових змін, помилки або невирішеного ризику.
+- Явне обмеження користувача щодо тестів має пріоритет. Зафіксуй, що не перевірено; не замінюй заборонений тест браузерним smoke/ручним QA. Gate або security readiness не оголошуй пройденими без потрібних доказів.
+- Після значущої реалізації, зміни архітектури, блокера або передачі незавершеної роботи стисло онови `docs/STATE.md`: фактичний стан, незавершене, перевірки та одна наступна дія. Для дрібної локальної правки без зміни цього стану запис не потрібен. Не створюй паралельний PROGRESS.md; історія коду — Git, стійкі рішення — `docs/DECISIONS.md`.
+- У фіналі: результат, змінені файли, фактичні перевірки, ризики/обмеження. Фаза завершена лише після її acceptance gate. Commit/push — коли це охоплено дорученням користувача; попередній разовий commit не є постійним дозволом.

@@ -1,3 +1,5 @@
-# Surgical debugging — use when a stage fails
+# Локалізація й виправлення помилки
 
-Inspect `AGENTS.md`, `docs/STATE.md` and the exact failing code/command. Reproduce the failure. State one likely root cause supported by evidence and the smallest safe fix. Write a regression test that fails before the change when feasible. Apply only that fix, rerun relevant tests, update `docs/STATE.md` and return the exact results. Do not rewrite unrelated components, skip tests, or replace real functionality with mocks.
+За AGENTS.md перевір diff, точну помилку/команду та пов’язані символи й виклики. STATE потрібен, якщо проблема залежить від фази, попередніх рішень або невідомого контексту. Спочатку сформулюй відтворюваний симптом і підтверди причину; заборонений користувачем запуск не підміняй іншим продуктовим QA, познач висновок зі статичного аналізу як гіпотезу.
+
+Виправ причину мінімально достатньою зміною, зберігаючи наявні API й дані. Додай адресний regression test, коли це виправдано поведінкою й дозволено поточними інструкціями. Перевір змінену межу за docs/QUALITY.md; розширюй перевірку лише за ризиком. Не включай сторонній рефакторинг або mocks замість функціоналу. У фіналі: причина/доказ, зміна, команди/результати, неперевірене. Оновлюй STATE за правилами handoff у AGENTS.md.
