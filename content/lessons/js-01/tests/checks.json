@@ -1,0 +1,4 @@
+[
+  { "id": "project-name", "kind": "bindingEquals", "binding": "appName", "expected": "FocusBoard", "feedback": "Оголоси appName і перевір точну назву FocusBoard: великі F та B, без зайвих пробілів." },
+  { "id": "single-announcement", "kind": "consoleEquals", "expected": [["FocusBoard"]], "feedback": "Виведи значення appName рівно один раз. У повідомленні має бути назва FocusBoard, а не буквальний текст appName." }
+]

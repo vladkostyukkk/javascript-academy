@@ -1,0 +1,8 @@
+[
+  { "id": "empty-file", "category": "empty", "source": "", "failedCheckIds": ["project-name", "single-announcement"] },
+  { "id": "wrong-name", "category": "invalid", "source": "const appName = 'Інший проєкт'; console.log(appName);", "failedCheckIds": ["project-name", "single-announcement"] },
+  { "id": "trailing-space", "category": "edge", "source": "const appName = 'FocusBoard '; console.log(appName);", "failedCheckIds": ["project-name", "single-announcement"] },
+  { "id": "wrong-case", "category": "edge", "source": "const appName = 'focusboard'; console.log(appName);", "failedCheckIds": ["project-name", "single-announcement"] },
+  { "id": "duplicate-log", "category": "edge", "source": "const appName = 'FocusBoard'; console.log(appName); console.log(appName);", "failedCheckIds": ["single-announcement"] },
+  { "id": "literal-name", "category": "edge", "source": "const appName = 'FocusBoard'; console.log('appName');", "failedCheckIds": ["single-announcement"] }
+]

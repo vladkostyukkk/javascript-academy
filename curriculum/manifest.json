@@ -1,0 +1,786 @@
+{
+  "courseId": "javascript-zero-to-app",
+  "language": "uk",
+  "project": "FocusBoard",
+  "version": 1,
+  "lessons": [
+    {
+      "id": "js-01",
+      "number": 1,
+      "module": 1,
+      "moduleTitle": "Основи",
+      "title": "Перша команда JS",
+      "practiceGoal": "Вивести назву FocusBoard у консоль та оголосити appName",
+      "primaryFile": "src/app.js",
+      "prerequisites": [],
+      "status": "planned"
+    },
+    {
+      "id": "js-02",
+      "number": 2,
+      "module": 1,
+      "moduleTitle": "Основи",
+      "title": "let і const",
+      "practiceGoal": "Створити змінні назви задачі, пріоритету та тривалості",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-01"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-03",
+      "number": 3,
+      "module": 1,
+      "moduleTitle": "Основи",
+      "title": "Рядки",
+      "practiceGoal": "Побудувати підпис задачі з назви й категорії звичайним об’єднанням рядків",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-02"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-04",
+      "number": 4,
+      "module": 1,
+      "moduleTitle": "Основи",
+      "title": "Числа",
+      "practiceGoal": "Обчислити сумарну тривалість двох справ",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-03"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-05",
+      "number": 5,
+      "module": 1,
+      "moduleTitle": "Основи",
+      "title": "Булеві значення",
+      "practiceGoal": "Описати прапорці completed і isImportant та сформувати статус",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-04"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-06",
+      "number": 6,
+      "module": 1,
+      "moduleTitle": "Основи",
+      "title": "Порівняння",
+      "practiceGoal": "Визначити, чи перевищує час задачі заданий ліміт",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-05"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-07",
+      "number": 7,
+      "module": 1,
+      "moduleTitle": "Основи",
+      "title": "Арифметика",
+      "practiceGoal": "Порахувати відсоток виконання без ділення на нуль",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-06"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-08",
+      "number": 8,
+      "module": 1,
+      "moduleTitle": "Основи",
+      "title": "Шаблонні рядки",
+      "practiceGoal": "Сформувати компактний текст картки задачі",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-07"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-09",
+      "number": 9,
+      "module": 1,
+      "moduleTitle": "Основи",
+      "title": "Перетворення типів",
+      "practiceGoal": "Перетворити текстове поле minutes на число з перевіркою NaN",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-08"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-10",
+      "number": 10,
+      "module": 1,
+      "moduleTitle": "Основи",
+      "title": "Підсумкова мініпрактика",
+      "practiceGoal": "Зібрати коректний текстовий preview задачі з попередніх змінних",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-09"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-11",
+      "number": 11,
+      "module": 2,
+      "moduleTitle": "Умови та функції",
+      "title": "if / else",
+      "practiceGoal": "Розрахувати словесний пріоритет із числового значення",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-10"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-12",
+      "number": 12,
+      "module": 2,
+      "moduleTitle": "Умови та функції",
+      "title": "else if",
+      "practiceGoal": "Обрати один з трьох статусів задачі",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-11"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-13",
+      "number": 13,
+      "module": 2,
+      "moduleTitle": "Умови та функції",
+      "title": "Логічні оператори",
+      "practiceGoal": "Перевірити, чи задачу дозволено завершити за кількома умовами",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-12"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-14",
+      "number": 14,
+      "module": 2,
+      "moduleTitle": "Умови та функції",
+      "title": "Тернарний оператор",
+      "practiceGoal": "Формувати короткий статус виконання",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-13"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-15",
+      "number": 15,
+      "module": 2,
+      "moduleTitle": "Умови та функції",
+      "title": "switch",
+      "practiceGoal": "Визначати назву Kanban-колонки зі статусу",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-14"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-16",
+      "number": 16,
+      "module": 2,
+      "moduleTitle": "Умови та функції",
+      "title": "Оголошення функцій",
+      "practiceGoal": "Реалізувати getPriorityLabel(priority)",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-15"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-17",
+      "number": 17,
+      "module": 2,
+      "moduleTitle": "Умови та функції",
+      "title": "Параметри й значення за замовчуванням",
+      "practiceGoal": "Реалізувати formatTaskText(title, minutes = 30)",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-16"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-18",
+      "number": 18,
+      "module": 2,
+      "moduleTitle": "Умови та функції",
+      "title": "return та ранній вихід",
+      "practiceGoal": "Реалізувати validateTitle(title), який повертає текст помилки або null",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-17"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-19",
+      "number": 19,
+      "module": 2,
+      "moduleTitle": "Умови та функції",
+      "title": "Стрілкові функції",
+      "practiceGoal": "Реалізувати коротку функцію formatMinutes",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-18"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-20",
+      "number": 20,
+      "module": 2,
+      "moduleTitle": "Умови та функції",
+      "title": "Область видимості та замикання",
+      "practiceGoal": "Створити createIdGenerator з приватним лічильником",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-19"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-21",
+      "number": 21,
+      "module": 3,
+      "moduleTitle": "Масиви та об’єкти",
+      "title": "Масиви",
+      "practiceGoal": "Створити колекцію назв задач та прочитати її елементи",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-20"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-22",
+      "number": 22,
+      "module": 3,
+      "moduleTitle": "Масиви та об’єкти",
+      "title": "Методи додавання й видалення",
+      "practiceGoal": "Додати та видалити задачу за індексом без помилок меж",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-21"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-23",
+      "number": 23,
+      "module": 3,
+      "moduleTitle": "Масиви та об’єкти",
+      "title": "Цикли for і for...of",
+      "practiceGoal": "Порахувати кількість виконаних прапорців",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-22"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-24",
+      "number": 24,
+      "module": 3,
+      "moduleTitle": "Масиви та об’єкти",
+      "title": "Об’єкти",
+      "practiceGoal": "Створити об’єкт задачі з id title status priority minutes",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-23"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-25",
+      "number": 25,
+      "module": 3,
+      "moduleTitle": "Масиви та об’єкти",
+      "title": "Властивості об’єктів",
+      "practiceGoal": "Оновити статус задачі та перевірити наявність поля",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-24"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-26",
+      "number": 26,
+      "module": 3,
+      "moduleTitle": "Масиви та об’єкти",
+      "title": "Деструктуризація і spread",
+      "practiceGoal": "Створити оновлену копію задачі, не змінюючи оригінал",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-25"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-27",
+      "number": 27,
+      "module": 3,
+      "moduleTitle": "Масиви та об’єкти",
+      "title": "map",
+      "practiceGoal": "Отримати список підписів карток з об’єктів",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-26"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-28",
+      "number": 28,
+      "module": 3,
+      "moduleTitle": "Масиви та об’єкти",
+      "title": "filter і find",
+      "practiceGoal": "Знайти задачу за id та відфільтрувати виконані",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-27"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-29",
+      "number": 29,
+      "module": 3,
+      "moduleTitle": "Масиви та об’єкти",
+      "title": "sort",
+      "practiceGoal": "Відсортувати задачі за пріоритетом без мутації вхідних даних",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-28"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-30",
+      "number": 30,
+      "module": 3,
+      "moduleTitle": "Масиви та об’єкти",
+      "title": "reduce",
+      "practiceGoal": "Обчислити статистику: всього, завершено, хвилин",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-29"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-31",
+      "number": 31,
+      "module": 4,
+      "moduleTitle": "DOM та події",
+      "title": "Пошук DOM-елементів",
+      "practiceGoal": "Змінювати заголовок FocusBoard через querySelector",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-30"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-32",
+      "number": 32,
+      "module": 4,
+      "moduleTitle": "DOM та події",
+      "title": "Створення елементів",
+      "practiceGoal": "Створити безпечну картку задачі через createElement/textContent",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-31"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-33",
+      "number": 33,
+      "module": 4,
+      "moduleTitle": "DOM та події",
+      "title": "Рендеринг списку",
+      "practiceGoal": "Відобразити колекцію задач у контейнері",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-32"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-34",
+      "number": 34,
+      "module": 4,
+      "moduleTitle": "DOM та події",
+      "title": "Події та форми",
+      "practiceGoal": "Додати задачу з форми через submit та preventDefault",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-33"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-35",
+      "number": 35,
+      "module": 4,
+      "moduleTitle": "DOM та події",
+      "title": "Делегування подій",
+      "practiceGoal": "Позначати задачу виконаною кліком на картці",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-34"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-36",
+      "number": 36,
+      "module": 4,
+      "moduleTitle": "DOM та події",
+      "title": "Валідація інтерфейсу",
+      "practiceGoal": "Показувати зрозумілі помилки форми поруч із полем",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-35"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-37",
+      "number": 37,
+      "module": 4,
+      "moduleTitle": "DOM та події",
+      "title": "Редагування й видалення",
+      "practiceGoal": "Реалізувати зміни й видалення задач у UI",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-36"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-38",
+      "number": 38,
+      "module": 4,
+      "moduleTitle": "DOM та події",
+      "title": "Фільтри",
+      "practiceGoal": "Перемикати Усі / Активні / Завершені",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-37"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-39",
+      "number": 39,
+      "module": 4,
+      "moduleTitle": "DOM та події",
+      "title": "Пошук",
+      "practiceGoal": "Фільтрувати задачі за частиною назви",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-38"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-40",
+      "number": 40,
+      "module": 4,
+      "moduleTitle": "DOM та події",
+      "title": "Kanban-подання",
+      "practiceGoal": "Розкладати задачі у Todo / Doing / Done",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-39"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-41",
+      "number": 41,
+      "module": 5,
+      "moduleTitle": "Архітектура та збереження",
+      "title": "ES-модулі",
+      "practiceGoal": "Рознести логіку задач і UI по окремих JS-модулях",
+      "primaryFile": "src/domain/tasks.js",
+      "prerequisites": [
+        "js-40"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-42",
+      "number": 42,
+      "module": 5,
+      "moduleTitle": "Архітектура та збереження",
+      "title": "import / export",
+      "practiceGoal": "Зв’язати модулі через явні експорти та імпорти",
+      "primaryFile": "src/app.js",
+      "prerequisites": [
+        "js-41"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-43",
+      "number": 43,
+      "module": 5,
+      "moduleTitle": "Архітектура та збереження",
+      "title": "Єдиний стан застосунку",
+      "practiceGoal": "Створити невеликий store та підписку UI на зміни",
+      "primaryFile": "src/state/store.js",
+      "prerequisites": [
+        "js-42"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-44",
+      "number": 44,
+      "module": 5,
+      "moduleTitle": "Архітектура та збереження",
+      "title": "Незмінні оновлення",
+      "practiceGoal": "Оновлювати state через нові масиви й об’єкти",
+      "primaryFile": "src/state/store.js",
+      "prerequisites": [
+        "js-43"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-45",
+      "number": 45,
+      "module": 5,
+      "moduleTitle": "Архітектура та збереження",
+      "title": "JSON і localStorage",
+      "practiceGoal": "Зберігати задачі як JSON через адаптер сховища",
+      "primaryFile": "src/storage.js",
+      "prerequisites": [
+        "js-44"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-46",
+      "number": 46,
+      "module": 5,
+      "moduleTitle": "Архітектура та збереження",
+      "title": "Відновлення даних",
+      "practiceGoal": "Завантажити дані після перезавантаження з обробкою пошкодженого JSON",
+      "primaryFile": "src/storage.js",
+      "prerequisites": [
+        "js-45"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-47",
+      "number": 47,
+      "module": 5,
+      "moduleTitle": "Архітектура та збереження",
+      "title": "Версії даних",
+      "practiceGoal": "Реалізувати міграцію сховища v1 -> v2",
+      "primaryFile": "src/storage.js",
+      "prerequisites": [
+        "js-46"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-48",
+      "number": 48,
+      "module": 5,
+      "moduleTitle": "Архітектура та збереження",
+      "title": "Date і дедлайни",
+      "practiceGoal": "Додати dueDate та відображення прострочених задач",
+      "primaryFile": "src/domain/tasks.js",
+      "prerequisites": [
+        "js-47"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-49",
+      "number": 49,
+      "module": 5,
+      "moduleTitle": "Архітектура та збереження",
+      "title": "Сортування та налаштування",
+      "practiceGoal": "Додати режими сортування й запам’ятовувати вибір",
+      "primaryFile": "src/state/store.js",
+      "prerequisites": [
+        "js-48"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-50",
+      "number": 50,
+      "module": 5,
+      "moduleTitle": "Архітектура та збереження",
+      "title": "Історія змін",
+      "practiceGoal": "Додати Undo для останньої дії без нескінченного накопичення",
+      "primaryFile": "src/state/store.js",
+      "prerequisites": [
+        "js-49"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-51",
+      "number": 51,
+      "module": 6,
+      "moduleTitle": "Асинхронність та реліз",
+      "title": "Promise",
+      "practiceGoal": "Імітувати затримку завантаження початкових задач",
+      "primaryFile": "src/services/tasks-api.js",
+      "prerequisites": [
+        "js-50"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-52",
+      "number": 52,
+      "module": 6,
+      "moduleTitle": "Асинхронність та реліз",
+      "title": "async / await",
+      "practiceGoal": "Завантажувати стартові задачі через асинхронну функцію",
+      "primaryFile": "src/services/tasks-api.js",
+      "prerequisites": [
+        "js-51"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-53",
+      "number": 53,
+      "module": 6,
+      "moduleTitle": "Асинхронність та реліз",
+      "title": "fetch і Response",
+      "practiceGoal": "Отримувати JSON із локального mock API через fetch",
+      "primaryFile": "src/services/tasks-api.js",
+      "prerequisites": [
+        "js-52"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-54",
+      "number": 54,
+      "module": 6,
+      "moduleTitle": "Асинхронність та реліз",
+      "title": "try/catch та стани запиту",
+      "practiceGoal": "Показувати loading/error/empty і кнопку повтору",
+      "primaryFile": "src/ui/async-state.js",
+      "prerequisites": [
+        "js-53"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-55",
+      "number": 55,
+      "module": 6,
+      "moduleTitle": "Асинхронність та реліз",
+      "title": "AbortController та debounce",
+      "practiceGoal": "Скасовувати попередній пошук при зміні запиту",
+      "primaryFile": "src/services/tasks-api.js",
+      "prerequisites": [
+        "js-54"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-56",
+      "number": 56,
+      "module": 6,
+      "moduleTitle": "Асинхронність та реліз",
+      "title": "Drag and drop",
+      "practiceGoal": "Переміщувати картки Kanban мишею і доступними кнопками",
+      "primaryFile": "src/ui/board.js",
+      "prerequisites": [
+        "js-55"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-57",
+      "number": 57,
+      "module": 6,
+      "moduleTitle": "Асинхронність та реліз",
+      "title": "File, Blob та JSON",
+      "practiceGoal": "Реалізувати імпорт і експорт задач із перевіркою структури",
+      "primaryFile": "src/services/transfer.js",
+      "prerequisites": [
+        "js-56"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-58",
+      "number": 58,
+      "module": 6,
+      "moduleTitle": "Асинхронність та реліз",
+      "title": "Аналітика",
+      "practiceGoal": "Відобразити статистику виконання та просту діаграму",
+      "primaryFile": "src/ui/stats.js",
+      "prerequisites": [
+        "js-57"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-59",
+      "number": 59,
+      "module": 6,
+      "moduleTitle": "Асинхронність та реліз",
+      "title": "Автоматичні тести й доступність",
+      "practiceGoal": "Додати перевірки критичної бізнес-логіки, клавіатурну навігацію та aria-підписи",
+      "primaryFile": "src/tests/smoke.js",
+      "prerequisites": [
+        "js-58"
+      ],
+      "status": "planned"
+    },
+    {
+      "id": "js-60",
+      "number": 60,
+      "module": 6,
+      "moduleTitle": "Асинхронність та реліз",
+      "title": "Фінальне складання",
+      "practiceGoal": "Пройти регресійні перевірки, виправити баги та зібрати автономний FocusBoard",
+      "primaryFile": "project-export",
+      "prerequisites": [
+        "js-59"
+      ],
+      "status": "planned"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+node_modules/
+public/runner/runtime.js
+public/monaco/
+.next/
+playwright-report/
+test-results/
+package-lock.json
+curriculum/
+content/
+docs/
+prompts/
+AGENTS.md
+README.md

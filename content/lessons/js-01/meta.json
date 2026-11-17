@@ -1,0 +1,15 @@
+{
+  "id": "js-01",
+  "number": 1,
+  "title": "Перша команда JS",
+  "module": 1,
+  "prerequisites": [],
+  "durationMinutes": 25,
+  "objectives": [
+    "Вивести текстове повідомлення командою console.log().",
+    "Оголосити назву застосунку appName за наданим шаблоном const.",
+    "Відрізнити текст у лапках від звернення до імені значення."
+  ],
+  "editablePaths": ["src/app.js"],
+  "courseContentVersion": 1
+}

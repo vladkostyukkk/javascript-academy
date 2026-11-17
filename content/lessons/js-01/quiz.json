@@ -1,0 +1,32 @@
+[
+  {
+    "id": "console-output",
+    "prompt": "Де з’явиться повідомлення після console.log(\"Привіт!\")?",
+    "options": [
+      { "id": "console", "label": "У консолі браузера", "explanation": "Так. console.log виводить повідомлення в консоль; HTML-сторінка від цього не змінюється." },
+      { "id": "heading", "label": "У заголовку сторінки", "explanation": "console.log не змінює HTML. Це команда для повідомлень у консолі браузера." },
+      { "id": "file", "label": "У новому текстовому файлі", "explanation": "Ця команда не створює файлів. Вона виводить повідомлення в консоль." }
+    ],
+    "correctOptionId": "console"
+  },
+  {
+    "id": "named-value",
+    "prompt": "Після const greeting = \"Привіт!\"; яка команда виведе значення цього імені?",
+    "options": [
+      { "id": "literal", "label": "console.log(\"greeting\");", "explanation": "У лапках це буквальний текст greeting. Щоб прочитати значення за ім’ям, прибери лапки навколо імені." },
+      { "id": "value", "label": "console.log(greeting);", "explanation": "Правильно. Ім’я без лапок означає звернення до його значення — Привіт!." },
+      { "id": "different-case", "label": "console.log(Greeting);", "explanation": "Регістр має значення: Greeting і greeting — різні імена. Тут оголошено лише greeting." }
+    ],
+    "correctOptionId": "value"
+  },
+  {
+    "id": "exact-name",
+    "prompt": "Який текст точно збігається з назвою нашого проєкту?",
+    "options": [
+      { "id": "lowercase", "label": "focusboard", "explanation": "Малі й великі літери відрізняються. У назві проєкту великі F та B." },
+      { "id": "trailing-space", "label": "FocusBoard із пробілом наприкінці", "explanation": "Пробіл усередині тексту — теж символ. Наприкінці назви його бути не повинно." },
+      { "id": "exact", "label": "FocusBoard", "explanation": "Так. Це точна назва, зі збереженим регістром і без зайвих пробілів." }
+    ],
+    "correctOptionId": "exact"
+  }
+]
