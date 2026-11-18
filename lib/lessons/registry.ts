@@ -31,7 +31,7 @@ export const lessonRegistry = createLessonRegistry(
 );
 export type RegisteredLesson = ManifestLesson & { contentAvailable: boolean };
 
-// Content readiness is not learner completion. No later lesson unlocks before P05.
+// Content availability is distinct from the client-side prerequisite gate.
 export function canReadTheory(lesson: RegisteredLesson) {
-  return lesson.number === 1 && lesson.contentAvailable;
+  return lesson.contentAvailable;
 }

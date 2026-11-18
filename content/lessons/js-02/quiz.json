@@ -1,0 +1,53 @@
+[
+  {
+    "id": "reassign",
+    "prompt": "Яке оголошення дозволяє пізніше присвоїти інше значення?",
+    "options": [
+      {
+        "id": "let",
+        "label": "let",
+        "explanation": "let дозволяє змінювати значення."
+      },
+      {
+        "id": "const",
+        "label": "const",
+        "explanation": "const забороняє повторне присвоєння."
+      }
+    ],
+    "correctOptionId": "let"
+  },
+  {
+    "id": "number",
+    "prompt": "Як записати тривалість числом?",
+    "options": [
+      {
+        "id": "numeric",
+        "label": "const duration = 25;",
+        "explanation": "25 без лапок є числом."
+      },
+      {
+        "id": "text",
+        "label": "const duration = \"25\";",
+        "explanation": "У лапках записано текст."
+      }
+    ],
+    "correctOptionId": "numeric"
+  },
+  {
+    "id": "update",
+    "prompt": "Після let priority = 1; як змінити значення на 2?",
+    "options": [
+      {
+        "id": "assign",
+        "label": "priority = 2;",
+        "explanation": "Ім’я вже оголошено, потрібне присвоєння."
+      },
+      {
+        "id": "declare",
+        "label": "let priority = 2;",
+        "explanation": "Повторне оголошення того самого імені спричиняє помилку."
+      }
+    ],
+    "correctOptionId": "assign"
+  }
+]

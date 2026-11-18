@@ -1,3 +1,5 @@
+import { MAX_LESSON_CHECKS, checksSchema } from "@/lib/lessons/schema";
+import { checkpointSchema } from "@/lib/progress/checkpoint-schema";
 import { expect, it } from "vitest";
 import { readLessonBundle } from "@/lib/lessons/content-files";
 import { editDraft, isDirty, lessonRun } from "@/lib/workspace/state";
@@ -92,11 +94,58 @@ it("rejects mismatched execution mode, unsafe bindings and oversized result sets
     payloadSchema.safeParse({
       kind: "execution",
       operation: "check",
-      checks: Array.from({ length: 11 }, () => ({
+      checks: Array.from({ length: MAX_LESSON_CHECKS + 1 }, () => ({
         id: "a",
         passed: true,
         feedback: "ok",
       })),
     }).success,
   ).toBe(false);
+});
+
+it("shares bounded check capacity across content, runner and persisted checkpoints", async () => {
+  const bundle = await readLessonBundle("js-05");
+  for (const count of [2, 12, MAX_LESSON_CHECKS, MAX_LESSON_CHECKS + 1]) {
+    const checks = Array.from({ length: count }, (_, index) => ({
+      id: "check-" + index,
+      kind: "bindingEquals" as const,
+      binding: "completed",
+      expected: false,
+      feedback: "Потрібне булеве false.",
+    }));
+    const accepted = count <= MAX_LESSON_CHECKS;
+    expect(checksSchema.safeParse(checks).success).toBe(accepted);
+    expect(
+      runInputSchema.safeParse({
+        mode: "lesson",
+        files: bundle.starter,
+        entry: "src/app.js",
+        mock: { status: 200, delayMs: 0 },
+        assertion: { kind: "lesson", operation: "check", checks },
+      }).success,
+    ).toBe(accepted);
+    expect(
+      payloadSchema.safeParse({
+        kind: "execution",
+        operation: "check",
+        checks: checks.map(({ id, feedback }) => ({
+          id,
+          feedback,
+          passed: true,
+        })),
+      }).success,
+    ).toBe(accepted);
+    expect(
+      checkpointSchema.safeParse({
+        schemaVersion: 1,
+        lessonId: "js-05",
+        courseContentVersion: 1,
+        sourceRevision: 0,
+        sourceToken: "550e8400-e29b-41d4-a716-446655440000",
+        fileMap: bundle.solution,
+        completedAt: "2026-11-17T12:00:00.000Z",
+        passedCheckIds: checks.map(({ id }) => id),
+      }).success,
+    ).toBe(accepted);
+  }
 });

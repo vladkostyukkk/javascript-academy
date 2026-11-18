@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useLearningSession } from "./use-learning-session";
+import { LearningBackups } from "./learning-backups";
 import type {
   Quiz,
   FileMap,
@@ -180,6 +181,15 @@ function LessonSession({
           : "Щоб відкрити завдання, прочитай теорію та правильно відповідай на всі запитання нижче."}
       </p>
       <TabsContent value="theory">
+        <LearningBackups
+          learning={learning}
+          quiz={quiz}
+          blocked={
+            workspace.busy ||
+            workspace.storage.operationBusy ||
+            workspace.storage.recovering
+          }
+        />
         <div className="lesson-content-grid">
           <div>
             <article className="theory-content">{theory}</article>
@@ -301,7 +311,7 @@ function LessonSession({
           </div>
           <aside className="lesson-aside">
             <span className="eyebrow">НАВЧИШСЯ</span>
-            <h3>Перший крок до FocusBoard</h3>
+            <h3>Цілі цього уроку</h3>
             <ul>
               {objectives.map((objective) => (
                 <li key={objective}>{objective}</li>
@@ -317,8 +327,8 @@ function LessonSession({
             </p>
             <p>
               Файли та завершення уроку зберігаються локально в цьому браузері.
-              Після успішного Check підтвердь завершення. Наступні матеріали
-              поки заблоковані.
+              Після успішного Check підтвердь завершення. Наступний готовий урок
+              продовжить твій проєкт зі збереженого checkpoint.
             </p>
           </aside>
         </div>

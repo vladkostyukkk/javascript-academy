@@ -17,9 +17,11 @@ test("quiz gives feedback, requires explicit transition and revokes access after
       exact: false,
     }),
   ).toHaveCount(3);
-  await expect(page.getByRole("status")).toContainText(
-    "Поки не всі відповіді правильні",
-  );
+  await expect(
+    page
+      .getByRole("tabpanel", { name: "Теорія", exact: true })
+      .getByRole("status"),
+  ).toContainText("Поки не всі відповіді правильні");
   await expect(practice).toBeDisabled();
   await page
     .getByRole("radio", { name: "У заголовку сторінки", exact: true })
@@ -29,9 +31,11 @@ test("quiz gives feedback, requires explicit transition and revokes access after
     "console.log не змінює HTML",
   );
   await passTheory(page);
-  await expect(page.getByRole("status")).toContainText(
-    "Це ще не завершення уроку",
-  );
+  await expect(
+    page
+      .getByRole("tabpanel", { name: "Теорія", exact: true })
+      .getByRole("status"),
+  ).toContainText("Це ще не завершення уроку");
   await expect(
     page.getByRole("tab", { name: "Теорія", exact: true }),
   ).toHaveAttribute("aria-selected", "true");
@@ -76,21 +80,29 @@ test("quiz gives feedback, requires explicit transition and revokes access after
   ).toHaveCount(0);
 });
 
-test("reload resets only the temporary theory check; later lessons stay locked", async ({
+test("reload preserves saved quiz; query parameters cannot unlock the next lesson", async ({
   page,
 }) => {
   await page.goto("/learn/javascript/js-01");
   await passTheory(page);
+  await expect(
+    page.getByText(
+      "Навчальний стан готовий. Нові відповіді й переходи зберігаються автоматично.",
+      { exact: true },
+    ),
+  ).toBeVisible();
   await page.reload();
   await expect(
     page.getByRole("tab", { name: "Практика", exact: true }),
-  ).toBeDisabled();
-  await expect(page.locator('input[type="radio"]:checked')).toHaveCount(0);
-  await passTheory(page);
+  ).toBeEnabled();
+  await expect(page.locator('input[type="radio"]:checked')).toHaveCount(3);
   await page.getByRole("button", { name: "Перейти до практики" }).click();
   await page.goto("/learn/javascript/js-02?completed=js-01");
   await expect(
-    page.getByRole("heading", { name: "Цей урок ще заблоковано" }),
+    page.getByText(
+      "Спочатку заверши попередній урок, щоб продовжити свій FocusBoard.",
+      { exact: true },
+    ),
   ).toBeVisible();
   await expect(page.getByRole("tab")).toHaveCount(0);
 });

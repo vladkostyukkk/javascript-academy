@@ -1,0 +1,100 @@
+[
+  {
+    "id": "empty",
+    "category": "empty",
+    "source": "",
+    "failedCheckIds": [
+      "app-name",
+      "task-title",
+      "priority",
+      "minutes",
+      "category",
+      "task-label",
+      "second-minutes",
+      "total-minutes",
+      "completed",
+      "important",
+      "task-status",
+      "console",
+      "time-limit",
+      "over-limit",
+      "fits-exact",
+      "exceeds-exact",
+      "task-count",
+      "completed-count",
+      "completion-percent",
+      "empty-percent",
+      "card-text",
+      "empty-card-text",
+      "minutes-input",
+      "parsed-minutes",
+      "invalid-minutes",
+      "empty-minutes",
+      "remaining-minutes",
+      "preview-over-limit",
+      "task-preview"
+    ]
+  },
+  {
+    "id": "invalid",
+    "category": "invalid",
+    "source": "const result = ;",
+    "failedCheckIds": [
+      "app-name",
+      "task-title",
+      "priority",
+      "minutes",
+      "category",
+      "task-label",
+      "second-minutes",
+      "total-minutes",
+      "completed",
+      "important",
+      "task-status",
+      "console",
+      "time-limit",
+      "over-limit",
+      "fits-exact",
+      "exceeds-exact",
+      "task-count",
+      "completed-count",
+      "completion-percent",
+      "empty-percent",
+      "card-text",
+      "empty-card-text",
+      "minutes-input",
+      "parsed-minutes",
+      "invalid-minutes",
+      "empty-minutes",
+      "remaining-minutes",
+      "preview-over-limit",
+      "task-preview"
+    ]
+  },
+  {
+    "id": "reverse-subtract",
+    "category": "edge",
+    "source": "const appName = \"FocusBoard\";\nconsole.log(appName);\n\nconst taskTitle = \"Вивчити JavaScript\";\nlet priority = 1;\npriority = 2;\nconst minutes = 25;\n\nconst category = \"Навчання\";\nconst taskLabel = taskTitle + \" — \" + category;\n\nconst secondTaskMinutes = 15;\nconst totalMinutes = minutes + secondTaskMinutes;\n\nconst completed = false;\nconst isImportant = true;\nconst taskStatus = \"Завершено: \" + completed + \"; важливо: \" + isImportant;\n\nconst timeLimit = 20;\nconst isOverLimit = minutes > timeLimit;\nconst fitsExactLimit = minutes <= minutes;\nconst exceedsExactLimit = minutes > minutes;\n\nconst taskCount = 4;\nconst completedCount = 1;\nconst completionPercent = completedCount / Math.max(taskCount, 1) * 100;\nconst emptyPercent = 0 / Math.max(0, 1) * 100;\n\nconst cardText = `${taskTitle} — ${category} | ${minutes} хв | прогрес: ${completionPercent}%`;\nconst emptyCardText = `Прогрес порожнього списку: ${emptyPercent}%`;\n\nconst minutesInput = \"30\";\nconst parsedMinutes = Number(minutesInput);\nconst invalidMinutes = Number.isNaN(Number(\"не число\"));\nconst emptyMinutes = Number(\"\");\n\nconst remainingMinutes = minutes - parsedMinutes;\nconst previewOverLimit = parsedMinutes > timeLimit;\nconst taskPreview = `${cardText} | введено: ${parsedMinutes} хв | запас: ${remainingMinutes} хв | понад ліміт: ${previewOverLimit}`;\n",
+    "failedCheckIds": [
+      "remaining-minutes",
+      "task-preview"
+    ]
+  },
+  {
+    "id": "wrong-comparison",
+    "category": "edge",
+    "source": "const appName = \"FocusBoard\";\nconsole.log(appName);\n\nconst taskTitle = \"Вивчити JavaScript\";\nlet priority = 1;\npriority = 2;\nconst minutes = 25;\n\nconst category = \"Навчання\";\nconst taskLabel = taskTitle + \" — \" + category;\n\nconst secondTaskMinutes = 15;\nconst totalMinutes = minutes + secondTaskMinutes;\n\nconst completed = false;\nconst isImportant = true;\nconst taskStatus = \"Завершено: \" + completed + \"; важливо: \" + isImportant;\n\nconst timeLimit = 20;\nconst isOverLimit = minutes > timeLimit;\nconst fitsExactLimit = minutes <= minutes;\nconst exceedsExactLimit = minutes > minutes;\n\nconst taskCount = 4;\nconst completedCount = 1;\nconst completionPercent = completedCount / Math.max(taskCount, 1) * 100;\nconst emptyPercent = 0 / Math.max(0, 1) * 100;\n\nconst cardText = `${taskTitle} — ${category} | ${minutes} хв | прогрес: ${completionPercent}%`;\nconst emptyCardText = `Прогрес порожнього списку: ${emptyPercent}%`;\n\nconst minutesInput = \"30\";\nconst parsedMinutes = Number(minutesInput);\nconst invalidMinutes = Number.isNaN(Number(\"не число\"));\nconst emptyMinutes = Number(\"\");\n\nconst remainingMinutes = parsedMinutes - minutes;\nconst previewOverLimit = parsedMinutes < timeLimit;\nconst taskPreview = `${cardText} | введено: ${parsedMinutes} хв | запас: ${remainingMinutes} хв | понад ліміт: ${previewOverLimit}`;\n",
+    "failedCheckIds": [
+      "preview-over-limit",
+      "task-preview"
+    ]
+  },
+  {
+    "id": "missing-unit",
+    "category": "edge",
+    "source": "const appName = \"FocusBoard\";\nconsole.log(appName);\n\nconst taskTitle = \"Вивчити JavaScript\";\nlet priority = 1;\npriority = 2;\nconst minutes = 25;\n\nconst category = \"Навчання\";\nconst taskLabel = taskTitle + \" — \" + category;\n\nconst secondTaskMinutes = 15;\nconst totalMinutes = minutes + secondTaskMinutes;\n\nconst completed = false;\nconst isImportant = true;\nconst taskStatus = \"Завершено: \" + completed + \"; важливо: \" + isImportant;\n\nconst timeLimit = 20;\nconst isOverLimit = minutes > timeLimit;\nconst fitsExactLimit = minutes <= minutes;\nconst exceedsExactLimit = minutes > minutes;\n\nconst taskCount = 4;\nconst completedCount = 1;\nconst completionPercent = completedCount / Math.max(taskCount, 1) * 100;\nconst emptyPercent = 0 / Math.max(0, 1) * 100;\n\nconst cardText = `${taskTitle} — ${category} | ${minutes} хв | прогрес: ${completionPercent}%`;\nconst emptyCardText = `Прогрес порожнього списку: ${emptyPercent}%`;\n\nconst minutesInput = \"30\";\nconst parsedMinutes = Number(minutesInput);\nconst invalidMinutes = Number.isNaN(Number(\"не число\"));\nconst emptyMinutes = Number(\"\");\n\nconst remainingMinutes = parsedMinutes - minutes;\nconst previewOverLimit = parsedMinutes > timeLimit;\nconst taskPreview = `${cardText} | введено: ${parsedMinutes} хв | запас: ${remainingMinutes} | понад ліміт: ${previewOverLimit}`;\n",
+    "failedCheckIds": [
+      "task-preview"
+    ]
+  }
+]

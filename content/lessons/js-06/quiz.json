@@ -1,0 +1,36 @@
+[
+  {
+    "id": "boundary",
+    "prompt": "Що поверне 25 > 25?",
+    "options": [
+      {
+        "id": "a",
+        "label": "false",
+        "explanation": "Рівність не є перевищенням."
+      },
+      {
+        "id": "b",
+        "label": "true",
+        "explanation": "Для рівності потрібен >=."
+      }
+    ],
+    "correctOptionId": "a"
+  },
+  {
+    "id": "type",
+    "prompt": "Що поверне 25 === \"25\"?",
+    "options": [
+      {
+        "id": "a",
+        "label": "false",
+        "explanation": "Типи відрізняються."
+      },
+      {
+        "id": "b",
+        "label": "true",
+        "explanation": "Строга рівність враховує тип."
+      }
+    ],
+    "correctOptionId": "a"
+  }
+]

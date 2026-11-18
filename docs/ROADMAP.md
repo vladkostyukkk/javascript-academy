@@ -21,6 +21,9 @@ Multi-file Monaco, tabs, console, diagnostics, preview, Run, Check, tests, hints
 IndexedDB drafts, auto-save, checkpoints, restore, statuses, course version, previous-lesson forks. Gate: reload restores changes; reset confirmation; previous content not corrupted.
 
 ## P06 — first 10 lessons
+
+Статус: прийнято 2026-11-18; докази й межі — [P06_ACCEPTANCE.md](P06_ACCEPTANCE.md).
+
 Fully author, test, and manually review lessons 01–10; validate references and pedagogy. Gate: all reference checkpoints pass, test failures meaningful; no future syntax.
 
 ## P07 — lessons 11–20

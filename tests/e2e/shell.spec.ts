@@ -48,7 +48,7 @@ test("home → roadmap → theory → project; no fabricated progress", async ({
   ).toHaveCount(0);
   await page.goto("/project");
   await expect(
-    page.getByRole("heading", { name: "Тут почнеться історія твого проєкту" }),
+    page.getByText("Збережених версій ще немає.", { exact: false }),
   ).toBeVisible();
   await expect(page.getByRole("button", { name: /Експорт/ })).toHaveCount(0);
   expect(errors).toEqual([]);
@@ -66,7 +66,9 @@ test("roadmap search, empty state and locked lesson survive reload", async ({
     "href",
     "#module-6",
   );
-  await expect(page.getByRole("status")).toHaveText("Знайдено уроків: 1 із 60");
+  await expect(page.locator(".search-count")).toHaveText(
+    "Знайдено уроків: 1 із 60",
+  );
   await page.locator("[data-lesson-id='js-51'] a").click();
   await expect(
     page.getByRole("heading", { name: "Цей урок ще заблоковано" }),

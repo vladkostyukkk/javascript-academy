@@ -1,0 +1,53 @@
+[
+  {
+    "id": "addition",
+    "prompt": "Що дає 20 + 5?",
+    "options": [
+      {
+        "id": "number",
+        "label": "Число 25",
+        "explanation": "Обидва операнди є числами, тому + додає їх."
+      },
+      {
+        "id": "text",
+        "label": "Рядок 205",
+        "explanation": "Об’єднання тексту відбувалося б за наявності рядка."
+      }
+    ],
+    "correctOptionId": "number"
+  },
+  {
+    "id": "mixed",
+    "prompt": "Що дає 20 + \"5\"?",
+    "options": [
+      {
+        "id": "text",
+        "label": "Рядок 205",
+        "explanation": "Один операнд є рядком, тому + об’єднує текст."
+      },
+      {
+        "id": "number",
+        "label": "Число 25",
+        "explanation": "Лапки навколо 5 змінюють поведінку оператора +."
+      }
+    ],
+    "correctOptionId": "text"
+  },
+  {
+    "id": "zero",
+    "prompt": "Що дає 20 + 0?",
+    "options": [
+      {
+        "id": "same",
+        "label": "Число 20",
+        "explanation": "Числовий нуль не змінює суму."
+      },
+      {
+        "id": "joined",
+        "label": "Рядок 200",
+        "explanation": "Для об’єднання тексту потрібен рядок; тут обидва значення числові."
+      }
+    ],
+    "correctOptionId": "same"
+  }
+]

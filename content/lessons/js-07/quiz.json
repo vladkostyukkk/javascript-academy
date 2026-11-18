@@ -1,0 +1,53 @@
+[
+  {
+    "id": "fraction",
+    "prompt": "2 / 5 * 100 дорівнює…",
+    "options": [
+      {
+        "id": "correct",
+        "label": "40",
+        "explanation": "Частку 0.4 множимо на 100."
+      },
+      {
+        "id": "wrong",
+        "label": "0.4",
+        "explanation": "Частку 0.4 множимо на 100."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "empty",
+    "prompt": "Math.max(0, 1) повертає…",
+    "options": [
+      {
+        "id": "correct",
+        "label": "1",
+        "explanation": "Команда вибирає більше число."
+      },
+      {
+        "id": "wrong",
+        "label": "0",
+        "explanation": "Команда вибирає більше число."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "remainder",
+    "prompt": "Чи обчислює % відсоток?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "Ні, остачу",
+        "explanation": "Відсоток обчислюють діленням і множенням на 100."
+      },
+      {
+        "id": "wrong",
+        "label": "Так",
+        "explanation": "Відсоток обчислюють діленням і множенням на 100."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

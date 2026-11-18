@@ -1,0 +1,84 @@
+[
+  {
+    "id": "empty",
+    "category": "empty",
+    "source": "",
+    "failedCheckIds": [
+      "app-name",
+      "task-title",
+      "priority",
+      "minutes",
+      "category",
+      "task-label",
+      "second-minutes",
+      "total-minutes",
+      "completed",
+      "important",
+      "task-status",
+      "console"
+    ]
+  },
+  {
+    "id": "invalid",
+    "category": "invalid",
+    "source": "const completed = ;",
+    "failedCheckIds": [
+      "app-name",
+      "task-title",
+      "priority",
+      "minutes",
+      "category",
+      "task-label",
+      "second-minutes",
+      "total-minutes",
+      "completed",
+      "important",
+      "task-status",
+      "console"
+    ]
+  },
+  {
+    "id": "quoted-false",
+    "category": "edge",
+    "source": "const appName = \"FocusBoard\";\nconsole.log(appName);\n\nconst taskTitle = \"Вивчити JavaScript\";\nlet priority = 1;\npriority = 2;\nconst minutes = 25;\n\nconst category = \"Навчання\";\nconst taskLabel = taskTitle + \" — \" + category;\n\nconst secondTaskMinutes = 15;\nconst totalMinutes = minutes + secondTaskMinutes;\n\nconst completed = \"false\";\nconst isImportant = true;\nconst taskStatus = \"Завершено: \" + completed + \"; важливо: \" + isImportant;\n",
+    "failedCheckIds": [
+      "completed"
+    ]
+  },
+  {
+    "id": "quoted-true",
+    "category": "edge",
+    "source": "const appName = \"FocusBoard\";\nconsole.log(appName);\n\nconst taskTitle = \"Вивчити JavaScript\";\nlet priority = 1;\npriority = 2;\nconst minutes = 25;\n\nconst category = \"Навчання\";\nconst taskLabel = taskTitle + \" — \" + category;\n\nconst secondTaskMinutes = 15;\nconst totalMinutes = minutes + secondTaskMinutes;\n\nconst completed = false;\nconst isImportant = \"true\";\nconst taskStatus = \"Завершено: \" + completed + \"; важливо: \" + isImportant;\n",
+    "failedCheckIds": [
+      "important"
+    ]
+  },
+  {
+    "id": "numeric-flags",
+    "category": "edge",
+    "source": "const appName = \"FocusBoard\";\nconsole.log(appName);\n\nconst taskTitle = \"Вивчити JavaScript\";\nlet priority = 1;\npriority = 2;\nconst minutes = 25;\n\nconst category = \"Навчання\";\nconst taskLabel = taskTitle + \" — \" + category;\n\nconst secondTaskMinutes = 15;\nconst totalMinutes = minutes + secondTaskMinutes;\n\nconst completed = 0;\nconst isImportant = 1;\nconst taskStatus = \"Завершено: \" + completed + \"; важливо: \" + isImportant;\n",
+    "failedCheckIds": [
+      "completed",
+      "important",
+      "task-status"
+    ]
+  },
+  {
+    "id": "inverted-flags",
+    "category": "edge",
+    "source": "const appName = \"FocusBoard\";\nconsole.log(appName);\n\nconst taskTitle = \"Вивчити JavaScript\";\nlet priority = 1;\npriority = 2;\nconst minutes = 25;\n\nconst category = \"Навчання\";\nconst taskLabel = taskTitle + \" — \" + category;\n\nconst secondTaskMinutes = 15;\nconst totalMinutes = minutes + secondTaskMinutes;\n\nconst completed = true;\nconst isImportant = false;\nconst taskStatus = \"Завершено: \" + completed + \"; важливо: \" + isImportant;\n",
+    "failedCheckIds": [
+      "completed",
+      "important",
+      "task-status"
+    ]
+  },
+  {
+    "id": "missing-space",
+    "category": "edge",
+    "source": "const appName = \"FocusBoard\";\nconsole.log(appName);\n\nconst taskTitle = \"Вивчити JavaScript\";\nlet priority = 1;\npriority = 2;\nconst minutes = 25;\n\nconst category = \"Навчання\";\nconst taskLabel = taskTitle + \" — \" + category;\n\nconst secondTaskMinutes = 15;\nconst totalMinutes = minutes + secondTaskMinutes;\n\nconst completed = false;\nconst isImportant = true;\nconst taskStatus = \"Завершено: \" + completed + \";важливо: \" + isImportant;\n",
+    "failedCheckIds": [
+      "task-status"
+    ]
+  }
+]

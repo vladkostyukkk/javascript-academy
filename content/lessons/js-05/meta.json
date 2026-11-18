@@ -1,0 +1,19 @@
+{
+  "id": "js-05",
+  "number": 5,
+  "title": "Булеві значення",
+  "module": 1,
+  "prerequisites": [
+    "js-04"
+  ],
+  "durationMinutes": 30,
+  "objectives": [
+    "Описати завершення та важливість задачі значеннями false і true.",
+    "Відрізнити булеве значення від рядка або числа.",
+    "Сформувати текстовий статус зі значень прапорців."
+  ],
+  "editablePaths": [
+    "src/app.js"
+  ],
+  "courseContentVersion": 1
+}

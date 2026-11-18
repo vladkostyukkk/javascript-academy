@@ -1,0 +1,72 @@
+[
+  {
+    "id": "empty",
+    "category": "empty",
+    "source": "",
+    "failedCheckIds": [
+      "app-name",
+      "task-title",
+      "priority",
+      "minutes",
+      "category",
+      "task-label",
+      "second-minutes",
+      "total-minutes",
+      "completed",
+      "important",
+      "task-status",
+      "console",
+      "time-limit",
+      "over-limit",
+      "fits-exact",
+      "exceeds-exact",
+      "task-count",
+      "completed-count",
+      "completion-percent",
+      "empty-percent"
+    ]
+  },
+  {
+    "id": "invalid",
+    "category": "invalid",
+    "source": "const result = ;",
+    "failedCheckIds": [
+      "app-name",
+      "task-title",
+      "priority",
+      "minutes",
+      "category",
+      "task-label",
+      "second-minutes",
+      "total-minutes",
+      "completed",
+      "important",
+      "task-status",
+      "console",
+      "time-limit",
+      "over-limit",
+      "fits-exact",
+      "exceeds-exact",
+      "task-count",
+      "completed-count",
+      "completion-percent",
+      "empty-percent"
+    ]
+  },
+  {
+    "id": "zero-denominator",
+    "category": "edge",
+    "source": "const appName = \"FocusBoard\";\nconsole.log(appName);\n\nconst taskTitle = \"Вивчити JavaScript\";\nlet priority = 1;\npriority = 2;\nconst minutes = 25;\n\nconst category = \"Навчання\";\nconst taskLabel = taskTitle + \" — \" + category;\n\nconst secondTaskMinutes = 15;\nconst totalMinutes = minutes + secondTaskMinutes;\n\nconst completed = false;\nconst isImportant = true;\nconst taskStatus = \"Завершено: \" + completed + \"; важливо: \" + isImportant;\n\nconst timeLimit = 20;\nconst isOverLimit = minutes > timeLimit;\nconst fitsExactLimit = minutes <= minutes;\nconst exceedsExactLimit = minutes > minutes;\n\nconst taskCount = 4;\nconst completedCount = 1;\nconst completionPercent = completedCount / Math.max(taskCount, 1) * 100;\nconst emptyPercent = 0 / 0 * 100;\n",
+    "failedCheckIds": [
+      "empty-percent"
+    ]
+  },
+  {
+    "id": "missing-scale",
+    "category": "edge",
+    "source": "const appName = \"FocusBoard\";\nconsole.log(appName);\n\nconst taskTitle = \"Вивчити JavaScript\";\nlet priority = 1;\npriority = 2;\nconst minutes = 25;\n\nconst category = \"Навчання\";\nconst taskLabel = taskTitle + \" — \" + category;\n\nconst secondTaskMinutes = 15;\nconst totalMinutes = minutes + secondTaskMinutes;\n\nconst completed = false;\nconst isImportant = true;\nconst taskStatus = \"Завершено: \" + completed + \"; важливо: \" + isImportant;\n\nconst timeLimit = 20;\nconst isOverLimit = minutes > timeLimit;\nconst fitsExactLimit = minutes <= minutes;\nconst exceedsExactLimit = minutes > minutes;\n\nconst taskCount = 4;\nconst completedCount = 1;\nconst completionPercent = completedCount / Math.max(taskCount, 1);\nconst emptyPercent = 0 / Math.max(0, 1) * 100;\n",
+    "failedCheckIds": [
+      "completion-percent"
+    ]
+  }
+]

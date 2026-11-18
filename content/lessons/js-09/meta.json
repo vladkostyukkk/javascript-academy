@@ -1,0 +1,19 @@
+{
+  "id": "js-09",
+  "number": 9,
+  "title": "Перетворення типів",
+  "module": 1,
+  "prerequisites": [
+    "js-08"
+  ],
+  "durationMinutes": 30,
+  "objectives": [
+    "Перетворити числовий текст через Number.",
+    "Виявити NaN через Number.isNaN.",
+    "Пояснити перетворення порожнього рядка."
+  ],
+  "editablePaths": [
+    "src/app.js"
+  ],
+  "courseContentVersion": 1
+}

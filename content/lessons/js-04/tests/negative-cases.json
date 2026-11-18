@@ -1,0 +1,69 @@
+[
+  {
+    "id": "empty",
+    "category": "empty",
+    "source": "",
+    "failedCheckIds": [
+      "app-name",
+      "task-title",
+      "priority",
+      "minutes",
+      "category",
+      "task-label",
+      "second-minutes",
+      "total-minutes",
+      "console"
+    ]
+  },
+  {
+    "id": "invalid",
+    "category": "invalid",
+    "source": "const totalMinutes = ;",
+    "failedCheckIds": [
+      "app-name",
+      "task-title",
+      "priority",
+      "minutes",
+      "category",
+      "task-label",
+      "second-minutes",
+      "total-minutes",
+      "console"
+    ]
+  },
+  {
+    "id": "quoted-duration",
+    "category": "edge",
+    "source": "const appName = \"FocusBoard\";\nconsole.log(appName);\n\nconst taskTitle = \"Вивчити JavaScript\";\nlet priority = 1;\npriority = 2;\nconst minutes = 25;\n\nconst category = \"Навчання\";\nconst taskLabel = taskTitle + \" — \" + category;\n\nconst secondTaskMinutes = \"15\";\nconst totalMinutes = minutes + secondTaskMinutes;\n",
+    "failedCheckIds": [
+      "second-minutes",
+      "total-minutes"
+    ]
+  },
+  {
+    "id": "negative-duration",
+    "category": "edge",
+    "source": "const appName = \"FocusBoard\";\nconsole.log(appName);\n\nconst taskTitle = \"Вивчити JavaScript\";\nlet priority = 1;\npriority = 2;\nconst minutes = 25;\n\nconst category = \"Навчання\";\nconst taskLabel = taskTitle + \" — \" + category;\n\nconst secondTaskMinutes = -15;\nconst totalMinutes = minutes + secondTaskMinutes;\n",
+    "failedCheckIds": [
+      "second-minutes",
+      "total-minutes"
+    ]
+  },
+  {
+    "id": "zero-duration",
+    "category": "edge",
+    "source": "const appName = \"FocusBoard\";\nconsole.log(appName);\n\nconst taskTitle = \"Вивчити JavaScript\";\nlet priority = 1;\npriority = 2;\nconst minutes = 25;\n\nconst category = \"Навчання\";\nconst taskLabel = taskTitle + \" — \" + category;\n\nconst secondTaskMinutes = 0;\nconst totalMinutes = minutes + secondTaskMinutes;\n",
+    "failedCheckIds": [
+      "second-minutes",
+      "total-minutes"
+    ]
+  },
+  {
+    "id": "quoted-total",
+    "category": "edge",
+    "source": "const appName = \"FocusBoard\";\nconsole.log(appName);\n\nconst taskTitle = \"Вивчити JavaScript\";\nlet priority = 1;\npriority = 2;\nconst minutes = 25;\n\nconst category = \"Навчання\";\nconst taskLabel = taskTitle + \" — \" + category;\n\nconst secondTaskMinutes = 15;\nconst totalMinutes = \"40\";\n",
+    "failedCheckIds": [
+      "total-minutes"
+    ]
+  }
+]

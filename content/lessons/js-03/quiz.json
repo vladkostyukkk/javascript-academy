@@ -1,0 +1,53 @@
+[
+  {
+    "id": "join",
+    "prompt": "Що дає \"До\" + \" \" + \"справи\"?",
+    "options": [
+      {
+        "id": "space",
+        "label": "До справи",
+        "explanation": "Середній рядок додає один пробіл."
+      },
+      {
+        "id": "joined",
+        "label": "Досправи",
+        "explanation": "Пробіл у середньому рядку не зникає."
+      }
+    ],
+    "correctOptionId": "space"
+  },
+  {
+    "id": "variable",
+    "prompt": "Який вираз читає збережене значення taskTitle?",
+    "options": [
+      {
+        "id": "name",
+        "label": "taskTitle",
+        "explanation": "Ім’я без лапок звертається до змінної."
+      },
+      {
+        "id": "literal",
+        "label": "\"taskTitle\"",
+        "explanation": "Лапки створюють буквальний текст taskTitle."
+      }
+    ],
+    "correctOptionId": "name"
+  },
+  {
+    "id": "empty",
+    "prompt": "Що дає \"Фокус\" + \"\"?",
+    "options": [
+      {
+        "id": "same",
+        "label": "Фокус",
+        "explanation": "Порожній рядок не додає символів."
+      },
+      {
+        "id": "space",
+        "label": "Фокус із пробілом наприкінці",
+        "explanation": "Порожній рядок не містить навіть пробілу."
+      }
+    ],
+    "correctOptionId": "same"
+  }
+]

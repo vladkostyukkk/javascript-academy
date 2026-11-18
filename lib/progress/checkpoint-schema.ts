@@ -1,5 +1,9 @@
 import { z } from "zod";
-import { fileMapSchema, lessonIdSchema } from "@/lib/lessons/schema";
+import {
+  fileMapSchema,
+  lessonIdSchema,
+  MAX_LESSON_CHECKS,
+} from "@/lib/lessons/schema";
 
 export function checkpointKey(lessonId: string, contentVersion: number) {
   return `${lessonId}@${contentVersion}`;
@@ -16,7 +20,7 @@ export const checkpointSchema = z.strictObject({
   passedCheckIds: z
     .array(z.string().min(1).max(100))
     .min(2)
-    .max(10)
+    .max(MAX_LESSON_CHECKS)
     .refine((ids) => new Set(ids).size === ids.length),
 });
 export type CompletedCheckpoint = z.infer<typeof checkpointSchema>;

@@ -1,0 +1,19 @@
+{
+  "id": "js-02",
+  "number": 2,
+  "title": "let і const",
+  "module": 1,
+  "prerequisites": [
+    "js-01"
+  ],
+  "durationMinutes": 30,
+  "objectives": [
+    "Оголосити назву задачі й тривалість через const.",
+    "Змінити пріоритет задачі через let і присвоєння.",
+    "Розрізнити число й текст у лапках."
+  ],
+  "editablePaths": [
+    "src/app.js"
+  ],
+  "courseContentVersion": 1
+}

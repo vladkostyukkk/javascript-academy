@@ -1,0 +1,53 @@
+[
+  {
+    "id": "order",
+    "prompt": "Коли варто складати фінальний текст?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "Після обчислення чисел",
+        "explanation": "Спочатку отримуємо дані, тоді їх текстове представлення."
+      },
+      {
+        "id": "wrong",
+        "label": "Перед арифметикою",
+        "explanation": "Спочатку отримуємо дані, тоді їх текстове представлення."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "boundary",
+    "prompt": "Який запас для 25 доступних і 25 запланованих хвилин?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "0",
+        "explanation": "Запас — різниця, тому на межі він нульовий."
+      },
+      {
+        "id": "wrong",
+        "label": "25",
+        "explanation": "Запас — різниця, тому на межі він нульовий."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "negative",
+    "prompt": "Що дає 20 - 25?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "-5",
+        "explanation": "Від’ємна різниця показує нестачу часу."
+      },
+      {
+        "id": "wrong",
+        "label": "5",
+        "explanation": "Від’ємна різниця показує нестачу часу."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

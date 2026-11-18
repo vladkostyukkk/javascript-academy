@@ -103,25 +103,37 @@ describe("registry boundaries", () => {
     expect(() => createLessonRegistry(input, ["js-01"])).toThrow(/матеріалів/);
   });
 
-  it("content availability does not unlock later lessons", () => {
+  it("content availability is separate from the client prerequisite gate", () => {
     const registry = createLessonRegistry(manifestInput, ["js-01", "js-02"]);
     expect(canReadTheory(registry.lessons[0])).toBe(true);
     expect(registry.lessons[1].contentAvailable).toBe(true);
-    expect(canReadTheory(registry.lessons[1])).toBe(false);
+    expect(canReadTheory(registry.lessons[1])).toBe(true);
+    expect(canReadTheory(registry.lessons[2])).toBe(false);
   });
 });
 
 describe("complete lesson content", () => {
   it("loads the sample, checks its reference checksum and keeps planned lessons unpopulated", async () => {
     const content = await readValidatedCourseContent();
-    expect(content).toHaveLength(1);
+    expect(content).toHaveLength(10);
     expect(content[0].meta.id).toBe("js-01");
     expect(content[0].hints).toHaveLength(3);
     expect(
       content[0].negativeCases.filter(({ category }) => category === "edge")
         .length,
     ).toBeGreaterThanOrEqual(2);
-    await expect(readLessonBundle("js-02")).rejects.toThrow(/не зареєстровано/);
+    expect(content[1].meta.id).toBe("js-02");
+    expect(content[2].meta.id).toBe("js-03");
+    expect(content[2].starter).toEqual(content[1].solution);
+    expect(content[3].meta.id).toBe("js-04");
+    expect(content[3].starter).toEqual(content[2].solution);
+    expect(content[4].meta.id).toBe("js-05");
+    expect(content[4].starter).toEqual(content[3].solution);
+    for (let i = 5; i < 10; i++) {
+      expect(content[i].meta.id).toBe(`js-${String(i + 1).padStart(2, "0")}`);
+      expect(content[i].starter).toEqual(content[i - 1].solution);
+    }
+    await expect(readLessonBundle("js-11")).rejects.toThrow(/не зареєстровано/);
     await expect(readLessonBundle("../js-01")).rejects.toThrow(/Невідомий ID/);
   });
 

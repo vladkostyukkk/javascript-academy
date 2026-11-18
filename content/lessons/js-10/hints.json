@@ -1,0 +1,5 @@
+[
+  "Розбий задачу на два обчислення й один шаблон.",
+  "Віднімай числа parsedMinutes та minutes; порівнюй parsedMinutes із timeLimit.",
+  "Почни шаблон із `${cardText} | введено: ${parsedMinutes} хв`."
+]

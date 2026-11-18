@@ -1,0 +1,19 @@
+{
+  "id": "js-03",
+  "number": 3,
+  "title": "Рядки",
+  "module": 1,
+  "prerequisites": [
+    "js-02"
+  ],
+  "durationMinutes": 30,
+  "objectives": [
+    "Оголосити категорію задачі як рядок.",
+    "Об’єднати назву та категорію оператором +.",
+    "Розрізнити ім’я змінної, текст у лапках і пробіли в підписі."
+  ],
+  "editablePaths": [
+    "src/app.js"
+  ],
+  "courseContentVersion": 1
+}

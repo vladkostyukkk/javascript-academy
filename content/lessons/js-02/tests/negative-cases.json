@@ -1,0 +1,50 @@
+[
+  {
+    "id": "empty",
+    "category": "empty",
+    "source": "",
+    "failedCheckIds": [
+      "app-name",
+      "task-title",
+      "priority",
+      "minutes",
+      "console"
+    ]
+  },
+  {
+    "id": "invalid",
+    "category": "invalid",
+    "source": "const = ;",
+    "failedCheckIds": [
+      "app-name",
+      "task-title",
+      "priority",
+      "minutes",
+      "console"
+    ]
+  },
+  {
+    "id": "quoted-minutes",
+    "category": "edge",
+    "source": "const appName = \"FocusBoard\";\nconsole.log(appName);\n\nconst taskTitle = \"Вивчити JavaScript\";\nlet priority = 1;\npriority = 2;\nconst minutes = \"25\";\n",
+    "failedCheckIds": [
+      "minutes"
+    ]
+  },
+  {
+    "id": "title-space",
+    "category": "edge",
+    "source": "const appName = \"FocusBoard\";\nconsole.log(appName);\n\nconst taskTitle = \"Вивчити JavaScript \";\nlet priority = 1;\npriority = 2;\nconst minutes = 25;\n",
+    "failedCheckIds": [
+      "task-title"
+    ]
+  },
+  {
+    "id": "old-priority",
+    "category": "edge",
+    "source": "const appName = \"FocusBoard\";\nconsole.log(appName);\n\nconst taskTitle = \"Вивчити JavaScript\";\nlet priority = 1;\npriority = 1;\nconst minutes = 25;\n",
+    "failedCheckIds": [
+      "priority"
+    ]
+  }
+]

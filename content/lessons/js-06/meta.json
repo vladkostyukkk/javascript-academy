@@ -1,0 +1,18 @@
+{
+  "id": "js-06",
+  "number": 6,
+  "title": "Порівняння",
+  "module": 1,
+  "prerequisites": [
+    "js-05"
+  ],
+  "durationMinutes": 30,
+  "objectives": [
+    "Порівняти тривалість із лімітом.",
+    "Відрізнити перевищення від рівності."
+  ],
+  "editablePaths": [
+    "src/app.js"
+  ],
+  "courseContentVersion": 1
+}

@@ -17,7 +17,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="uk" className="dark">
+    <html lang="uk" className="dark" data-scroll-behavior="smooth">
       <body>
         <AppShell>{children}</AppShell>
       </body>

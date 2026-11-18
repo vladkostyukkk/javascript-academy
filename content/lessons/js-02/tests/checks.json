@@ -1,0 +1,40 @@
+[
+  {
+    "id": "app-name",
+    "kind": "bindingEquals",
+    "binding": "appName",
+    "expected": "FocusBoard",
+    "feedback": "Збережи appName зі значенням FocusBoard з першого уроку."
+  },
+  {
+    "id": "task-title",
+    "kind": "bindingEquals",
+    "binding": "taskTitle",
+    "expected": "Вивчити JavaScript",
+    "feedback": "Назва задачі має точно дорівнювати Вивчити JavaScript без зайвих пробілів."
+  },
+  {
+    "id": "priority",
+    "kind": "bindingEquals",
+    "binding": "priority",
+    "expected": 2,
+    "feedback": "Кінцевий пріоритет має бути числом 2. Зміни значення через присвоєння."
+  },
+  {
+    "id": "minutes",
+    "kind": "bindingEquals",
+    "binding": "minutes",
+    "expected": 25,
+    "feedback": "Тривалість має бути числом 25, не текстом у лапках."
+  },
+  {
+    "id": "console",
+    "kind": "consoleEquals",
+    "expected": [
+      [
+        "FocusBoard"
+      ]
+    ],
+    "feedback": "Збережи одне виведення назви FocusBoard із попереднього уроку."
+  }
+]

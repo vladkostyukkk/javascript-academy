@@ -175,6 +175,8 @@ export const fileMapSchema = z
   });
 export type FileMap = z.infer<typeof fileMapSchema>;
 
+export const MAX_LESSON_CHECKS = 32;
+
 const checkBase = { id: identifier, feedback: text };
 export const checksSchema = z
   .array(
@@ -183,7 +185,11 @@ export const checksSchema = z
         ...checkBase,
         kind: z.literal("bindingEquals"),
         binding: z.string().regex(/^[a-zA-Z_$][a-zA-Z0-9_$]*$/),
-        expected: z.string().max(1000),
+        expected: z.union([
+          z.string().max(1000),
+          z.number().finite(),
+          z.boolean(),
+        ]),
       }),
       z.strictObject({
         ...checkBase,
@@ -193,6 +199,7 @@ export const checksSchema = z
     ]),
   )
   .min(2)
+  .max(MAX_LESSON_CHECKS)
   .refine(
     (checks) => new Set(checks.map(({ id }) => id)).size === checks.length,
     "Повторений ID перевірки.",

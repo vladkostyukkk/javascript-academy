@@ -1,5 +1,9 @@
 import { z } from "zod";
-import { fileMapSchema, checksSchema } from "@/lib/lessons/schema";
+import {
+  fileMapSchema,
+  checksSchema,
+  MAX_LESSON_CHECKS,
+} from "@/lib/lessons/schema";
 
 export const limits = {
   timeoutMs: 2000,
@@ -19,7 +23,7 @@ export const runInputSchema = z
         .object({
           kind: z.literal("lesson"),
           operation: z.enum(["run", "check"]),
-          checks: checksSchema.max(10),
+          checks: checksSchema,
         })
         .strict(),
       z
@@ -70,7 +74,7 @@ export const payloadSchema = z.discriminatedUnion("kind", [
             })
             .strict(),
         )
-        .max(10),
+        .max(MAX_LESSON_CHECKS),
     })
     .strict(),
   z.object({ kind: z.literal("ready") }).strict(),

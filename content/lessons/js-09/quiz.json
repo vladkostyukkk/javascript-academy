@@ -1,0 +1,53 @@
+[
+  {
+    "id": "convert",
+    "prompt": "Number(\"12\") + 3 дає…",
+    "options": [
+      {
+        "id": "correct",
+        "label": "15",
+        "explanation": "Після перетворення + додає числа."
+      },
+      {
+        "id": "wrong",
+        "label": "123",
+        "explanation": "Після перетворення + додає числа."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "nan",
+    "prompt": "Як перевірити невдале перетворення?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "Number.isNaN(Number(\"abc\"))",
+        "explanation": "Спочатку перетворюємо рядок; сама перевірка не перетворює тип."
+      },
+      {
+        "id": "wrong",
+        "label": "Number.isNaN(\"abc\")",
+        "explanation": "Спочатку перетворюємо рядок; сама перевірка не перетворює тип."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "blank",
+    "prompt": "Number(\"\") повертає…",
+    "options": [
+      {
+        "id": "correct",
+        "label": "0",
+        "explanation": "Порожній рядок перетворюється на нуль; валідація форми є окремою задачею."
+      },
+      {
+        "id": "wrong",
+        "label": "NaN",
+        "explanation": "Порожній рядок перетворюється на нуль; валідація форми є окремою задачею."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

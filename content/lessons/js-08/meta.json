@@ -1,0 +1,18 @@
+{
+  "id": "js-08",
+  "number": 8,
+  "title": "Шаблонні рядки",
+  "module": 1,
+  "prerequisites": [
+    "js-07"
+  ],
+  "durationMinutes": 30,
+  "objectives": [
+    "Вставити значення змінних у шаблонний рядок.",
+    "Сформувати компактний підпис картки."
+  ],
+  "editablePaths": [
+    "src/app.js"
+  ],
+  "courseContentVersion": 1
+}

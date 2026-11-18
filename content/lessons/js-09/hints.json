@@ -1,0 +1,5 @@
+[
+  "Number перетворює, Number.isNaN перевіряє результат.",
+  "Передай Number(\"не число\") всередину Number.isNaN.",
+  "Порожній рядок перетворюй явно: const emptyMinutes = Number(\"\");"
+]

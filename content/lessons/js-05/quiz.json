@@ -1,0 +1,58 @@
+[
+  {
+    "id": "boolean",
+    "prompt": "Яке значення є булевим «ні»?",
+    "options": [
+      {
+        "id": "bool",
+        "label": "false",
+        "explanation": "false без лапок є булевим значенням хиби."
+      },
+      {
+        "id": "text",
+        "label": "\"false\"",
+        "explanation": "У лапках це рядок, а не булеве значення."
+      },
+      {
+        "id": "number",
+        "label": "0",
+        "explanation": "Нуль є числом, а не булевим значенням."
+      }
+    ],
+    "correctOptionId": "bool"
+  },
+  {
+    "id": "flag",
+    "prompt": "Як позначити, що задача важлива?",
+    "options": [
+      {
+        "id": "yes",
+        "label": "const isImportant = true;",
+        "explanation": "true відповідає «так» на запитання про важливість."
+      },
+      {
+        "id": "no",
+        "label": "const isImportant = false;",
+        "explanation": "false означало б, що задача не важлива."
+      }
+    ],
+    "correctOptionId": "yes"
+  },
+  {
+    "id": "status",
+    "prompt": "Який рядок утворить \"Архів: \" + false?",
+    "options": [
+      {
+        "id": "result",
+        "label": "Архів: false",
+        "explanation": "Під час об’єднання з рядком false представляється текстом false."
+      },
+      {
+        "id": "empty",
+        "label": "Архів: ",
+        "explanation": "false не зникає: це значення, а не порожній текст."
+      }
+    ],
+    "correctOptionId": "result"
+  }
+]

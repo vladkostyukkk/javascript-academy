@@ -1,0 +1,18 @@
+{
+  "id": "js-10",
+  "number": 10,
+  "title": "Підсумкова мініпрактика",
+  "module": 1,
+  "prerequisites": [
+    "js-09"
+  ],
+  "durationMinutes": 40,
+  "objectives": [
+    "Поєднати обчислення, порівняння та текстові вставки.",
+    "Скласти текстовий preview FocusBoard зі збережених даних."
+  ],
+  "editablePaths": [
+    "src/app.js"
+  ],
+  "courseContentVersion": 1
+}

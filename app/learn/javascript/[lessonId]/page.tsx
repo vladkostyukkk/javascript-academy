@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, LockKeyhole } from "lucide-react";
 import { findLesson, formatNumber, lessons } from "@/lib/lessons/catalog";
 import { LessonExperience } from "@/components/course/lesson-experience";
+import { LessonEntry } from "@/components/course/lesson-entry";
 import { TheoryMarkdown } from "@/components/course/theory-markdown";
 import { loadLesson } from "@/lib/lessons/loader";
 import { canReadTheory } from "@/lib/lessons/registry";
@@ -62,20 +63,22 @@ export default async function LessonPage({ params }: Props) {
               відкрити редактор, запустити код і перевірити рішення.
             </p>
           </div>
-          <LessonExperience
-            key={`${content.meta.id}-${content.meta.courseContentVersion}`}
-            lessonId={content.meta.id}
-            courseContentVersion={content.meta.courseContentVersion}
-            quiz={content.quiz}
-            hints={content.hints}
-            objectives={content.meta.objectives}
-            durationMinutes={content.meta.durationMinutes}
-            theory={<TheoryMarkdown source={content.theory} />}
-            challenge={<TheoryMarkdown source={content.challenge} />}
-            starter={content.starter}
-            editablePaths={content.meta.editablePaths}
-            checks={content.checks}
-          />
+          <LessonEntry meta={content.meta} starter={content.starter}>
+            <LessonExperience
+              key={`${content.meta.id}-${content.meta.courseContentVersion}`}
+              lessonId={content.meta.id}
+              courseContentVersion={content.meta.courseContentVersion}
+              quiz={content.quiz}
+              hints={content.hints}
+              objectives={content.meta.objectives}
+              durationMinutes={content.meta.durationMinutes}
+              theory={<TheoryMarkdown source={content.theory} />}
+              challenge={<TheoryMarkdown source={content.challenge} />}
+              starter={content.starter}
+              editablePaths={content.meta.editablePaths}
+              checks={content.checks}
+            />
+          </LessonEntry>
         </>
       ) : (
         <div className="empty-state locked-state">

@@ -8,6 +8,12 @@ import {
 } from "@/lib/lessons/learning-flow";
 import type { LessonId, Quiz } from "@/lib/lessons/schema";
 import {
+  readLearningBackups,
+  inspectLearningBackup,
+  restoreLearningBackup,
+  type LearningBackup,
+} from "@/lib/progress/learning-backups";
+import {
   learningSnapshotSchema,
   readLearning,
   restoreLearning,
@@ -26,7 +32,13 @@ const initialSession: Session = {
   revision: 0,
   quizAttempts: 0,
 };
-type Phase = "loading" | "ready" | "load-error" | "recovery" | "conflict";
+type Phase =
+  | "loading"
+  | "ready"
+  | "load-error"
+  | "recovery"
+  | "recovery-conflict"
+  | "conflict";
 
 export function useLearningSession(
   lessonId: LessonId,
@@ -46,6 +58,7 @@ export function useLearningSession(
   const halted = useRef(false);
   const mounted = useRef(false);
   const recoveryActive = useRef(false);
+  const saveGeneration = useRef(0);
   useEffect(() => {
     mounted.current = true;
     return () => {
@@ -101,9 +114,16 @@ export function useLearningSession(
 
   useEffect(() => {
     if (phase !== "ready" || session.revision === savedRevision) return;
+    const generation = saveGeneration.current;
     const timer = setTimeout(() => {
       queue.current = queue.current.then(async () => {
-        if (!mounted.current || halted.current) return;
+        if (
+          !mounted.current ||
+          halted.current ||
+          recoveryActive.current ||
+          generation !== saveGeneration.current
+        )
+          return;
         try {
           const next: LearningSnapshot = {
             schemaVersion: 1,
@@ -148,6 +168,7 @@ export function useLearningSession(
   ]);
 
   function dispatch(action: LearningAction) {
+    if (recoveryActive.current) return;
     if (phase !== "ready" && phase !== "conflict") return;
     setSession((current) => {
       if (action.type === "tab" && action.tab === current.learning.tab)
@@ -193,19 +214,85 @@ export function useLearningSession(
         setPhase("ready");
       }
     } catch (reason) {
-      if (mounted.current)
+      if (mounted.current) {
+        if (reason instanceof LearningConflictError) {
+          halted.current = true;
+          setPhase("recovery-conflict");
+        }
         setError(
           reason instanceof LearningConflictError
             ? `${reason.message} Онови сторінку перед відновленням.`
             : "Не вдалося відновити quiz. Попередні дані не змінено.",
         );
+      }
     } finally {
       recoveryActive.current = false;
       if (mounted.current) setRecovering(false);
     }
   }
   const pending = session.revision !== savedRevision;
+  const canRestore =
+    (phase === "ready" || phase === "recovery") &&
+    !pending &&
+    !recovering &&
+    (phase === "recovery" || !error) &&
+    session.learning.tab === "theory";
+  async function restoreBackup(backup: LearningBackup) {
+    if (!canRestore || recoveryActive.current) return false;
+    recoveryActive.current = true;
+    saveGeneration.current++;
+    setRecovering(true);
+    try {
+      await queue.current;
+      if (halted.current) throw new LearningConflictError();
+      const next = await restoreLearningBackup(
+        backup,
+        { lessonId, courseContentVersion, scope },
+        quiz,
+        expected.current,
+        session.revision,
+      );
+      expected.current = next;
+      if (mounted.current) {
+        setSession({
+          learning: restoreLearning(next, quiz),
+          revision: next.revision,
+          quizAttempts: next.quizAttempts,
+        });
+        setSavedRevision(next.revision);
+        setPhase("ready");
+        setError(null);
+      }
+      return true;
+    } catch (reason) {
+      if (mounted.current) {
+        if (reason instanceof LearningConflictError) {
+          halted.current = true;
+          setPhase(phase === "recovery" ? "recovery-conflict" : "conflict");
+        }
+        setError(
+          reason instanceof LearningConflictError
+            ? reason.message
+            : "Не вдалося відновити копію quiz. Онови список; попередні дані збережено.",
+        );
+      }
+      return false;
+    } finally {
+      recoveryActive.current = false;
+      if (mounted.current) setRecovering(false);
+    }
+  }
   return {
+    listBackups: (before?: number) =>
+      readLearningBackups({ lessonId, courseContentVersion, scope }, before),
+    inspectBackup: (backup: LearningBackup) =>
+      inspectLearningBackup(
+        backup,
+        { lessonId, courseContentVersion, scope },
+        quiz,
+      ),
+    restoreBackup,
+    canRestore,
     state: session.learning,
     dispatch,
     phase,
@@ -213,7 +300,7 @@ export function useLearningSession(
     error,
     recovering,
     recover,
-    ready: phase === "ready" || phase === "conflict",
+    ready: !recovering && (phase === "ready" || phase === "conflict"),
     message:
       phase === "loading"
         ? "Завантажуємо відповіді та місце зупинки…"
@@ -234,7 +321,7 @@ export function useLearningSession(
     download: () => {
       try {
         const data =
-          phase === "recovery"
+          phase === "recovery" || phase === "recovery-conflict"
             ? expected.current
             : {
                 lessonId,

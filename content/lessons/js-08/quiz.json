@@ -1,0 +1,36 @@
+[
+  {
+    "id": "quotes",
+    "prompt": "Які лапки підтримують ${minutes}?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "Зворотні",
+        "explanation": "Вставки працюють у шаблонних рядках зі зворотними лапками."
+      },
+      {
+        "id": "wrong",
+        "label": "Подвійні",
+        "explanation": "Вставки працюють у шаблонних рядках зі зворотними лапками."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "zero",
+    "prompt": "Що вставить ${0}?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "Символ 0",
+        "explanation": "Нуль не зникає під час вставки."
+      },
+      {
+        "id": "wrong",
+        "label": "Порожній текст",
+        "explanation": "Нуль не зникає під час вставки."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

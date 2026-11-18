@@ -1,0 +1,64 @@
+[
+  {
+    "id": "empty",
+    "category": "empty",
+    "source": "",
+    "failedCheckIds": [
+      "app-name",
+      "task-title",
+      "priority",
+      "minutes",
+      "category",
+      "task-label",
+      "console"
+    ]
+  },
+  {
+    "id": "invalid",
+    "category": "invalid",
+    "source": "const category = \"Навчання;",
+    "failedCheckIds": [
+      "app-name",
+      "task-title",
+      "priority",
+      "minutes",
+      "category",
+      "task-label",
+      "console"
+    ]
+  },
+  {
+    "id": "missing-spaces",
+    "category": "edge",
+    "source": "const appName = \"FocusBoard\";\nconsole.log(appName);\n\nconst taskTitle = \"Вивчити JavaScript\";\nlet priority = 1;\npriority = 2;\nconst minutes = 25;\n\nconst category = \"Навчання\";\nconst taskLabel = taskTitle + \"—\" + category;\n",
+    "failedCheckIds": [
+      "task-label"
+    ]
+  },
+  {
+    "id": "literal-name",
+    "category": "edge",
+    "source": "const appName = \"FocusBoard\";\nconsole.log(appName);\n\nconst taskTitle = \"Вивчити JavaScript\";\nlet priority = 1;\npriority = 2;\nconst minutes = 25;\n\nconst category = \"Навчання\";\nconst taskLabel = \"taskTitle\" + \" — \" + category;\n",
+    "failedCheckIds": [
+      "task-label"
+    ]
+  },
+  {
+    "id": "empty-category",
+    "category": "edge",
+    "source": "const appName = \"FocusBoard\";\nconsole.log(appName);\n\nconst taskTitle = \"Вивчити JavaScript\";\nlet priority = 1;\npriority = 2;\nconst minutes = 25;\n\nconst category = \"\";\nconst taskLabel = taskTitle + \" — \" + category;\n",
+    "failedCheckIds": [
+      "category",
+      "task-label"
+    ]
+  },
+  {
+    "id": "trailing-space",
+    "category": "edge",
+    "source": "const appName = \"FocusBoard\";\nconsole.log(appName);\n\nconst taskTitle = \"Вивчити JavaScript\";\nlet priority = 1;\npriority = 2;\nconst minutes = 25;\n\nconst category = \"Навчання \";\nconst taskLabel = taskTitle + \" — \" + category;\n",
+    "failedCheckIds": [
+      "category",
+      "task-label"
+    ]
+  }
+]

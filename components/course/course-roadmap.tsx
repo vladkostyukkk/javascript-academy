@@ -24,6 +24,9 @@ export function CourseRoadmap({
   availableVersions: AvailableVersion[];
 }) {
   const progress = useCourseCompletion(availableVersions);
+  const accessible = (lesson: (typeof lessons)[number]) =>
+    canReadTheory(lesson) &&
+    lesson.prerequisites.every((id) => progress.completed?.has(id));
   const [query, setQuery] = useState("");
   const normalized = query.trim().toLocaleLowerCase("uk");
   const matchingModules = courseModules
@@ -138,8 +141,8 @@ export function CourseRoadmap({
                   <li key={lesson.id} data-lesson-id={lesson.id}>
                     <Link
                       href={`/learn/javascript/${lesson.id}`}
-                      aria-label={`${formatNumber(lesson.number)}. ${lesson.title}. ${canReadTheory(lesson) ? (progress.completed?.has(lesson.id) ? "Завершено" : "Теорія доступна") : "Заблоковано"}`}
-                      className={`lesson-row ${canReadTheory(lesson) ? "demo-row" : ""}`}
+                      aria-label={`${formatNumber(lesson.number)}. ${lesson.title}. ${accessible(lesson) ? (progress.completed?.has(lesson.id) ? "Завершено" : "Теорія доступна") : "Заблоковано"}`}
+                      className={`lesson-row ${accessible(lesson) ? "demo-row" : ""}`}
                     >
                       <span className="lesson-number">
                         {formatNumber(lesson.number)}
@@ -151,7 +154,7 @@ export function CourseRoadmap({
                         </span>
                       </span>
                       <span className="lesson-availability">
-                        {canReadTheory(lesson) ? (
+                        {accessible(lesson) ? (
                           <>
                             <span>
                               {progress.completed?.has(lesson.id)

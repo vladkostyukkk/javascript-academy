@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import type { WorkspaceController } from "./use-workspace";
+import { lessonRegistry, canReadTheory } from "@/lib/lessons/registry";
 
 export function CompletionPanel({
   workspace,
@@ -14,6 +15,10 @@ export function CompletionPanel({
 }) {
   const { storage } = workspace;
   if (!storage.completed) return null;
+  const next = lessonRegistry.lessons.find(
+    (lesson) =>
+      lesson.prerequisites[0] === storage.lessonId && canReadTheory(lesson),
+  );
   return (
     <section
       className="completion-panel"
@@ -32,7 +37,15 @@ export function CompletionPanel({
           ? "Твій код повторення зберігається окремо. Після оновлення сторінки відкрий повторення знову, щоб продовжити."
           : "Перше повторення починається з початкового завдання. Якщо копія вже є, відкриються твої останні зміни."}
       </p>
-      <p>Наступний урок ще готується й залишається заблокованим.</p>
+      {next ? (
+        <Button asChild variant="outline">
+          <Link href={`/learn/javascript/${next.id}`}>
+            Наступний урок: {next.title}
+          </Link>
+        </Button>
+      ) : (
+        <p>Наступний урок ще готується й залишається заблокованим.</p>
+      )}
       <p role="status">
         {storage.operationBusy
           ? "Зберігаємо…"

@@ -1,0 +1,68 @@
+[
+  {
+    "id": "app-name",
+    "kind": "bindingEquals",
+    "binding": "appName",
+    "expected": "FocusBoard",
+    "feedback": "Збережи appName зі значенням FocusBoard з першого уроку."
+  },
+  {
+    "id": "task-title",
+    "kind": "bindingEquals",
+    "binding": "taskTitle",
+    "expected": "Вивчити JavaScript",
+    "feedback": "Назва задачі має точно дорівнювати Вивчити JavaScript без зайвих пробілів."
+  },
+  {
+    "id": "priority",
+    "kind": "bindingEquals",
+    "binding": "priority",
+    "expected": 2,
+    "feedback": "Кінцевий пріоритет має бути числом 2. Зміни значення через присвоєння."
+  },
+  {
+    "id": "minutes",
+    "kind": "bindingEquals",
+    "binding": "minutes",
+    "expected": 25,
+    "feedback": "Тривалість має бути числом 25, не текстом у лапках."
+  },
+  {
+    "id": "category",
+    "kind": "bindingEquals",
+    "binding": "category",
+    "expected": "Навчання",
+    "feedback": "Категорія має точно дорівнювати Навчання, без зайвих пробілів."
+  },
+  {
+    "id": "task-label",
+    "kind": "bindingEquals",
+    "binding": "taskLabel",
+    "expected": "Вивчити JavaScript — Навчання",
+    "feedback": "Об’єднай значення taskTitle і category через тире з одним пробілом з кожного боку: \" — \"."
+  },
+  {
+    "id": "second-minutes",
+    "kind": "bindingEquals",
+    "binding": "secondTaskMinutes",
+    "expected": 15,
+    "feedback": "Друга справа триває 15 хвилин: запиши число 15 без лапок і знака мінус."
+  },
+  {
+    "id": "total-minutes",
+    "kind": "bindingEquals",
+    "binding": "totalMinutes",
+    "expected": 40,
+    "feedback": "Додай числові minutes та secondTaskMinutes. Очікується число 40, а не текст."
+  },
+  {
+    "id": "console",
+    "kind": "consoleEquals",
+    "expected": [
+      [
+        "FocusBoard"
+      ]
+    ],
+    "feedback": "Збережи одне виведення назви FocusBoard із попереднього уроку."
+  }
+]
