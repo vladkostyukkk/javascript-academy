@@ -1,0 +1,19 @@
+{
+  "id": "js-28",
+  "number": 28,
+  "title": "filter і find",
+  "module": 3,
+  "prerequisites": [
+    "js-27"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Відібрати всі завершені задачі через filter.",
+    "Знайти один об’єкт за точним ID через find.",
+    "Розрізнити порожній масив і undefined як результати пошуку без збігів."
+  ],
+  "editablePaths": [
+    "src/app.js"
+  ],
+  "courseContentVersion": 1
+}

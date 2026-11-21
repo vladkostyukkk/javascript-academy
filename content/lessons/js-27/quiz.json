@@ -1,0 +1,58 @@
+[
+  {
+    "id": "map-result-count",
+    "prompt": "Скільки елементів у результаті [3, 3, 0].map((number) => number * 2)?",
+    "options": [
+      {
+        "id": "two",
+        "label": "Два",
+        "explanation": "Однакові значення теж обробляються окремо, кожне на своїй позиції."
+      },
+      {
+        "id": "three",
+        "label": "Три",
+        "explanation": "map повертає по одному результату для кожного з трьох елементів."
+      },
+      {
+        "id": "one",
+        "label": "Один",
+        "explanation": "map створює масив результатів для всіх елементів."
+      }
+    ],
+    "correctOptionId": "three"
+  },
+  {
+    "id": "map-passes-callback",
+    "prompt": "Як передати в map наявну функцію formatLabel?",
+    "options": [
+      {
+        "id": "passes-function",
+        "label": "list.map(formatLabel)",
+        "explanation": "Ім’я без дужок передає функцію. map викличе її для кожного елемента."
+      },
+      {
+        "id": "calls-function",
+        "label": "list.map(formatLabel())",
+        "explanation": "Дужки викликають formatLabel одразу, тож у map потрапить значення, повернене з цього виклику."
+      }
+    ],
+    "correctOptionId": "passes-function"
+  },
+  {
+    "id": "map-keeps-source",
+    "prompt": "Чому дорівнює values[0] після виклику values.map((value) => value + 1) для values = [2, 4]?",
+    "options": [
+      {
+        "id": "three",
+        "label": "3",
+        "explanation": "Значення 3 опиниться в новому масиві, який повертає map."
+      },
+      {
+        "id": "two",
+        "label": "2",
+        "explanation": "Callback лише читає число. Перший елемент вихідного масиву лишається 2."
+      }
+    ],
+    "correctOptionId": "two"
+  }
+]

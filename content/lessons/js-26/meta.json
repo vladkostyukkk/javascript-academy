@@ -1,0 +1,19 @@
+{
+  "id": "js-26",
+  "number": 26,
+  "title": "Деструктуризація і spread",
+  "module": 3,
+  "prerequisites": [
+    "js-25"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Дістати назву й хвилини задачі через деструктуризацію.",
+    "Створити через spread нову версію задачі із заданим статусом.",
+    "Перевірити, що оновлення зберігає оригінальні дані."
+  ],
+  "editablePaths": [
+    "src/app.js"
+  ],
+  "courseContentVersion": 1
+}

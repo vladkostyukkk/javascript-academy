@@ -1,0 +1,63 @@
+[
+  {
+    "id": "filter-result-shape",
+    "prompt": "Що поверне [5, 9, 11].filter((number) => number >= 9)?",
+    "options": [
+      {
+        "id": "booleans",
+        "label": "[false, true, true]",
+        "explanation": "Результати умови підказують, які елементи взяти з початкового списку."
+      },
+      {
+        "id": "selected",
+        "label": "[9, 11]",
+        "explanation": "filter повертає масив відібраних елементів у порядку входження."
+      },
+      {
+        "id": "single",
+        "label": "9",
+        "explanation": "Перше число повернув би find. Метод filter збирає всі збіги."
+      }
+    ],
+    "correctOptionId": "selected"
+  },
+  {
+    "id": "find-no-match",
+    "prompt": "Що поверне [5, 9].find((number) => number === 11)?",
+    "options": [
+      {
+        "id": "empty",
+        "label": "[]",
+        "explanation": "Порожній масив повернув би filter, якби не знайшов збігів."
+      },
+      {
+        "id": "null",
+        "label": "null",
+        "explanation": "У find результатом пошуку без збігів є undefined."
+      },
+      {
+        "id": "undefined",
+        "label": "undefined",
+        "explanation": "Жоден елемент не дорівнює 11, тож find дає undefined."
+      }
+    ],
+    "correctOptionId": "undefined"
+  },
+  {
+    "id": "find-id-type",
+    "prompt": "Чи знайде find задачу з числовим ID 2 за умовою task.id === \"2\"?",
+    "options": [
+      {
+        "id": "no",
+        "label": "Ні",
+        "explanation": "Строга рівність порівнює і значення, і тип. Тут число порівнюється з рядком."
+      },
+      {
+        "id": "yes",
+        "label": "Так",
+        "explanation": "Обидва записи містять цифру 2, але оператор === також враховує їхні типи."
+      }
+    ],
+    "correctOptionId": "no"
+  }
+]

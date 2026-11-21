@@ -1,0 +1,58 @@
+[
+  {
+    "id": "loop-value",
+    "prompt": "Які значення матиме flag по черзі в циклі for (const flag of [false, true])?",
+    "options": [
+      {
+        "id": "values",
+        "label": "Спочатку false, потім true",
+        "explanation": "Цикл for...of читає значення елементів у порядку масиву."
+      },
+      {
+        "id": "indices",
+        "label": "Спочатку 0, потім 1",
+        "explanation": "Ці числа є індексами, а змінна циклу for...of отримує самі значення."
+      }
+    ],
+    "correctOptionId": "values"
+  },
+  {
+    "id": "loop-bound",
+    "prompt": "Яку умову потрібно задати в for, щоб прочитати всі елементи від індексу 0 без виходу за межі?",
+    "options": [
+      {
+        "id": "less",
+        "label": "index < flags.length",
+        "explanation": "Цикл зупиняється перед індексом, що дорівнює довжині."
+      },
+      {
+        "id": "less-or-equal",
+        "label": "index <= flags.length",
+        "explanation": "За такої умови цикл спробує прочитати індекс, що дорівнює довжині."
+      },
+      {
+        "id": "greater",
+        "label": "index > flags.length",
+        "explanation": "Для початкового індексу 0 умова одразу хибна."
+      }
+    ],
+    "correctOptionId": "less"
+  },
+  {
+    "id": "empty-count",
+    "prompt": "Що поверне лічильник, який починається з 0 та збільшується тільки для true, якщо масив порожній?",
+    "options": [
+      {
+        "id": "zero",
+        "label": "0",
+        "explanation": "У циклу немає жодної ітерації. Після циклу повертається початкове значення 0."
+      },
+      {
+        "id": "one",
+        "label": "1",
+        "explanation": "Лічильник зростає тільки після прочитаного true. У порожньому масиві його немає."
+      }
+    ],
+    "correctOptionId": "zero"
+  }
+]

@@ -17,6 +17,8 @@ function matches(check: LessonCheck, observation: LessonObservation): boolean {
       );
     case "callEquals":
     case "generatorSequence":
+    case "bindingStructure":
+    case "callStructure":
       return (
         observation.probeResults !== undefined &&
         Object.hasOwn(observation.probeResults, check.id) &&

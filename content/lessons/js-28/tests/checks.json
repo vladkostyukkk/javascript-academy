@@ -1,0 +1,795 @@
+[
+  {
+    "id": "completed-tasks-array",
+    "kind": "bindingStructure",
+    "binding": "completedTasks",
+    "expected": [
+      {
+        "id": 2,
+        "title": "Перевірити план",
+        "status": "Готово",
+        "priority": 1,
+        "minutes": 15
+      }
+    ],
+    "feedback": "У completedTasks має бути масив з об’єктом задачі «Перевірити план» та всіма її полями."
+  },
+  {
+    "id": "filter-completed-in-list-order",
+    "kind": "callStructure",
+    "binding": "filterCompletedTasks",
+    "args": [
+      [
+        {
+          "id": 91,
+          "title": "Надіслати конспект",
+          "status": "Готово",
+          "priority": 2,
+          "minutes": 0
+        },
+        {
+          "id": 45,
+          "title": "Оновити макет",
+          "status": "У роботі",
+          "priority": 10,
+          "minutes": 40
+        },
+        {
+          "id": 13,
+          "title": "Додати нотатку",
+          "status": "Готово",
+          "priority": 2,
+          "minutes": 8,
+          "category": "Навчання"
+        },
+        {
+          "id": 72,
+          "title": "Звірити вимоги",
+          "status": "Заплановано",
+          "priority": 2,
+          "minutes": 11
+        },
+        {
+          "id": 5,
+          "title": "Уточнити статус",
+          "status": "готово",
+          "priority": 0,
+          "minutes": 18
+        }
+      ]
+    ],
+    "expected": [
+      {
+        "id": 91,
+        "title": "Надіслати конспект",
+        "status": "Готово",
+        "priority": 2,
+        "minutes": 0
+      },
+      {
+        "id": 13,
+        "title": "Додати нотатку",
+        "status": "Готово",
+        "priority": 2,
+        "minutes": 8,
+        "category": "Навчання"
+      }
+    ],
+    "returnsCopy": true,
+    "feedback": "Відбери точний статус «Готово» і збережи порядок та всі поля двох збігів, зокрема задачі з нулем хвилин і задачі з category."
+  },
+  {
+    "id": "filter-no-completed-tasks",
+    "kind": "callStructure",
+    "binding": "filterCompletedTasks",
+    "args": [
+      [
+        {
+          "id": 5,
+          "title": "Уточнити статус",
+          "status": "готово",
+          "priority": 0,
+          "minutes": 18
+        },
+        {
+          "id": 72,
+          "title": "Звірити вимоги",
+          "status": "Заплановано",
+          "priority": 2,
+          "minutes": 11
+        }
+      ]
+    ],
+    "expected": [],
+    "returnsCopy": true,
+    "feedback": "Якщо точного статусу «Готово» немає, поверни порожній масив. Регістр літер має значення."
+  },
+  {
+    "id": "filter-empty-list",
+    "kind": "callStructure",
+    "binding": "filterCompletedTasks",
+    "args": [
+      []
+    ],
+    "expected": [],
+    "returnsCopy": true,
+    "feedback": "Вибірка з порожнього списку дає новий порожній масив."
+  },
+  {
+    "id": "find-exact-id",
+    "kind": "callStructure",
+    "binding": "findTaskById",
+    "args": [
+      [
+        {
+          "id": 91,
+          "title": "Надіслати конспект",
+          "status": "Готово",
+          "priority": 2,
+          "minutes": 0
+        },
+        {
+          "id": 45,
+          "title": "Оновити макет",
+          "status": "У роботі",
+          "priority": 10,
+          "minutes": 40
+        },
+        {
+          "id": 13,
+          "title": "Додати нотатку",
+          "status": "Готово",
+          "priority": 2,
+          "minutes": 8,
+          "category": "Навчання"
+        },
+        {
+          "id": 72,
+          "title": "Звірити вимоги",
+          "status": "Заплановано",
+          "priority": 2,
+          "minutes": 11
+        },
+        {
+          "id": 5,
+          "title": "Уточнити статус",
+          "status": "готово",
+          "priority": 0,
+          "minutes": 18
+        }
+      ],
+      13
+    ],
+    "expected": {
+      "id": 13,
+      "title": "Додати нотатку",
+      "status": "Готово",
+      "priority": 2,
+      "minutes": 8,
+      "category": "Навчання"
+    },
+    "firstArgAfter": [
+      {
+        "id": 91,
+        "title": "Надіслати конспект",
+        "status": "Готово",
+        "priority": 2,
+        "minutes": 0
+      },
+      {
+        "id": 45,
+        "title": "Оновити макет",
+        "status": "У роботі",
+        "priority": 10,
+        "minutes": 40
+      },
+      {
+        "id": 13,
+        "title": "Додати нотатку",
+        "status": "Готово",
+        "priority": 2,
+        "minutes": 8,
+        "category": "Навчання"
+      },
+      {
+        "id": 72,
+        "title": "Звірити вимоги",
+        "status": "Заплановано",
+        "priority": 2,
+        "minutes": 11
+      },
+      {
+        "id": 5,
+        "title": "Уточнити статус",
+        "status": "готово",
+        "priority": 0,
+        "minutes": 18
+      }
+    ],
+    "feedback": "Знайди задачу з числовим ID 13 у переданому масиві й поверни весь об’єкт без зміни його полів або порядку задач."
+  },
+  {
+    "id": "find-absent-id",
+    "kind": "callStructure",
+    "binding": "findTaskById",
+    "args": [
+      [
+        {
+          "id": 91,
+          "title": "Надіслати конспект",
+          "status": "Готово",
+          "priority": 2,
+          "minutes": 0
+        },
+        {
+          "id": 45,
+          "title": "Оновити макет",
+          "status": "У роботі",
+          "priority": 10,
+          "minutes": 40
+        },
+        {
+          "id": 13,
+          "title": "Додати нотатку",
+          "status": "Готово",
+          "priority": 2,
+          "minutes": 8,
+          "category": "Навчання"
+        },
+        {
+          "id": 72,
+          "title": "Звірити вимоги",
+          "status": "Заплановано",
+          "priority": 2,
+          "minutes": 11
+        },
+        {
+          "id": 5,
+          "title": "Уточнити статус",
+          "status": "готово",
+          "priority": 0,
+          "minutes": 18
+        }
+      ],
+      2
+    ],
+    "expected": {
+      "$undefined": true
+    },
+    "firstArgAfter": [
+      {
+        "id": 91,
+        "title": "Надіслати конспект",
+        "status": "Готово",
+        "priority": 2,
+        "minutes": 0
+      },
+      {
+        "id": 45,
+        "title": "Оновити макет",
+        "status": "У роботі",
+        "priority": 10,
+        "minutes": 40
+      },
+      {
+        "id": 13,
+        "title": "Додати нотатку",
+        "status": "Готово",
+        "priority": 2,
+        "minutes": 8,
+        "category": "Навчання"
+      },
+      {
+        "id": 72,
+        "title": "Звірити вимоги",
+        "status": "Заплановано",
+        "priority": 2,
+        "minutes": 11
+      },
+      {
+        "id": 5,
+        "title": "Уточнити статус",
+        "status": "готово",
+        "priority": 0,
+        "minutes": 18
+      }
+    ],
+    "feedback": "ID 2 є лише в основних даних FocusBoard. У переданому списку його немає, тож очікується undefined."
+  },
+  {
+    "id": "find-rejects-string-id",
+    "kind": "callStructure",
+    "binding": "findTaskById",
+    "args": [
+      [
+        {
+          "id": 91,
+          "title": "Надіслати конспект",
+          "status": "Готово",
+          "priority": 2,
+          "minutes": 0
+        },
+        {
+          "id": 45,
+          "title": "Оновити макет",
+          "status": "У роботі",
+          "priority": 10,
+          "minutes": 40
+        },
+        {
+          "id": 13,
+          "title": "Додати нотатку",
+          "status": "Готово",
+          "priority": 2,
+          "minutes": 8,
+          "category": "Навчання"
+        },
+        {
+          "id": 72,
+          "title": "Звірити вимоги",
+          "status": "Заплановано",
+          "priority": 2,
+          "minutes": 11
+        },
+        {
+          "id": 5,
+          "title": "Уточнити статус",
+          "status": "готово",
+          "priority": 0,
+          "minutes": 18
+        }
+      ],
+      "13"
+    ],
+    "expected": {
+      "$undefined": true
+    },
+    "firstArgAfter": [
+      {
+        "id": 91,
+        "title": "Надіслати конспект",
+        "status": "Готово",
+        "priority": 2,
+        "minutes": 0
+      },
+      {
+        "id": 45,
+        "title": "Оновити макет",
+        "status": "У роботі",
+        "priority": 10,
+        "minutes": 40
+      },
+      {
+        "id": 13,
+        "title": "Додати нотатку",
+        "status": "Готово",
+        "priority": 2,
+        "minutes": 8,
+        "category": "Навчання"
+      },
+      {
+        "id": 72,
+        "title": "Звірити вимоги",
+        "status": "Заплановано",
+        "priority": 2,
+        "minutes": 11
+      },
+      {
+        "id": 5,
+        "title": "Уточнити статус",
+        "status": "готово",
+        "priority": 0,
+        "minutes": 18
+      }
+    ],
+    "feedback": "Порівняй ID через ===. Рядок «13» і число 13 мають різні типи й не збігаються."
+  },
+  {
+    "id": "find-empty-list",
+    "kind": "callStructure",
+    "binding": "findTaskById",
+    "args": [
+      [],
+      13
+    ],
+    "expected": {
+      "$undefined": true
+    },
+    "firstArgAfter": [],
+    "feedback": "Пошук у порожньому масиві має повернути undefined."
+  },
+  {
+    "id": "task-labels-array",
+    "kind": "bindingStructure",
+    "binding": "taskLabels",
+    "expected": [
+      "Вивчити JavaScript — 25 хв",
+      "Перевірити план — 15 хв",
+      "Зробити перерву — 35 хв"
+    ],
+    "feedback": "Збережи в taskLabels три підписи з тривалістю в початковому порядку tasks."
+  },
+  {
+    "id": "labels-in-list-order",
+    "kind": "callStructure",
+    "binding": "getTaskLabels",
+    "args": [
+      [
+        {
+          "id": 45,
+          "title": "Оновити макет",
+          "status": "У роботі",
+          "priority": 10,
+          "minutes": 40
+        },
+        {
+          "id": 91,
+          "title": "Надіслати конспект",
+          "status": "Готово",
+          "priority": 2,
+          "minutes": 0
+        }
+      ]
+    ],
+    "expected": [
+      "Оновити макет — 40 хв",
+      "Надіслати конспект — 0 хв"
+    ],
+    "returnsCopy": true,
+    "feedback": "Перетвори передані задачі у їхньому порядку. Передай у getTaskCardText кожен об’єкт, зокрема задачу з нулем хвилин."
+  },
+  {
+    "id": "labels-keep-repeated-title",
+    "kind": "callStructure",
+    "binding": "getTaskLabels",
+    "args": [
+      [
+        {
+          "id": 13,
+          "title": "Додати нотатку",
+          "status": "Готово",
+          "priority": 2,
+          "minutes": 8,
+          "category": "Навчання"
+        },
+        {
+          "id": 6,
+          "title": "Додати нотатку",
+          "status": "Заплановано",
+          "priority": 1,
+          "minutes": 20
+        }
+      ]
+    ],
+    "expected": [
+      "Додати нотатку — 8 хв",
+      "Додати нотатку — 20 хв"
+    ],
+    "returnsCopy": true,
+    "feedback": "Дві задачі з однаковою назвою потребують двох підписів зі своїми значеннями minutes."
+  },
+  {
+    "id": "labels-empty-list",
+    "kind": "callStructure",
+    "binding": "getTaskLabels",
+    "args": [
+      []
+    ],
+    "expected": [],
+    "returnsCopy": true,
+    "feedback": "Для порожнього списку map теж повертає новий масив. Поверни цей результат."
+  },
+  {
+    "id": "updated-task-shape",
+    "kind": "bindingStructure",
+    "binding": "updatedTask",
+    "expected": {
+      "id": 3,
+      "title": "Зробити перерву",
+      "status": "У роботі",
+      "priority": 2,
+      "minutes": 35
+    },
+    "feedback": "Створи копію третьої задачі зі статусом «У роботі». Збережи її ID, назву, пріоритет і хвилини."
+  },
+  {
+    "id": "updated-task-text",
+    "kind": "bindingEquals",
+    "binding": "updatedTaskText",
+    "expected": "Зробити перерву — 35 хв",
+    "feedback": "Виклич getTaskCardText для updatedTask. Очікуваний текст — «Зробити перерву — 35 хв»."
+  },
+  {
+    "id": "card-text-with-zero-minutes",
+    "kind": "callStructure",
+    "binding": "getTaskCardText",
+    "args": [
+      {
+        "id": 71,
+        "title": "Надіслати конспект",
+        "status": "Заплановано",
+        "priority": 3,
+        "minutes": 0
+      }
+    ],
+    "expected": "Надіслати конспект — 0 хв",
+    "feedback": "Поле minutes може містити 0. Передай це число у formatTaskText, щоб текст закінчився на «0 хв»."
+  },
+  {
+    "id": "completion-flags-array",
+    "kind": "bindingStructure",
+    "binding": "completionFlags",
+    "expected": [
+      false,
+      true,
+      false
+    ],
+    "feedback": "Збери наявні прапорці у масив. Збережи порядок задач і булеві значення."
+  },
+  {
+    "id": "task-draft-shape",
+    "kind": "bindingStructure",
+    "binding": "taskDraft",
+    "expected": {
+      "id": 1,
+      "title": "Вивчити JavaScript",
+      "status": "Готово",
+      "priority": 2,
+      "minutes": 25
+    },
+    "feedback": "Створи окрему чернетку першої задачі й після цього зміни її статус на «Готово». Решта полів чернетки мають зберегтися."
+  },
+  {
+    "id": "focus-board-tasks",
+    "kind": "bindingStructure",
+    "binding": "tasks",
+    "expected": [
+      {
+        "id": 1,
+        "title": "Вивчити JavaScript",
+        "status": "У роботі",
+        "priority": 2,
+        "minutes": 25
+      },
+      {
+        "id": 2,
+        "title": "Перевірити план",
+        "status": "Готово",
+        "priority": 1,
+        "minutes": 15
+      },
+      {
+        "id": 3,
+        "title": "Зробити перерву",
+        "status": "Заплановано",
+        "priority": 2,
+        "minutes": 35
+      }
+    ],
+    "feedback": "Звір три картки в порядку taskTitles. Кожній потрібні поля id, title, status, priority і minutes. ID, пріоритет та хвилини мають бути числами."
+  },
+  {
+    "id": "task-titles-array",
+    "kind": "bindingStructure",
+    "binding": "taskTitles",
+    "expected": [
+      "Вивчити JavaScript",
+      "Перевірити план",
+      "Зробити перерву"
+    ],
+    "feedback": "У taskTitles має бути масив із трьох назв. Першою йде наявна назва задачі, далі звір дві нові назви та їхній порядок."
+  },
+  {
+    "id": "independent-id-generators",
+    "kind": "generatorSequence",
+    "feedback": "Перший виданий ID має дорівнювати 1. Зберігай лічильник між викликами поверненої функції. Переконайся, що кожен виклик createIdGenerator створює власний лічильник."
+  },
+  {
+    "id": "console",
+    "kind": "consoleEquals",
+    "expected": [
+      [
+        "FocusBoard"
+      ]
+    ],
+    "feedback": "Залиш у консолі лише наявний вивід назви FocusBoard. Функції мають повертати значення під час додаткових викликів перевірки."
+  },
+  {
+    "id": "app-name",
+    "kind": "bindingEquals",
+    "binding": "appName",
+    "expected": "FocusBoard",
+    "feedback": "Збережи appName зі значенням FocusBoard з першого уроку."
+  },
+  {
+    "id": "update-task-with-changed-status",
+    "kind": "callStructure",
+    "binding": "updateTask",
+    "args": [
+      {
+        "id": 71,
+        "title": "Надіслати конспект",
+        "status": "Заплановано",
+        "priority": 3,
+        "minutes": 0
+      },
+      "Готово"
+    ],
+    "expected": {
+      "id": 71,
+      "title": "Надіслати конспект",
+      "status": "Готово",
+      "priority": 3,
+      "minutes": 0
+    },
+    "returnsCopy": true,
+    "feedback": "Поверни окремий об’єкт зі статусом «Готово». Поля вихідної задачі мають лишитися такими самими."
+  },
+  {
+    "id": "update-task-with-same-status",
+    "kind": "callStructure",
+    "binding": "updateTask",
+    "args": [
+      {
+        "id": 71,
+        "title": "Надіслати конспект",
+        "status": "Заплановано",
+        "priority": 3,
+        "minutes": 0
+      },
+      "Заплановано"
+    ],
+    "expected": {
+      "id": 71,
+      "title": "Надіслати конспект",
+      "status": "Заплановано",
+      "priority": 3,
+      "minutes": 0
+    },
+    "returnsCopy": true,
+    "feedback": "Створи новий об’єкт, навіть коли переданий статус збігається зі статусом оригіналу."
+  },
+  {
+    "id": "update-task-with-extra-field",
+    "kind": "callStructure",
+    "binding": "updateTask",
+    "args": [
+      {
+        "id": 90,
+        "title": "Звірити макет",
+        "status": "У роботі",
+        "priority": 2,
+        "minutes": 12,
+        "category": "Дизайн"
+      },
+      "Готово"
+    ],
+    "expected": {
+      "id": 90,
+      "title": "Звірити макет",
+      "status": "Готово",
+      "priority": 2,
+      "minutes": 12,
+      "category": "Дизайн"
+    },
+    "returnsCopy": true,
+    "feedback": "Перенеси всі поля задачі, разом із додатковим полем category. Запиши новий статус у копію після spread."
+  },
+  {
+    "id": "card-text-from-fields",
+    "kind": "callStructure",
+    "binding": "getTaskCardText",
+    "args": [
+      {
+        "id": 90,
+        "title": "Звірити макет",
+        "status": "У роботі",
+        "priority": 2,
+        "minutes": 12,
+        "category": "Дизайн"
+      }
+    ],
+    "expected": "Звірити макет — 12 хв",
+    "feedback": "Прочитай title і minutes з переданого об’єкта й передай у formatTaskText саме ці значення."
+  },
+  {
+    "id": "task-draft-title",
+    "kind": "bindingEquals",
+    "binding": "taskDraftTitle",
+    "expected": "Вивчити JavaScript",
+    "feedback": "Прочитай поле title з taskDraft і збережи назву «Вивчити JavaScript» у taskDraftTitle."
+  },
+  {
+    "id": "set-passed-status",
+    "kind": "callStructure",
+    "binding": "setTaskStatus",
+    "args": [
+      {
+        "id": 71,
+        "title": "Надіслати конспект",
+        "status": "Заплановано",
+        "priority": 3,
+        "minutes": 0
+      },
+      "У роботі"
+    ],
+    "expected": {
+      "$undefined": true
+    },
+    "firstArgAfter": {
+      "id": 71,
+      "title": "Надіслати конспект",
+      "status": "У роботі",
+      "priority": 3,
+      "minutes": 0
+    },
+    "feedback": "Запиши значення параметра status у поле status переданого об’єкта. Інші поля збережи. Виклик функції має давати undefined."
+  },
+  {
+    "id": "set-planned-status",
+    "kind": "callStructure",
+    "binding": "setTaskStatus",
+    "args": [
+      {
+        "id": 90,
+        "title": "Звірити макет",
+        "status": "У роботі",
+        "priority": 2,
+        "minutes": 12,
+        "category": "Дизайн"
+      },
+      "Заплановано"
+    ],
+    "expected": {
+      "$undefined": true
+    },
+    "firstArgAfter": {
+      "id": 90,
+      "title": "Звірити макет",
+      "status": "Заплановано",
+      "priority": 2,
+      "minutes": 12,
+      "category": "Дизайн"
+    },
+    "feedback": "Запиши «Заплановано» в поле status саме переданої задачі. Поля, зокрема category, зберігають свої значення."
+  },
+  {
+    "id": "has-zero-field",
+    "kind": "callStructure",
+    "binding": "hasTaskField",
+    "args": [
+      {
+        "minutes": 0
+      },
+      "minutes"
+    ],
+    "expected": true,
+    "feedback": "Поле minutes існує, навіть коли в ньому число 0. Перевір наявність імені через Object.hasOwn."
+  },
+  {
+    "id": "has-false-field",
+    "kind": "callStructure",
+    "binding": "hasTaskField",
+    "args": [
+      {
+        "completed": false
+      },
+      "completed"
+    ],
+    "expected": true,
+    "feedback": "completed зі значенням false є власним полем. Перевір наявність поля незалежно від його значення."
+  },
+  {
+    "id": "has-empty-field",
+    "kind": "callStructure",
+    "binding": "hasTaskField",
+    "args": [
+      {
+        "title": ""
+      },
+      "title"
+    ],
+    "expected": true,
+    "feedback": "Порожній рядок зберігається в наявному полі title. Поверни true."
+  }
+]

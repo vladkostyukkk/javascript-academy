@@ -1,5 +1,6 @@
 import type { LessonCheck } from "../lessons/schema";
 import type { PreparedRun, RunIdentity, RunnerPayload } from "./protocol";
+import { matchesStructure } from "./structure";
 
 interface RuntimeConfig extends RunIdentity {
   plan: PreparedRun;
@@ -10,6 +11,7 @@ interface RuntimeConfig extends RunIdentity {
 async function executeSandbox(
   plan: PreparedRun,
   send: (payload: RunnerPayload) => void,
+  compareStructure: typeof matchesStructure,
   pureEntry?: () => unknown,
 ) {
   const urls: string[] = [];
@@ -127,6 +129,39 @@ async function executeSandbox(
     }
   };
 
+  const cloneArgs = structuredClone;
+  const runStructureCheck = (
+    check: Extract<LessonCheck, { kind: "bindingStructure" | "callStructure" }>,
+    bindings: Record<string, unknown>,
+  ): boolean => {
+    try {
+      if (!Object.hasOwn(bindings, check.binding)) return false;
+      const binding = bindings[check.binding];
+      if (check.kind === "bindingStructure")
+        return compareStructure(binding, check.expected);
+      if (typeof binding !== "function") return false;
+
+      const args = cloneArgs(check.args);
+      const actual: unknown = binding(...args);
+      const { expected } = check;
+      const expectsUndefined =
+        expected !== null &&
+        typeof expected === "object" &&
+        Object.hasOwn(expected, "$undefined");
+      const resultMatches = expectsUndefined
+        ? actual === undefined
+        : compareStructure(actual, expected);
+      if (!resultMatches) return false;
+      if (check.firstArgAfter !== undefined)
+        return compareStructure(args[0], check.firstArgAfter);
+      if (check.returnsCopy)
+        return actual !== args[0] && compareStructure(args[0], check.args[0]);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
   // This replacement is a teaching API. CSP is the actual network boundary.
   const mockBody =
     plan.files.find((file) => file.path === "mock/tasks.json")?.content ?? "[]";
@@ -216,9 +251,17 @@ async function executeSandbox(
       plan.assertion.kind === "lesson" &&
       plan.assertion.operation === "check"
     ) {
+      // Validate collection bindings at the end of the learner program, before
+      // any probe can modify the collections through a closed-over reference.
+      for (const check of plan.assertion.checks) {
+        if (check.kind === "bindingStructure")
+          probeResults.set(check.id, runStructureCheck(check, bindings));
+      }
       for (const check of plan.assertion.checks) {
         if (check.kind === "callEquals" || check.kind === "generatorSequence")
           probeResults.set(check.id, runProbe(check, bindings));
+        else if (check.kind === "callStructure")
+          probeResults.set(check.id, runStructureCheck(check, bindings));
       }
     }
     // Allow queued rejection/error events and logs to arrive before reporting assertions.
@@ -230,6 +273,8 @@ async function executeSandbox(
           consoleEquals: "Виведення консолі відповідає умові.",
           callEquals: "Функція повертає очікуване значення.",
           generatorSequence: "Генератори створюють незалежні послідовності ID.",
+          bindingStructure: "Поля або елементи відповідають умові.",
+          callStructure: "Результат виклику відповідає умові.",
         };
         const checks =
           plan.assertion.operation === "check"
@@ -254,6 +299,8 @@ async function executeSandbox(
                     break;
                   case "callEquals":
                   case "generatorSequence":
+                  case "bindingStructure":
+                  case "callStructure":
                     passed = probeResults.get(check.id) === true;
                     break;
                 }
@@ -379,8 +426,7 @@ export function boot(config: RuntimeConfig) {
       config.plan.assertion.operation === "check"
     ) {
       for (const check of config.plan.assertion.checks) {
-        if (check.kind === "bindingEquals" || check.kind === "callEquals")
-          names.add(check.binding);
+        if ("binding" in check) names.add(check.binding);
         else if (check.kind === "generatorSequence")
           names.add("createIdGenerator");
       }
@@ -391,7 +437,7 @@ export function boot(config: RuntimeConfig) {
         `[${JSON.stringify(name)}]: typeof ${name} === "undefined" ? void 0 : ${name}`,
     ).join(",");
     const tail = config.plan.mode === "lesson" ? `\nreturn {${bindings}};` : "";
-    const source = `(${executeSandbox.toString()})(${JSON.stringify(config.plan)}, payload => postMessage(payload), async function () {\n${entry}\n${tail}\n});`;
+    const source = `(${executeSandbox.toString()})(${JSON.stringify(config.plan)}, payload => postMessage(payload), (${matchesStructure.toString()}), async function () {\n${entry}\n${tail}\n});`;
     const url = URL.createObjectURL(
       new Blob([source], { type: "text/javascript" }),
     );
@@ -420,5 +466,5 @@ export function boot(config: RuntimeConfig) {
       send({ kind: "error", text: event.message.slice(0, 1024), stack: "" });
       event.preventDefault();
     };
-  } else void executeSandbox(config.plan, send);
+  } else void executeSandbox(config.plan, send, matchesStructure);
 }

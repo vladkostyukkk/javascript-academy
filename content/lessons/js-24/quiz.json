@@ -1,0 +1,53 @@
+[
+  {
+    "id": "object-property-name",
+    "prompt": "Що є іменем властивості в записі { title: name }?",
+    "options": [
+      {
+        "id": "title",
+        "label": "title",
+        "explanation": "Ім’я властивості стоїть ліворуч від двокрапки."
+      },
+      {
+        "id": "name",
+        "label": "name",
+        "explanation": "Вираз праворуч дає значення властивості. Тут його читаємо зі змінної name."
+      }
+    ],
+    "correctOptionId": "title"
+  },
+  {
+    "id": "object-array-read",
+    "prompt": "Що дає вираз reminders[1].minutes, якщо reminders = [{ minutes: 5 }, { minutes: 10 }]?",
+    "options": [
+      {
+        "id": "five",
+        "label": "5",
+        "explanation": "П’ять хвилин належить першій задачі, яка має індекс 0."
+      },
+      {
+        "id": "ten",
+        "label": "10",
+        "explanation": "Індекс 1 вибирає другий об’єкт, і з нього читаємо поле minutes."
+      }
+    ],
+    "correctOptionId": "ten"
+  },
+  {
+    "id": "object-unique-id",
+    "prompt": "Дві задачі мають назву «Полити квіти». Що дає змогу розрізнити їх у FocusBoard?",
+    "options": [
+      {
+        "id": "status",
+        "label": "Статус задачі",
+        "explanation": "Дві різні задачі можуть мати однаковий статус."
+      },
+      {
+        "id": "id",
+        "label": "Унікальний числовий id",
+        "explanation": "Генератор видає окреме число для кожної задачі, навіть коли назви збігаються."
+      }
+    ],
+    "correctOptionId": "id"
+  }
+]

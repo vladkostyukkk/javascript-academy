@@ -1,0 +1,9 @@
+{
+  "lessonId": "js-26",
+  "courseContentVersion": 1,
+  "fileHashes": {
+    "index.html": "495b748626fb4ad0aadcdd2681e5f552108419e1cca31581ead4ce685ca4dd24",
+    "src/app.js": "db584e7a12e538aae71b185255cc9bf0358a23bd90b7894b03c6299d4b1b4052",
+    "styles.css": "2a2097385f0b32af9a13a7d9e00c2180ea4258061deea60a9bbb8f5b602db5c4"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "js-24",
+  "number": 24,
+  "title": "Об’єкти",
+  "module": 3,
+  "prerequisites": [
+    "js-23"
+  ],
+  "durationMinutes": 30,
+  "objectives": [
+    "Зібрати властивості задачі в один об’єкт.",
+    "Створити масив задач у порядку наявних назв.",
+    "Призначити задачам унікальні числові ID через наявний генератор."
+  ],
+  "editablePaths": [
+    "src/app.js"
+  ],
+  "courseContentVersion": 1
+}

@@ -1,0 +1,53 @@
+[
+  {
+    "id": "read-by-destructure",
+    "prompt": "Яке значення має minutes після const { minutes } = { title: \"Читати\", minutes: 5 }?",
+    "options": [
+      {
+        "id": "title",
+        "label": "«Читати»",
+        "explanation": "Щоб отримати цей рядок, треба дістати властивість title."
+      },
+      {
+        "id": "number",
+        "label": "5",
+        "explanation": "Деструктуризація читає властивість з іменем minutes, де записано число 5."
+      }
+    ],
+    "correctOptionId": "number"
+  },
+  {
+    "id": "spread-order",
+    "prompt": "Який статус матиме { ...reminder, status: \"Готово\" }, якщо reminder.status дорівнює «Заплановано»?",
+    "options": [
+      {
+        "id": "done",
+        "label": "«Готово»",
+        "explanation": "Явне поле status записано після spread. Воно дає останнє значення цього поля."
+      },
+      {
+        "id": "planned",
+        "label": "«Заплановано»",
+        "explanation": "Spread копіює «Заплановано», після чого запис status задає нове значення в копії."
+      }
+    ],
+    "correctOptionId": "done"
+  },
+  {
+    "id": "spread-reference",
+    "prompt": "Чому дорівнює copy === reminder після const copy = { ...reminder }?",
+    "options": [
+      {
+        "id": "true",
+        "label": "true",
+        "explanation": "Значення полів збігаються. Порівняння об’єктів через === перевіряє, чи вони мають спільне посилання."
+      },
+      {
+        "id": "false",
+        "label": "false",
+        "explanation": "Літерал створює новий об’єкт, тому посилання різні."
+      }
+    ],
+    "correctOptionId": "false"
+  }
+]

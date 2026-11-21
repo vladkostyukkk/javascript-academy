@@ -1,0 +1,58 @@
+[
+  {
+    "id": "first-index",
+    "prompt": "Що поверне colors[0], якщо colors = [\"білий\", \"синій\"]?",
+    "options": [
+      {
+        "id": "white",
+        "label": "«білий»",
+        "explanation": "Елемент з індексом 0 стоїть першим."
+      },
+      {
+        "id": "blue",
+        "label": "«синій»",
+        "explanation": "«синій» має індекс 1, бо стоїть другим."
+      },
+      {
+        "id": "missing",
+        "label": "undefined",
+        "explanation": "Масив містить елемент за індексом 0."
+      }
+    ],
+    "correctOptionId": "white"
+  },
+  {
+    "id": "last-index",
+    "prompt": "Який індекс має останній елемент масиву з чотирма назвами?",
+    "options": [
+      {
+        "id": "three",
+        "label": "3",
+        "explanation": "Чотири елементи займають індекси від 0 до 3."
+      },
+      {
+        "id": "four",
+        "label": "4",
+        "explanation": "4 — це довжина масиву. Вона на одиницю більша за останній індекс."
+      }
+    ],
+    "correctOptionId": "three"
+  },
+  {
+    "id": "empty-array",
+    "prompt": "Що поверне names[0], якщо names = []?",
+    "options": [
+      {
+        "id": "empty-string",
+        "label": "Порожній рядок",
+        "explanation": "Масив не містить значення за індексом 0, тому рядок звідти прочитати не можна."
+      },
+      {
+        "id": "undefined",
+        "label": "undefined",
+        "explanation": "Порожній масив не має жодного елемента."
+      }
+    ],
+    "correctOptionId": "undefined"
+  }
+]

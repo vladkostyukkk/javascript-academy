@@ -112,6 +112,7 @@ test("quiz is keyboard reachable and reference source is not shipped in the page
 }) => {
   await page.goto("/learn/javascript/js-01");
   const theory = page.getByRole("tab", { name: "Теорія", exact: true });
+  await expect(theory).toBeEnabled();
   await theory.focus();
   await page.keyboard.press("ArrowRight");
   await expect(theory).toBeFocused();
@@ -119,9 +120,12 @@ test("quiz is keyboard reachable and reference source is not shipped in the page
     name: "У консолі браузера",
     exact: true,
   });
+  await expect(radio).toBeEnabled();
   await radio.focus();
+  await expect(radio).toBeFocused();
   await page.keyboard.press("Space");
   await expect(radio).toBeChecked();
+  await expect(radio).toBeFocused();
   await page.keyboard.press("ArrowDown");
   await expect(
     page.getByRole("radio", { name: "У заголовку сторінки", exact: true }),

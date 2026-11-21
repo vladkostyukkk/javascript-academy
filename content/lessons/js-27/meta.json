@@ -1,0 +1,19 @@
+{
+  "id": "js-27",
+  "number": 27,
+  "title": "map",
+  "module": 3,
+  "prerequisites": [
+    "js-26"
+  ],
+  "durationMinutes": 30,
+  "objectives": [
+    "Перетворити масив об’єктів на масив рядків через map.",
+    "Передати наявний форматувальник як callback.",
+    "Зберегти порядок і кількість підписів карток."
+  ],
+  "editablePaths": [
+    "src/app.js"
+  ],
+  "courseContentVersion": 1
+}
