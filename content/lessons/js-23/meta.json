@@ -1,0 +1,19 @@
+{
+  "id": "js-23",
+  "number": 23,
+  "title": "Цикли for і for...of",
+  "module": 3,
+  "prerequisites": [
+    "js-22"
+  ],
+  "durationMinutes": 40,
+  "objectives": [
+    "Перебрати значення масиву циклом for...of.",
+    "Порахувати виконані задачі за булевими прапорцями.",
+    "Знайти індекс першого збігу циклом for з раннім виходом."
+  ],
+  "editablePaths": [
+    "src/app.js"
+  ],
+  "courseContentVersion": 1
+}

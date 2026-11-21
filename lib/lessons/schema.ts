@@ -184,6 +184,158 @@ const bindingValue = z.union([
   z.boolean(),
 ]);
 const probeValue = bindingValue.nullable();
+
+const structureAtom = z.union([
+  z.string().max(128),
+  z.number().finite(),
+  z.boolean(),
+  z.null(),
+]);
+const structureKey = z
+  .string()
+  .regex(/^[a-z][A-Za-z0-9]{0,31}$/)
+  .refine((key) => key !== "constructor" && key !== "prototype");
+const structureRecord = z
+  .custom<Record<string, unknown>>((value) => {
+    if (value === null || typeof value !== "object") return false;
+    const prototype: unknown = Object.getPrototypeOf(value);
+    if (prototype !== Object.prototype && prototype !== null) return false;
+    const keys = Reflect.ownKeys(value);
+    return (
+      keys.length <= 8 &&
+      keys.every((key) => {
+        if (!structureKey.safeParse(key).success) return false;
+        const field = Object.getOwnPropertyDescriptor(value, key);
+        return field?.enumerable && Object.hasOwn(field, "value");
+      })
+    );
+  }, "Очікується запис із власними полями даних.")
+  .pipe(z.record(structureKey, structureAtom));
+
+function denseArrayUpTo(max: number) {
+  return z.custom<unknown[]>((value) => {
+    if (!Array.isArray(value) || value.length > max) return false;
+    if (Reflect.ownKeys(value).length !== value.length + 1) return false;
+    for (let index = 0; index < value.length; index++) {
+      const entry = Object.getOwnPropertyDescriptor(value, index);
+      if (!entry?.enumerable || !Object.hasOwn(entry, "value")) return false;
+    }
+    return true;
+  }, "Очікується масив даних без пропусків.");
+}
+
+const structure = z.union([
+  structureRecord,
+  denseArrayUpTo(12).pipe(z.array(z.union([structureAtom, structureRecord]))),
+]);
+const structureValue = z.union([structureAtom, structure]);
+export type StructureCheckValue = z.infer<typeof structureValue>;
+
+const undefinedResult = z
+  .custom<{ $undefined: true }>((value) => {
+    if (value === null || typeof value !== "object") return false;
+    const prototype: unknown = Object.getPrototypeOf(value);
+    if (prototype !== Object.prototype && prototype !== null) return false;
+    if (Reflect.ownKeys(value).length !== 1) return false;
+    const field = Object.getOwnPropertyDescriptor(value, "$undefined");
+    return (
+      field?.enumerable && Object.hasOwn(field, "value") && field.value === true
+    );
+  }, "Очікується маркер { $undefined: true }.")
+  .pipe(z.strictObject({ $undefined: z.literal(true) }));
+
+function fitsStructureBudget(data: unknown) {
+  return new TextEncoder().encode(JSON.stringify(data)).length <= 4096;
+}
+
+const bindingStructure = z
+  .strictObject({
+    ...checkBase,
+    kind: z.literal("bindingStructure"),
+    binding: z.enum([
+      "taskTitles",
+      "updatedTaskTitles",
+      "completionFlags",
+      "task",
+      "tasks",
+      "firstTask",
+      "secondTask",
+      "thirdTask",
+      "taskDraft",
+      "updatedTask",
+      "taskLabels",
+      "completedTasks",
+      "sortedTasks",
+      "taskStats",
+    ]),
+    expected: structure,
+  })
+  .refine(
+    ({ expected }) => fitsStructureBudget(expected),
+    "Очікувані дані перевищують 4 KiB.",
+  );
+
+const callStructure = z
+  .strictObject({
+    ...checkBase,
+    kind: z.literal("callStructure"),
+    binding: z.enum([
+      "getTaskTitleAt",
+      "addTaskTitleAt",
+      "removeTaskTitleAt",
+      "countCompleted",
+      "getFirstCompletedIndex",
+      "setTaskStatus",
+      "hasTaskField",
+      "updateTask",
+      "getTaskCardText",
+      "getTaskLabels",
+      "findTaskById",
+      "filterCompletedTasks",
+      "sortTasksByPriority",
+      "getTaskStats",
+    ]),
+    args: denseArrayUpTo(3).pipe(z.array(structureValue)),
+    expected: z.union([structureValue, undefinedResult]),
+    firstArgAfter: structure.optional(),
+    returnsCopy: z.literal(true).optional(),
+  })
+  .superRefine(({ args, expected, firstArgAfter, returnsCopy }, ctx) => {
+    if (!fitsStructureBudget({ args, expected, firstArgAfter }))
+      ctx.addIssue({
+        code: "custom",
+        message: "Дані перевірки перевищують 4 KiB.",
+      });
+    if (firstArgAfter === undefined && !returnsCopy) return;
+
+    const first = args[0];
+    const firstIsStructure = first !== null && typeof first === "object";
+    if (!firstIsStructure)
+      ctx.addIssue({
+        code: "custom",
+        path: ["args", 0],
+        message: "Перший аргумент має бути масивом або записом.",
+      });
+    if (firstArgAfter !== undefined && returnsCopy)
+      ctx.addIssue({
+        code: "custom",
+        path: ["returnsCopy"],
+        message: "Обери перевірку зміненого аргументу або копії.",
+      });
+    if (
+      returnsCopy &&
+      (expected === null ||
+        typeof expected !== "object" ||
+        Object.hasOwn(expected, "$undefined") ||
+        Array.isArray(expected) !== Array.isArray(first))
+    )
+      ctx.addIssue({
+        code: "custom",
+        path: ["expected"],
+        message: "Копія має бути структурою того самого типу, що й аргумент.",
+      });
+  });
+
 export const checksSchema = z
   .array(
     z.discriminatedUnion("kind", [
@@ -211,6 +363,8 @@ export const checksSchema = z
         expected: probeValue,
       }),
       z.strictObject({ ...checkBase, kind: z.literal("generatorSequence") }),
+      bindingStructure,
+      callStructure,
     ]),
   )
   .min(2)

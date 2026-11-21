@@ -33,6 +33,9 @@ Fully author, test, and manually review lessons 01–10; validate references and
 Functions, conditions, ID generation, validation, integration. Gate: 20 valid cumulative checkpoints, no regression.
 
 ## P08 — lessons 21–30
+
+Статус — прийнято 2026-11-22. Докази й межі — [P08_ACCEPTANCE.md](P08_ACCEPTANCE.md).
+
 Collections, objects, functional array transforms and stats. Gate: project domain logic works; 30 cumulative checkpoints.
 
 ## P09 — lessons 31–40

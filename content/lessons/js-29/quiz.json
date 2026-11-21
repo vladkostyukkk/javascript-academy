@@ -1,0 +1,58 @@
+[
+  {
+    "id": "sort-comparator",
+    "prompt": "Що має повернути функція порівняння для first.priority = 10 і second.priority = 2, щоб first стояв раніше?",
+    "options": [
+      {
+        "id": "zero",
+        "label": "0",
+        "explanation": "Нуль залишає початковий порядок. Для вищого пріоритету треба явно задати місце раніше."
+      },
+      {
+        "id": "positive",
+        "label": "8",
+        "explanation": "Додатне число ставить second раніше за first."
+      },
+      {
+        "id": "negative",
+        "label": "−8",
+        "explanation": "Від’ємне число ставить first раніше за second."
+      }
+    ],
+    "correctOptionId": "negative"
+  },
+  {
+    "id": "sort-tied-priority",
+    "prompt": "Яким буде порядок двох задач однакового пріоритету, якщо callback поверне 0?",
+    "options": [
+      {
+        "id": "original",
+        "label": "Залишиться початковим",
+        "explanation": "Стабільне сортування зберігає початковий порядок елементів, які функція вважає рівними."
+      },
+      {
+        "id": "reversed",
+        "label": "Стане зворотним",
+        "explanation": "Нуль означає рівність для сортування. Елементи зберігають відносний порядок."
+      }
+    ],
+    "correctOptionId": "original"
+  },
+  {
+    "id": "sort-copy",
+    "prompt": "Що станеться з list після const ordered = [...list] та виклику ordered.sort(...) без зміни полів елементів?",
+    "options": [
+      {
+        "id": "reordered",
+        "label": "list отримає порядок ordered",
+        "explanation": "Spread створює окремий масив. Спільні об’єкти можуть мати різні позиції в двох масивах."
+      },
+      {
+        "id": "kept",
+        "label": "Порядок list збережеться",
+        "explanation": "sort змінює порядок того масиву, на якому його викликано. Тут це окрема копія ordered."
+      }
+    ],
+    "correctOptionId": "kept"
+  }
+]

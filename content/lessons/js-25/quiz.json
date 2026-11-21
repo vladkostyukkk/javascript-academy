@@ -1,0 +1,58 @@
+[
+  {
+    "id": "read-named-field",
+    "prompt": "Як прочитати reminder.title, якщо ім’я властивості зберігається в змінній field зі значенням «title»?",
+    "options": [
+      {
+        "id": "brackets",
+        "label": "reminder[field]",
+        "explanation": "У квадратних дужках JavaScript читає значення змінної й використовує його як ім’я поля."
+      },
+      {
+        "id": "dot",
+        "label": "reminder.field",
+        "explanation": "Крапка читає поле з буквальним іменем field."
+      },
+      {
+        "id": "literal",
+        "label": "reminder[\"field\"]",
+        "explanation": "Лапки задають буквальне ім’я поля field."
+      }
+    ],
+    "correctOptionId": "brackets"
+  },
+  {
+    "id": "write-constant-object",
+    "prompt": "Що відбудеться, якщо виконати reminder.status = \"Готово\" для об’єкта reminder, оголошеного через const?",
+    "options": [
+      {
+        "id": "throws",
+        "label": "JavaScript повідомить про помилку",
+        "explanation": "const забороняє переприсвоїти змінну reminder. Запис у властивість змінює дані всередині її об’єкта."
+      },
+      {
+        "id": "changes",
+        "label": "Зміниться значення властивості status",
+        "explanation": "Змінна продовжить посилатися на той самий об’єкт із новим значенням поля."
+      }
+    ],
+    "correctOptionId": "changes"
+  },
+  {
+    "id": "zero-own-field",
+    "prompt": "Що поверне Object.hasOwn({ minutes: 0 }, \"minutes\")?",
+    "options": [
+      {
+        "id": "true",
+        "label": "true",
+        "explanation": "Властивість minutes є в самому об’єкті. Її значення дорівнює нулю."
+      },
+      {
+        "id": "false",
+        "label": "false",
+        "explanation": "Метод перевіряє, чи є поле. Логічне значення 0 тут нічого не змінює."
+      }
+    ],
+    "correctOptionId": "true"
+  }
+]

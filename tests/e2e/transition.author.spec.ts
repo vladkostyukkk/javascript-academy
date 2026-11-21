@@ -2,6 +2,23 @@ import { expect, test, type Page } from "@playwright/test";
 import { readLessonBundle } from "../../lib/lessons/content-files";
 import { openWorkspace, writeCode, checkCode } from "./helpers/workspace";
 
+async function pasteFixture(page: Page, source: string) {
+  const editor = page.getByRole("textbox", { name: /Код src\/app.js/ });
+  await editor.press("ControlOrMeta+a");
+  // Exercise Monaco's paste handling without Chromium's long-text IME path.
+  await editor.evaluate((target, text) => {
+    const clipboardData = new DataTransfer();
+    clipboardData.setData("text/plain", text);
+    target.dispatchEvent(
+      new ClipboardEvent("paste", {
+        bubbles: true,
+        cancelable: true,
+        clipboardData,
+      }),
+    );
+  }, source);
+}
+
 async function read(page: Page, store: string, key: string) {
   return page.evaluate(
     async ({ store, key }) => {
@@ -284,6 +301,21 @@ for (const lesson of [
       count: 32,
       missing: 3,
     },
+    { number: 21, title: "Масиви", count: 32, missing: 10 },
+    {
+      number: 22,
+      title: "Методи додавання й видалення",
+      count: 32,
+      missing: 15,
+    },
+    { number: 23, title: "Цикли for і for...of", count: 32, missing: 13 },
+    { number: 24, title: "Об’єкти", count: 32, missing: 2 },
+    { number: 25, title: "Властивості об’єктів", count: 32, missing: 9 },
+    { number: 26, title: "Деструктуризація і spread", count: 32, missing: 7 },
+    { number: 27, title: "map", count: 32, missing: 4 },
+    { number: 28, title: "filter і find", count: 32, missing: 8 },
+    { number: 29, title: "sort", count: 32, missing: 4 },
+    { number: 30, title: "reduce", count: 32, missing: 5 },
   ].map(({ number, title, count, missing }) => ({
     id: `js-${number}`,
     previous: `js-${number - 1}`,
@@ -311,7 +343,7 @@ for (const lesson of [
       for (const id of lesson.prerequisites) {
         await page.goto("/learn/javascript/" + id);
         const bundle = await openLessonPractice(page, id);
-        await writeCode(
+        await pasteFixture(
           page,
           bundle.solution.find((file) => file.path === "src/app.js")!.content +
             "\n// learner source " +
@@ -351,7 +383,9 @@ for (const lesson of [
         page.locator('[data-check-id][data-passed="false"]:visible'),
       ).toHaveCount(lesson.missing);
       for (const scenario of bundle.negativeCases) {
-        await writeCode(page, scenario.source || "// empty");
+        if (scenario.category === "edge")
+          await pasteFixture(page, scenario.source);
+        else await writeCode(page, scenario.source || "// empty");
         await check();
         const failures = await page
           .locator('[data-check-id][data-passed="false"]:visible')
@@ -362,7 +396,7 @@ for (const lesson of [
           [...scenario.failedCheckIds].sort(),
         );
       }
-      await writeCode(
+      await pasteFixture(
         page,
         bundle.solution.find((file) => file.path === "src/app.js")!.content +
           "\n// learner target " +

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "reduce-next-accumulator",
+    "prompt": "Що отримує callback як акумулятор після попереднього кроку reduce?",
+    "options": [
+      {
+        "id": "current-task",
+        "label": "Попередній елемент масиву",
+        "explanation": "Елемент масиву передається окремим параметром. Значення акумулятора визначає callback."
+      },
+      {
+        "id": "returned-result",
+        "label": "Значення, повернене попереднім callback",
+        "explanation": "На кожному кроці reduce передає повернений результат як наступний акумулятор."
+      }
+    ],
+    "correctOptionId": "returned-result"
+  },
+  {
+    "id": "reduce-empty-array",
+    "prompt": "Який результат дає [].reduce((sum, number) => sum + number, 0)?",
+    "options": [
+      {
+        "id": "throws",
+        "label": "Помилка",
+        "explanation": "Для порожнього масиву помилка можлива за відсутності початкового значення. У цьому виклику воно задане."
+      },
+      {
+        "id": "undefined",
+        "label": "undefined",
+        "explanation": "Callback не викликається, а reduce повертає задане початкове значення."
+      },
+      {
+        "id": "zero",
+        "label": "0",
+        "explanation": "Порожній масив дає початкове значення 0."
+      }
+    ],
+    "correctOptionId": "zero"
+  },
+  {
+    "id": "reduce-independent-stats",
+    "prompt": "Де створити акумулятор-об’єкт, щоб кожен виклик getTaskStats починав підрахунок із нулів?",
+    "options": [
+      {
+        "id": "inside",
+        "label": "Усередині getTaskStats для кожного виклику",
+        "explanation": "Кожен виклик створить свій початковий об’єкт із нулями."
+      },
+      {
+        "id": "outside",
+        "label": "Один раз поза getTaskStats і завжди змінювати його",
+        "explanation": "Спільний об’єкт накопичуватиме і попередні виклики, тому підсумки змішаються."
+      }
+    ],
+    "correctOptionId": "inside"
+  }
+]

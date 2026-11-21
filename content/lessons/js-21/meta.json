@@ -1,0 +1,19 @@
+{
+  "id": "js-21",
+  "number": 21,
+  "title": "Масиви",
+  "module": 3,
+  "prerequisites": [
+    "js-20"
+  ],
+  "durationMinutes": 30,
+  "objectives": [
+    "Зібрати назви задач у масив у заданому порядку.",
+    "Прочитати елемент за індексом і знайти останній через довжину масиву.",
+    "Розпізнати значення undefined для індексу поза межами масиву."
+  ],
+  "editablePaths": [
+    "src/app.js"
+  ],
+  "courseContentVersion": 1
+}
