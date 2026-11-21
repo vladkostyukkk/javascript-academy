@@ -1,0 +1,63 @@
+[
+  {
+    "id": "parameter-and-argument",
+    "prompt": "У записах function addBuffer(minutes) та addBuffer(25) що є аргументом?",
+    "options": [
+      {
+        "id": "name",
+        "label": "addBuffer",
+        "explanation": "Це ім’я функції, за яким її викликають."
+      },
+      {
+        "id": "parameter",
+        "label": "minutes",
+        "explanation": "Це параметр, який одержує значення у виклику."
+      },
+      {
+        "id": "number",
+        "label": "25",
+        "explanation": "Аргумент — значення, передане функції під час виклику."
+      }
+    ],
+    "correctOptionId": "number"
+  },
+  {
+    "id": "saved-result",
+    "prompt": "Функція addBuffer повертає minutes + 5. Що отримає result у const result = addBuffer(10)?",
+    "options": [
+      {
+        "id": "ten",
+        "label": "10",
+        "explanation": "Це аргумент. Перед поверненням функція додає до нього 5."
+      },
+      {
+        "id": "fifteen",
+        "label": "15",
+        "explanation": "Змінна отримує число, яке повертає виклик."
+      },
+      {
+        "id": "function-name",
+        "label": "Рядок addBuffer",
+        "explanation": "Ім’я перед дужками визначає, яку функцію викликати."
+      }
+    ],
+    "correctOptionId": "fifteen"
+  },
+  {
+    "id": "use-argument",
+    "prompt": "Звідки getPriorityLabel бере пріоритет двох різних задач?",
+    "options": [
+      {
+        "id": "call-argument",
+        "label": "З аргументу кожного виклику",
+        "explanation": "Кожен виклик передає параметру значення своєї задачі."
+      },
+      {
+        "id": "first-task",
+        "label": "Зі значення першої задачі при кожному виклику",
+        "explanation": "Обидва виклики тоді залежатимуть від однієї задачі."
+      }
+    ],
+    "correctOptionId": "call-argument"
+  }
+]

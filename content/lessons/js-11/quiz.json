@@ -1,0 +1,63 @@
+[
+  {
+    "id": "chosen-branch",
+    "prompt": "Який блок виконається, якщо умова if дорівнює false?",
+    "options": [
+      {
+        "id": "then",
+        "label": "Лише блок if",
+        "explanation": "Блок if виконується, коли порівняння дає true."
+      },
+      {
+        "id": "otherwise",
+        "label": "Лише блок else",
+        "explanation": "За хибної умови виконується блок else."
+      },
+      {
+        "id": "both",
+        "label": "Обидва блоки",
+        "explanation": "У конструкції if / else умова визначає одну гілку."
+      }
+    ],
+    "correctOptionId": "otherwise"
+  },
+  {
+    "id": "exact-threshold",
+    "prompt": "Яка умова для числа minutes охоплює рівно 10 і всі більші значення?",
+    "options": [
+      {
+        "id": "greater",
+        "label": "minutes > 10",
+        "explanation": "Оператор > дає false на рівно 10."
+      },
+      {
+        "id": "at-least",
+        "label": "minutes >= 10",
+        "explanation": "Оператор >= охоплює рівність і всі більші значення."
+      },
+      {
+        "id": "equals",
+        "label": "minutes === 10",
+        "explanation": "Строга рівність дає true лише для числа 10."
+      }
+    ],
+    "correctOptionId": "at-least"
+  },
+  {
+    "id": "shared-result",
+    "prompt": "Як записати текст у змінну label, яку вже оголошено через let перед умовою?",
+    "options": [
+      {
+        "id": "declare-again",
+        "label": "Написати let label = \"текст\" у гілці",
+        "explanation": "Нове оголошення let створить окрему змінну всередині блоку."
+      },
+      {
+        "id": "assign",
+        "label": "Написати label = \"текст\" у гілці",
+        "explanation": "Присвоєння змінює вже оголошену label, тож текст можна прочитати після блоку."
+      }
+    ],
+    "correctOptionId": "assign"
+  }
+]

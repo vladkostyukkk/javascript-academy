@@ -1,3 +1,4 @@
+import type { LessonCheck } from "../lessons/schema";
 import type { PreparedRun, RunIdentity, RunnerPayload } from "./protocol";
 
 interface RuntimeConfig extends RunIdentity {
@@ -92,6 +93,40 @@ async function executeSandbox(
     event.preventDefault();
   });
 
+  const runProbe = (
+    check: Extract<LessonCheck, { kind: "callEquals" | "generatorSequence" }>,
+    bindings: Record<string, unknown>,
+  ): boolean => {
+    try {
+      const binding =
+        check.kind === "callEquals" ? check.binding : "createIdGenerator";
+      if (!Object.hasOwn(bindings, binding)) return false;
+      const fn = bindings[binding];
+      if (typeof fn !== "function") return false;
+      if (check.kind === "callEquals")
+        return fn(...check.args) === check.expected;
+
+      const first: unknown = fn();
+      if (typeof first !== "function") return false;
+      const firstId: unknown = first();
+      const secondId: unknown = first();
+      const second: unknown = fn();
+      if (typeof second !== "function") return false;
+      const otherFirstId: unknown = second();
+      const thirdId: unknown = first();
+      const otherSecondId: unknown = second();
+      return (
+        firstId === 1 &&
+        secondId === 2 &&
+        otherFirstId === 1 &&
+        thirdId === 3 &&
+        otherSecondId === 2
+      );
+    } catch {
+      return false;
+    }
+  };
+
   // This replacement is a teaching API. CSP is the actual network boundary.
   const mockBody =
     plan.files.find((file) => file.path === "mock/tasks.json")?.content ?? "[]";
@@ -172,33 +207,62 @@ async function executeSandbox(
         result = loadedModule.result;
       }
     }
-    // Allow queued rejection/error events to arrive before reporting assertions.
+    const bindings =
+      result && typeof result === "object"
+        ? (result as Record<string, unknown>)
+        : {};
+    const probeResults = new Map<string, boolean>();
+    if (
+      plan.assertion.kind === "lesson" &&
+      plan.assertion.operation === "check"
+    ) {
+      for (const check of plan.assertion.checks) {
+        if (check.kind === "callEquals" || check.kind === "generatorSequence")
+          probeResults.set(check.id, runProbe(check, bindings));
+      }
+    }
+    // Allow queued rejection/error events and logs to arrive before reporting assertions.
     await new Promise((resolve) => setTimeout(resolve, 25));
     if (!failed) {
       if (plan.assertion.kind === "lesson") {
-        const bindings =
-          result && typeof result === "object"
-            ? (result as Record<string, unknown>)
-            : {};
+        const successFeedback = {
+          bindingEquals: "Значення відповідає умові.",
+          consoleEquals: "Виведення консолі відповідає умові.",
+          callEquals: "Функція повертає очікуване значення.",
+          generatorSequence: "Генератори створюють незалежні послідовності ID.",
+        };
         const checks =
           plan.assertion.operation === "check"
             ? plan.assertion.checks.map((check) => {
-                const passed =
-                  !outputLimited &&
-                  (check.kind === "bindingEquals"
-                    ? bindings[check.binding] === check.expected
-                    : JSON.stringify(observedLogs) ===
-                      JSON.stringify(check.expected));
+                if (outputLimited) {
+                  return {
+                    id: check.id,
+                    passed: false,
+                    feedback:
+                      "Забагато виведення. Прибери зайві виклики консолі та перевір ще раз.",
+                  };
+                }
+                let passed: boolean;
+                switch (check.kind) {
+                  case "bindingEquals":
+                    passed = bindings[check.binding] === check.expected;
+                    break;
+                  case "consoleEquals":
+                    passed =
+                      JSON.stringify(observedLogs) ===
+                      JSON.stringify(check.expected);
+                    break;
+                  case "callEquals":
+                  case "generatorSequence":
+                    passed = probeResults.get(check.id) === true;
+                    break;
+                }
                 return {
                   id: check.id,
                   passed,
                   feedback: (passed
-                    ? check.kind === "bindingEquals"
-                      ? "Значення відповідає умові."
-                      : "Виведення консолі відповідає умові."
-                    : outputLimited
-                      ? "Забагато виведення. Прибери зайві виклики консолі та перевір ще раз."
-                      : check.feedback
+                    ? successFeedback[check.kind]
+                    : check.feedback
                   ).slice(0, 1024),
                 };
               })
@@ -309,16 +373,23 @@ export function boot(config: RuntimeConfig) {
     const entry = config.plan.files.find(
       (file) => file.path === config.plan.entry,
     )!.content;
-    const bindings =
-      config.plan.assertion.kind === "lesson"
-        ? config.plan.assertion.checks
-            .filter((check) => check.kind === "bindingEquals")
-            .map(
-              (check) =>
-                `${JSON.stringify(check.binding)}: typeof ${check.binding} === "undefined" ? undefined : ${check.binding}`,
-            )
-            .join(",")
-        : "";
+    const names = new Set<string>();
+    if (
+      config.plan.assertion.kind === "lesson" &&
+      config.plan.assertion.operation === "check"
+    ) {
+      for (const check of config.plan.assertion.checks) {
+        if (check.kind === "bindingEquals" || check.kind === "callEquals")
+          names.add(check.binding);
+        else if (check.kind === "generatorSequence")
+          names.add("createIdGenerator");
+      }
+    }
+    const bindings = Array.from(
+      names,
+      (name) =>
+        `[${JSON.stringify(name)}]: typeof ${name} === "undefined" ? void 0 : ${name}`,
+    ).join(",");
     const tail = config.plan.mode === "lesson" ? `\nreturn {${bindings}};` : "";
     const source = `(${executeSandbox.toString()})(${JSON.stringify(config.plan)}, payload => postMessage(payload), async function () {\n${entry}\n${tail}\n});`;
     const url = URL.createObjectURL(

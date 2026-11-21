@@ -1,0 +1,19 @@
+{
+  "id": "js-13",
+  "number": 13,
+  "title": "Логічні оператори",
+  "module": 2,
+  "prerequisites": [
+    "js-12"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Поєднати булеві умови через && та ||.",
+    "Заперечити ознаку через !.",
+    "Згрупувати альтернативи в правилі завершення задачі."
+  ],
+  "editablePaths": [
+    "src/app.js"
+  ],
+  "courseContentVersion": 1
+}

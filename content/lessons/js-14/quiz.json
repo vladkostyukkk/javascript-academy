@@ -1,0 +1,41 @@
+[
+  {
+    "id": "false-branch",
+    "prompt": "Яке значення отримає label у виразі const label = false ? \"Є термін\" : \"Без терміну\"?",
+    "options": [
+      {
+        "id": "has-deadline",
+        "label": "Є термін",
+        "explanation": "Рядок після знака питання відповідає умові true."
+      },
+      {
+        "id": "no-deadline",
+        "label": "Без терміну",
+        "explanation": "За умови false JavaScript обирає рядок після двокрапки."
+      }
+    ],
+    "correctOptionId": "no-deadline"
+  },
+  {
+    "id": "suitable-use",
+    "prompt": "Коли тернарний оператор найзручніше читати?",
+    "options": [
+      {
+        "id": "several-actions",
+        "label": "Коли кожна гілка виконує кілька дій",
+        "explanation": "Для кількох дій краще видно послідовність у блоках if / else."
+      },
+      {
+        "id": "short-choice",
+        "label": "Коли потрібно вибрати одне з двох коротких значень",
+        "explanation": "Вираз обирає готове значення, яке можна присвоїти змінній."
+      },
+      {
+        "id": "three-statuses",
+        "label": "Коли треба вибрати один із трьох статусів",
+        "explanation": "Ланцюжок if / else if / else показує правила для трьох статусів окремо."
+      }
+    ],
+    "correctOptionId": "short-choice"
+  }
+]

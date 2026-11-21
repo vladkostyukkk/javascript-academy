@@ -1,0 +1,63 @@
+[
+  {
+    "id": "expression-result",
+    "prompt": "Що поверне twice(4), якщо const twice = (n) => n * 2?",
+    "options": [
+      {
+        "id": "four",
+        "label": "4",
+        "explanation": "Число 4 підставляється в параметр n, а тіло множить його на 2."
+      },
+      {
+        "id": "eight",
+        "label": "8",
+        "explanation": "Тіло є виразом, тож результат множення повертається автоматично."
+      },
+      {
+        "id": "undefined",
+        "label": "undefined",
+        "explanation": "Вираз без фігурних дужок має неявне повернення."
+      }
+    ],
+    "correctOptionId": "eight"
+  },
+  {
+    "id": "block-body",
+    "prompt": "Що поверне виклик, якщо функцію записано як const twice = (n) => { n * 2; }?",
+    "options": [
+      {
+        "id": "number",
+        "label": "Число n * 2",
+        "explanation": "Фігурні дужки утворюють блок. Вираз у блоці сам собою не повертає значення."
+      },
+      {
+        "id": "undefined",
+        "label": "undefined",
+        "explanation": "У блоці немає команди return."
+      },
+      {
+        "id": "zero",
+        "label": "0",
+        "explanation": "Відсутність return не створює числового результату."
+      }
+    ],
+    "correctOptionId": "undefined"
+  },
+  {
+    "id": "declaration-before-call",
+    "prompt": "Де має бути присвоєння const formatMinutes, якщо formatTaskText викликає його під час обчислення taskText?",
+    "options": [
+      {
+        "id": "after",
+        "label": "Після обчислення taskText",
+        "explanation": "На час виклику const formatMinutes ще не матиме значення."
+      },
+      {
+        "id": "before",
+        "label": "До обчислення taskText",
+        "explanation": "Під час виклику formatTaskText стрілкова функція вже має бути доступною."
+      }
+    ],
+    "correctOptionId": "before"
+  }
+]

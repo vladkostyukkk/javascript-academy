@@ -1,0 +1,80 @@
+[
+  {
+    "id": "empty",
+    "category": "empty",
+    "source": "",
+    "failedCheckIds": [
+      "app-name",
+      "task-title",
+      "priority",
+      "total-minutes",
+      "completed",
+      "important",
+      "task-status",
+      "console",
+      "completion-percent",
+      "empty-percent",
+      "card-text",
+      "invalid-minutes",
+      "empty-minutes",
+      "task-preview",
+      "priority-label",
+      "second-priority-label",
+      "priority-preview",
+      "status-label",
+      "second-status-label",
+      "third-status-label"
+    ]
+  },
+  {
+    "id": "invalid",
+    "category": "invalid",
+    "source": "const result = ;",
+    "failedCheckIds": [
+      "app-name",
+      "task-title",
+      "priority",
+      "total-minutes",
+      "completed",
+      "important",
+      "task-status",
+      "console",
+      "completion-percent",
+      "empty-percent",
+      "card-text",
+      "invalid-minutes",
+      "empty-minutes",
+      "task-preview",
+      "priority-label",
+      "second-priority-label",
+      "priority-preview",
+      "status-label",
+      "second-status-label",
+      "third-status-label"
+    ]
+  },
+  {
+    "id": "skip-active-branch",
+    "category": "edge",
+    "source": "const appName = \"FocusBoard\";\nconsole.log(appName);\n\nconst taskTitle = \"Вивчити JavaScript\";\nlet priority = 1;\npriority = 2;\nconst minutes = 25;\n\nconst category = \"Навчання\";\nconst taskLabel = taskTitle + \" — \" + category;\n\nconst secondTaskMinutes = 15;\nconst totalMinutes = minutes + secondTaskMinutes;\n\nconst completed = false;\nconst isImportant = true;\nconst taskStatus = \"Завершено: \" + completed + \"; важливо: \" + isImportant;\n\nconst timeLimit = 20;\nconst isOverLimit = minutes > timeLimit;\nconst fitsExactLimit = minutes <= minutes;\nconst exceedsExactLimit = minutes > minutes;\n\nconst taskCount = 4;\nconst completedCount = 1;\nconst completionPercent = completedCount / Math.max(taskCount, 1) * 100;\nconst emptyPercent = 0 / Math.max(0, 1) * 100;\n\nconst cardText = `${taskTitle} — ${category} | ${minutes} хв | прогрес: ${completionPercent}%`;\nconst emptyCardText = `Прогрес порожнього списку: ${emptyPercent}%`;\n\nconst minutesInput = \"30\";\nconst parsedMinutes = Number(minutesInput);\nconst invalidMinutes = Number.isNaN(Number(\"не число\"));\nconst emptyMinutes = Number(\"\");\n\nconst remainingMinutes = parsedMinutes - minutes;\nconst previewOverLimit = parsedMinutes > timeLimit;\nconst taskPreview = `${cardText} | введено: ${parsedMinutes} хв | запас: ${remainingMinutes} хв | понад ліміт: ${previewOverLimit}`;\n\nlet priorityLabel = \"\";\nif (priority >= 2) {\n  priorityLabel = \"Підвищений\";\n} else {\n  priorityLabel = \"Звичайний\";\n}\n\nconst secondPriority = 1;\nlet secondPriorityLabel = \"\";\nif (secondPriority >= 2) {\n  secondPriorityLabel = \"Підвищений\";\n} else {\n  secondPriorityLabel = \"Звичайний\";\n}\n\nconst priorityPreview = `${taskPreview} | пріоритет: ${priorityLabel}`;\n\nconst isInProgress = true;\nlet statusLabel = \"\";\nif (completed) {\n  statusLabel = \"Готово\";\n} else if (completed) {\n  statusLabel = \"У роботі\";\n} else {\n  statusLabel = \"Заплановано\";\n}\n\nconst secondCompleted = true;\nconst secondIsInProgress = true;\nlet secondStatusLabel = \"\";\nif (secondCompleted) {\n  secondStatusLabel = \"Готово\";\n} else if (secondIsInProgress) {\n  secondStatusLabel = \"У роботі\";\n} else {\n  secondStatusLabel = \"Заплановано\";\n}\n\nconst thirdCompleted = false;\nconst thirdIsInProgress = false;\nlet thirdStatusLabel = \"\";\nif (thirdCompleted) {\n  thirdStatusLabel = \"Готово\";\n} else if (thirdIsInProgress) {\n  thirdStatusLabel = \"У роботі\";\n} else {\n  thirdStatusLabel = \"Заплановано\";\n}\n",
+    "failedCheckIds": [
+      "status-label"
+    ]
+  },
+  {
+    "id": "active-before-finished",
+    "category": "edge",
+    "source": "const appName = \"FocusBoard\";\nconsole.log(appName);\n\nconst taskTitle = \"Вивчити JavaScript\";\nlet priority = 1;\npriority = 2;\nconst minutes = 25;\n\nconst category = \"Навчання\";\nconst taskLabel = taskTitle + \" — \" + category;\n\nconst secondTaskMinutes = 15;\nconst totalMinutes = minutes + secondTaskMinutes;\n\nconst completed = false;\nconst isImportant = true;\nconst taskStatus = \"Завершено: \" + completed + \"; важливо: \" + isImportant;\n\nconst timeLimit = 20;\nconst isOverLimit = minutes > timeLimit;\nconst fitsExactLimit = minutes <= minutes;\nconst exceedsExactLimit = minutes > minutes;\n\nconst taskCount = 4;\nconst completedCount = 1;\nconst completionPercent = completedCount / Math.max(taskCount, 1) * 100;\nconst emptyPercent = 0 / Math.max(0, 1) * 100;\n\nconst cardText = `${taskTitle} — ${category} | ${minutes} хв | прогрес: ${completionPercent}%`;\nconst emptyCardText = `Прогрес порожнього списку: ${emptyPercent}%`;\n\nconst minutesInput = \"30\";\nconst parsedMinutes = Number(minutesInput);\nconst invalidMinutes = Number.isNaN(Number(\"не число\"));\nconst emptyMinutes = Number(\"\");\n\nconst remainingMinutes = parsedMinutes - minutes;\nconst previewOverLimit = parsedMinutes > timeLimit;\nconst taskPreview = `${cardText} | введено: ${parsedMinutes} хв | запас: ${remainingMinutes} хв | понад ліміт: ${previewOverLimit}`;\n\nlet priorityLabel = \"\";\nif (priority >= 2) {\n  priorityLabel = \"Підвищений\";\n} else {\n  priorityLabel = \"Звичайний\";\n}\n\nconst secondPriority = 1;\nlet secondPriorityLabel = \"\";\nif (secondPriority >= 2) {\n  secondPriorityLabel = \"Підвищений\";\n} else {\n  secondPriorityLabel = \"Звичайний\";\n}\n\nconst priorityPreview = `${taskPreview} | пріоритет: ${priorityLabel}`;\n\nconst isInProgress = true;\nlet statusLabel = \"\";\nif (completed) {\n  statusLabel = \"Готово\";\n} else if (isInProgress) {\n  statusLabel = \"У роботі\";\n} else {\n  statusLabel = \"Заплановано\";\n}\n\nconst secondCompleted = true;\nconst secondIsInProgress = true;\nlet secondStatusLabel = \"\";\nif (secondIsInProgress) {\n  secondStatusLabel = \"У роботі\";\n} else if (secondCompleted) {\n  secondStatusLabel = \"Готово\";\n} else {\n  secondStatusLabel = \"Заплановано\";\n}\n\nconst thirdCompleted = false;\nconst thirdIsInProgress = false;\nlet thirdStatusLabel = \"\";\nif (thirdCompleted) {\n  thirdStatusLabel = \"Готово\";\n} else if (thirdIsInProgress) {\n  thirdStatusLabel = \"У роботі\";\n} else {\n  thirdStatusLabel = \"Заплановано\";\n}\n",
+    "failedCheckIds": [
+      "second-status-label"
+    ]
+  },
+  {
+    "id": "missing-planned-status",
+    "category": "edge",
+    "source": "const appName = \"FocusBoard\";\nconsole.log(appName);\n\nconst taskTitle = \"Вивчити JavaScript\";\nlet priority = 1;\npriority = 2;\nconst minutes = 25;\n\nconst category = \"Навчання\";\nconst taskLabel = taskTitle + \" — \" + category;\n\nconst secondTaskMinutes = 15;\nconst totalMinutes = minutes + secondTaskMinutes;\n\nconst completed = false;\nconst isImportant = true;\nconst taskStatus = \"Завершено: \" + completed + \"; важливо: \" + isImportant;\n\nconst timeLimit = 20;\nconst isOverLimit = minutes > timeLimit;\nconst fitsExactLimit = minutes <= minutes;\nconst exceedsExactLimit = minutes > minutes;\n\nconst taskCount = 4;\nconst completedCount = 1;\nconst completionPercent = completedCount / Math.max(taskCount, 1) * 100;\nconst emptyPercent = 0 / Math.max(0, 1) * 100;\n\nconst cardText = `${taskTitle} — ${category} | ${minutes} хв | прогрес: ${completionPercent}%`;\nconst emptyCardText = `Прогрес порожнього списку: ${emptyPercent}%`;\n\nconst minutesInput = \"30\";\nconst parsedMinutes = Number(minutesInput);\nconst invalidMinutes = Number.isNaN(Number(\"не число\"));\nconst emptyMinutes = Number(\"\");\n\nconst remainingMinutes = parsedMinutes - minutes;\nconst previewOverLimit = parsedMinutes > timeLimit;\nconst taskPreview = `${cardText} | введено: ${parsedMinutes} хв | запас: ${remainingMinutes} хв | понад ліміт: ${previewOverLimit}`;\n\nlet priorityLabel = \"\";\nif (priority >= 2) {\n  priorityLabel = \"Підвищений\";\n} else {\n  priorityLabel = \"Звичайний\";\n}\n\nconst secondPriority = 1;\nlet secondPriorityLabel = \"\";\nif (secondPriority >= 2) {\n  secondPriorityLabel = \"Підвищений\";\n} else {\n  secondPriorityLabel = \"Звичайний\";\n}\n\nconst priorityPreview = `${taskPreview} | пріоритет: ${priorityLabel}`;\n\nconst isInProgress = true;\nlet statusLabel = \"\";\nif (completed) {\n  statusLabel = \"Готово\";\n} else if (isInProgress) {\n  statusLabel = \"У роботі\";\n} else {\n  statusLabel = \"Заплановано\";\n}\n\nconst secondCompleted = true;\nconst secondIsInProgress = true;\nlet secondStatusLabel = \"\";\nif (secondCompleted) {\n  secondStatusLabel = \"Готово\";\n} else if (secondIsInProgress) {\n  secondStatusLabel = \"У роботі\";\n} else {\n  secondStatusLabel = \"Заплановано\";\n}\n\nconst thirdCompleted = false;\nconst thirdIsInProgress = false;\nlet thirdStatusLabel = \"\";\nif (thirdCompleted) {\n  thirdStatusLabel = \"Готово\";\n} else if (thirdIsInProgress) {\n  thirdStatusLabel = \"У роботі\";\n}\n",
+    "failedCheckIds": [
+      "third-status-label"
+    ]
+  }
+]

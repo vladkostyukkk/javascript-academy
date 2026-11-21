@@ -1,0 +1,63 @@
+[
+  {
+    "id": "omitted-argument",
+    "prompt": "Яке значення має breakMinutes у виклику addBreak(20), якщо оголошено breakMinutes = 10?",
+    "options": [
+      {
+        "id": "twenty",
+        "label": "20",
+        "explanation": "Число 20 передається першому параметру."
+      },
+      {
+        "id": "ten",
+        "label": "10",
+        "explanation": "Другий аргумент пропущено, тому діє типове значення."
+      },
+      {
+        "id": "zero",
+        "label": "0",
+        "explanation": "Пропуск аргументу не підставляє нуль."
+      }
+    ],
+    "correctOptionId": "ten"
+  },
+  {
+    "id": "explicit-zero",
+    "prompt": "Функція addBreak повертає суму двох параметрів. Другий має значення 10 за замовчуванням. Скільки хвилин поверне addBreak(20, 0)?",
+    "options": [
+      {
+        "id": "thirty",
+        "label": "30",
+        "explanation": "Явно переданий 0 залишиться значенням другого параметра."
+      },
+      {
+        "id": "twenty",
+        "label": "20",
+        "explanation": "20 плюс явно переданий 0 дає 20."
+      },
+      {
+        "id": "zero",
+        "label": "0",
+        "explanation": "Функція додає другий параметр до першого, тож перший теж враховується."
+      }
+    ],
+    "correctOptionId": "twenty"
+  },
+  {
+    "id": "argument-order",
+    "prompt": "У виклику formatTaskText(\"Читати\", 15) яке значення отримає параметр title?",
+    "options": [
+      {
+        "id": "title",
+        "label": "Читати",
+        "explanation": "Перший аргумент відповідає першому параметру title."
+      },
+      {
+        "id": "duration",
+        "label": "15",
+        "explanation": "Число 15 є другим аргументом і відповідає minutes."
+      }
+    ],
+    "correctOptionId": "title"
+  }
+]

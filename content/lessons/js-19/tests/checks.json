@@ -1,0 +1,282 @@
+[
+  {
+    "id": "format-minutes-integer",
+    "kind": "callEquals",
+    "binding": "formatMinutes",
+    "args": [
+      25
+    ],
+    "expected": "25 хв",
+    "feedback": "Поверни число і « хв» одним рядком. Перевір повернення значення зі стрілкової функції."
+  },
+  {
+    "id": "format-minutes-zero",
+    "kind": "callEquals",
+    "binding": "formatMinutes",
+    "args": [
+      0
+    ],
+    "expected": "0 хв",
+    "feedback": "Відформатуй нуль як «0 хв». Збережи передане число."
+  },
+  {
+    "id": "format-minutes-fraction",
+    "kind": "callEquals",
+    "binding": "formatMinutes",
+    "args": [
+      0.5
+    ],
+    "expected": "0.5 хв",
+    "feedback": "Збережи дробову частину числа. Для 0.5 потрібен рядок «0.5 хв»."
+  },
+  {
+    "id": "title-whitespace",
+    "kind": "callEquals",
+    "binding": "validateTitle",
+    "args": [
+      "   "
+    ],
+    "expected": "Введіть назву задачі.",
+    "feedback": "Рядок із самих пробілів має дати «Введіть назву задачі.». Перевір результат .trim()."
+  },
+  {
+    "id": "title-null-type",
+    "kind": "callEquals",
+    "binding": "validateTitle",
+    "args": [
+      null
+    ],
+    "expected": "Назва має бути рядком.",
+    "feedback": "Для null поверни «Назва має бути рядком.». Перевір тип до виклику .trim()."
+  },
+  {
+    "id": "title-valid",
+    "kind": "callEquals",
+    "binding": "validateTitle",
+    "args": [
+      "Читати"
+    ],
+    "expected": null,
+    "feedback": "Для непорожньої назви поверни значення null без лапок."
+  },
+  {
+    "id": "title-empty",
+    "kind": "callEquals",
+    "binding": "validateTitle",
+    "args": [
+      ""
+    ],
+    "expected": "Введіть назву задачі.",
+    "feedback": "Для порожнього рядка очікується «Введіть назву задачі.»."
+  },
+  {
+    "id": "title-number-type",
+    "kind": "callEquals",
+    "binding": "validateTitle",
+    "args": [
+      123
+    ],
+    "expected": "Назва має бути рядком.",
+    "feedback": "Число 123 не є рядком. Поверни «Назва має бути рядком.» у перевірці типу."
+  },
+  {
+    "id": "title-trimmed-valid",
+    "kind": "callEquals",
+    "binding": "validateTitle",
+    "args": [
+      "  Читати  "
+    ],
+    "expected": null,
+    "feedback": "Пробіли навколо непорожнього тексту дозволені. Поверни null, якщо після .trim() лишається текст."
+  },
+  {
+    "id": "can-use-task-title",
+    "kind": "bindingEquals",
+    "binding": "canUseTaskTitle",
+    "expected": true,
+    "feedback": "Для наявної назви порівняй повернене значення із null. Збережи булевий результат у canUseTaskTitle."
+  },
+  {
+    "id": "task-text-default",
+    "kind": "callEquals",
+    "binding": "formatTaskText",
+    "args": [
+      "Читати"
+    ],
+    "expected": "Читати — 30 хв",
+    "feedback": "Для виклику з однією назвою підстав 30 хвилин."
+  },
+  {
+    "id": "task-text-zero",
+    "kind": "callEquals",
+    "binding": "formatTaskText",
+    "args": [
+      "Почати",
+      0
+    ],
+    "expected": "Почати — 0 хв",
+    "feedback": "Явно переданий нуль має залишитися нулем. Перевір, як задано типове значення."
+  },
+  {
+    "id": "task-text-explicit",
+    "kind": "callEquals",
+    "binding": "formatTaskText",
+    "args": [
+      "Планувати",
+      15
+    ],
+    "expected": "Планувати — 15 хв",
+    "feedback": "Поверни текст із переданою назвою та явною тривалістю. Звір « — » і « хв»."
+  },
+  {
+    "id": "task-text",
+    "kind": "bindingEquals",
+    "binding": "taskText",
+    "expected": "Вивчити JavaScript — 25 хв",
+    "feedback": "Обчисли taskText із наявних taskTitle та minutes."
+  },
+  {
+    "id": "quick-task-text",
+    "kind": "bindingEquals",
+    "binding": "quickTaskText",
+    "expected": "Перевірити план — 30 хв",
+    "feedback": "Обчисли quickTaskText із назви «Перевірити план», пропустивши другий аргумент."
+  },
+  {
+    "id": "priority-at-threshold",
+    "kind": "callEquals",
+    "binding": "getPriorityLabel",
+    "args": [
+      2
+    ],
+    "expected": "Підвищений",
+    "feedback": "Поверни «Підвищений» для 2. Перевір, чи умова включає рівність."
+  },
+  {
+    "id": "priority-below-threshold",
+    "kind": "callEquals",
+    "binding": "getPriorityLabel",
+    "args": [
+      1
+    ],
+    "expected": "Звичайний",
+    "feedback": "Поверни «Звичайний» для 1. Переконайся, що функція читає свій параметр."
+  },
+  {
+    "id": "priority-above-threshold",
+    "kind": "callEquals",
+    "binding": "getPriorityLabel",
+    "args": [
+      3
+    ],
+    "expected": "Підвищений",
+    "feedback": "Пріоритети вище за межу також є підвищеними. Перевір результат для 3."
+  },
+  {
+    "id": "priority-high-number",
+    "kind": "callEquals",
+    "binding": "getPriorityLabel",
+    "args": [
+      10
+    ],
+    "expected": "Підвищений",
+    "feedback": "Для 10 теж потрібна позначка «Підвищений». Порівнюй із межею."
+  },
+  {
+    "id": "priority-zero",
+    "kind": "callEquals",
+    "binding": "getPriorityLabel",
+    "args": [
+      0
+    ],
+    "expected": "Звичайний",
+    "feedback": "Поверни «Звичайний» для 0. Це число нижче за межу 2."
+  },
+  {
+    "id": "console",
+    "kind": "consoleEquals",
+    "expected": [
+      [
+        "FocusBoard"
+      ]
+    ],
+    "feedback": "Залиш у консолі лише наявний вивід назви FocusBoard. Функції мають повертати значення під час додаткових викликів перевірки."
+  },
+  {
+    "id": "app-name",
+    "kind": "bindingEquals",
+    "binding": "appName",
+    "expected": "FocusBoard",
+    "feedback": "Збережи appName зі значенням FocusBoard з першого уроку."
+  },
+  {
+    "id": "task-preview",
+    "kind": "bindingEquals",
+    "binding": "taskPreview",
+    "expected": "Вивчити JavaScript — Навчання | 25 хв | прогрес: 25% | введено: 30 хв | запас: 5 хв | понад ліміт: true",
+    "feedback": "Використай cardText, parsedMinutes, remainingMinutes та previewOverLimit; звір роздільники."
+  },
+  {
+    "id": "priority-label",
+    "kind": "bindingEquals",
+    "binding": "priorityLabel",
+    "expected": "Підвищений",
+    "feedback": "Для пріоритету 2 потрібна позначка «Підвищений». Перевір, чи умова включає рівність."
+  },
+  {
+    "id": "second-priority-label",
+    "kind": "bindingEquals",
+    "binding": "secondPriorityLabel",
+    "expected": "Звичайний",
+    "feedback": "Пріоритет другої задачі дорівнює 1. Присвой «Звичайний» у гілці, що виконується для значень нижче за 2."
+  },
+  {
+    "id": "kanban-preview",
+    "kind": "bindingEquals",
+    "binding": "kanbanPreview",
+    "expected": "Вивчити JavaScript — Навчання | 25 хв | прогрес: 25% | введено: 30 хв | запас: 5 хв | понад ліміт: true | пріоритет: Підвищений | виконання: Відкрита | колонка: У процесі",
+    "feedback": "Збережи весь completionPreview і підстав kanbanColumn після роздільника « | колонка: »."
+  },
+  {
+    "id": "can-complete",
+    "kind": "bindingEquals",
+    "binding": "canComplete",
+    "expected": true,
+    "feedback": "Перша задача ще відкрита й важлива. Постав || між перевіркою ліміту й важливістю."
+  },
+  {
+    "id": "second-kanban-column",
+    "kind": "bindingEquals",
+    "binding": "secondKanbanColumn",
+    "expected": "Виконано",
+    "feedback": "Для статусу «Готово» вибери «Виконано». Звір регістр рядка в case та break після присвоєння."
+  },
+  {
+    "id": "unknown-kanban-column",
+    "kind": "bindingEquals",
+    "binding": "unknownKanbanColumn",
+    "expected": "Без колонки",
+    "feedback": "Рядок «готово» з малої літери не збігається з «Готово». У default присвой «Без колонки»."
+  },
+  {
+    "id": "can-complete-third",
+    "kind": "bindingEquals",
+    "binding": "canCompleteThird",
+    "expected": false,
+    "feedback": "Третя задача перевищує ліміт і не важлива. Обидві альтернативи праворуч від && дають false."
+  },
+  {
+    "id": "can-complete-at-limit",
+    "kind": "bindingEquals",
+    "binding": "canCompleteAtLimit",
+    "expected": true,
+    "feedback": "Рівно 20 хвилин вкладаються в ліміт. Порівняння має включати рівність."
+  },
+  {
+    "id": "third-kanban-column",
+    "kind": "bindingEquals",
+    "binding": "thirdKanbanColumn",
+    "expected": "До виконання",
+    "feedback": "Статус «Заплановано» має потрапити до колонки «До виконання». Звір, що switch читає thirdStatusLabel."
+  }
+]

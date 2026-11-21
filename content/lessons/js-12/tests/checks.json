@@ -1,0 +1,145 @@
+[
+  {
+    "id": "app-name",
+    "kind": "bindingEquals",
+    "binding": "appName",
+    "expected": "FocusBoard",
+    "feedback": "Збережи appName зі значенням FocusBoard з першого уроку."
+  },
+  {
+    "id": "task-title",
+    "kind": "bindingEquals",
+    "binding": "taskTitle",
+    "expected": "Вивчити JavaScript",
+    "feedback": "Назва задачі має точно дорівнювати Вивчити JavaScript без зайвих пробілів."
+  },
+  {
+    "id": "priority",
+    "kind": "bindingEquals",
+    "binding": "priority",
+    "expected": 2,
+    "feedback": "Кінцевий пріоритет має бути числом 2. Зміни значення через присвоєння."
+  },
+  {
+    "id": "total-minutes",
+    "kind": "bindingEquals",
+    "binding": "totalMinutes",
+    "expected": 40,
+    "feedback": "Додай числові minutes та secondTaskMinutes. Очікується число 40, а не текст."
+  },
+  {
+    "id": "completed",
+    "kind": "bindingEquals",
+    "binding": "completed",
+    "expected": false,
+    "feedback": "Задача ще не завершена: completed має бути булевим false, не рядком \"false\" і не числом 0."
+  },
+  {
+    "id": "important",
+    "kind": "bindingEquals",
+    "binding": "isImportant",
+    "expected": true,
+    "feedback": "Познач важливість булевим true без лапок, не числом 1."
+  },
+  {
+    "id": "task-status",
+    "kind": "bindingEquals",
+    "binding": "taskStatus",
+    "expected": "Завершено: false; важливо: true",
+    "feedback": "Склади статус зі значень completed та isImportant. Звір регістр, пробіли й роздільник \"; важливо: \"."
+  },
+  {
+    "id": "console",
+    "kind": "consoleEquals",
+    "expected": [
+      [
+        "FocusBoard"
+      ]
+    ],
+    "feedback": "Збережи одне виведення назви FocusBoard із попереднього уроку."
+  },
+  {
+    "id": "completion-percent",
+    "kind": "bindingEquals",
+    "binding": "completionPercent",
+    "expected": 25,
+    "feedback": "Поділи виконані задачі на загальну кількість і помнож на 100."
+  },
+  {
+    "id": "empty-percent",
+    "kind": "bindingEquals",
+    "binding": "emptyPercent",
+    "expected": 0,
+    "feedback": "Для порожнього списку використай знаменник не менше 1."
+  },
+  {
+    "id": "card-text",
+    "kind": "bindingEquals",
+    "binding": "cardText",
+    "expected": "Вивчити JavaScript — Навчання | 25 хв | прогрес: 25%",
+    "feedback": "Звір вставки змінних, пробіли, хв та знак %."
+  },
+  {
+    "id": "invalid-minutes",
+    "kind": "bindingEquals",
+    "binding": "invalidMinutes",
+    "expected": true,
+    "feedback": "Перевір результат перетворення через Number.isNaN."
+  },
+  {
+    "id": "empty-minutes",
+    "kind": "bindingEquals",
+    "binding": "emptyMinutes",
+    "expected": 0,
+    "feedback": "Number порожнього рядка повертає 0."
+  },
+  {
+    "id": "task-preview",
+    "kind": "bindingEquals",
+    "binding": "taskPreview",
+    "expected": "Вивчити JavaScript — Навчання | 25 хв | прогрес: 25% | введено: 30 хв | запас: 5 хв | понад ліміт: true",
+    "feedback": "Використай cardText, parsedMinutes, remainingMinutes та previewOverLimit; звір роздільники."
+  },
+  {
+    "id": "priority-label",
+    "kind": "bindingEquals",
+    "binding": "priorityLabel",
+    "expected": "Підвищений",
+    "feedback": "Для пріоритету 2 потрібна позначка «Підвищений». Перевір, чи умова включає рівність."
+  },
+  {
+    "id": "second-priority-label",
+    "kind": "bindingEquals",
+    "binding": "secondPriorityLabel",
+    "expected": "Звичайний",
+    "feedback": "Пріоритет другої задачі дорівнює 1. Присвой «Звичайний» у гілці, що виконується для значень нижче за 2."
+  },
+  {
+    "id": "priority-preview",
+    "kind": "bindingEquals",
+    "binding": "priorityPreview",
+    "expected": "Вивчити JavaScript — Навчання | 25 хв | прогрес: 25% | введено: 30 хв | запас: 5 хв | понад ліміт: true | пріоритет: Підвищений",
+    "feedback": "Збережи текст taskPreview і допиши словесний priorityLabel після роздільника « | пріоритет: »."
+  },
+  {
+    "id": "status-label",
+    "kind": "bindingEquals",
+    "binding": "statusLabel",
+    "expected": "У роботі",
+    "feedback": "Для першої задачі completed дає false, а isInProgress дає true. Присвой «У роботі» в гілці else if."
+  },
+  {
+    "id": "second-status-label",
+    "kind": "bindingEquals",
+    "binding": "secondStatusLabel",
+    "expected": "Готово",
+    "feedback": "Обидві ознаки другої задачі дають true. Став перевірку завершення першою, щоб отримати «Готово»."
+  },
+  {
+    "id": "third-status-label",
+    "kind": "bindingEquals",
+    "binding": "thirdStatusLabel",
+    "expected": "Заплановано",
+    "feedback": "Обидві ознаки третьої задачі дають false. Остання гілка else має присвоїти «Заплановано»."
+  }
+]

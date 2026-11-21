@@ -1,0 +1,19 @@
+{
+  "id": "js-12",
+  "number": 12,
+  "title": "else if",
+  "module": 2,
+  "prerequisites": [
+    "js-11"
+  ],
+  "durationMinutes": 32,
+  "objectives": [
+    "Додати третю гілку до ланцюжка умов.",
+    "Розташувати умови в порядку їхньої важливості.",
+    "Вибрати статус для трьох задач FocusBoard."
+  ],
+  "editablePaths": [
+    "src/app.js"
+  ],
+  "courseContentVersion": 1
+}

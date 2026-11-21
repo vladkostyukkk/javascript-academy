@@ -178,6 +178,12 @@ export type FileMap = z.infer<typeof fileMapSchema>;
 export const MAX_LESSON_CHECKS = 32;
 
 const checkBase = { id: identifier, feedback: text };
+const bindingValue = z.union([
+  z.string().max(1000),
+  z.number().finite(),
+  z.boolean(),
+]);
+const probeValue = bindingValue.nullable();
 export const checksSchema = z
   .array(
     z.discriminatedUnion("kind", [
@@ -185,17 +191,26 @@ export const checksSchema = z
         ...checkBase,
         kind: z.literal("bindingEquals"),
         binding: z.string().regex(/^[a-zA-Z_$][a-zA-Z0-9_$]*$/),
-        expected: z.union([
-          z.string().max(1000),
-          z.number().finite(),
-          z.boolean(),
-        ]),
+        expected: bindingValue,
       }),
       z.strictObject({
         ...checkBase,
         kind: z.literal("consoleEquals"),
         expected: z.array(z.array(z.string().max(1000)).max(10)).max(10),
       }),
+      z.strictObject({
+        ...checkBase,
+        kind: z.literal("callEquals"),
+        binding: z.enum([
+          "getPriorityLabel",
+          "formatTaskText",
+          "validateTitle",
+          "formatMinutes",
+        ]),
+        args: z.array(probeValue).max(2),
+        expected: probeValue,
+      }),
+      z.strictObject({ ...checkBase, kind: z.literal("generatorSequence") }),
     ]),
   )
   .min(2)

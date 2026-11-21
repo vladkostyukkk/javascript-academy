@@ -27,6 +27,9 @@ IndexedDB drafts, auto-save, checkpoints, restore, statuses, course version, pre
 Fully author, test, and manually review lessons 01–10; validate references and pedagogy. Gate: all reference checkpoints pass, test failures meaningful; no future syntax.
 
 ## P07 — lessons 11–20
+
+Статус — прийнято 2026-11-21. Докази й межі — [P07_ACCEPTANCE.md](P07_ACCEPTANCE.md).
+
 Functions, conditions, ID generation, validation, integration. Gate: 20 valid cumulative checkpoints, no regression.
 
 ## P08 — lessons 21–30

@@ -246,6 +246,55 @@ for (const lesson of [
       "js-09",
     ],
   },
+  {
+    id: "js-11",
+    previous: "js-10",
+    title: "if / else",
+    count: 32,
+    missing: 3,
+    prerequisites: [
+      "js-02",
+      "js-03",
+      "js-04",
+      "js-05",
+      "js-06",
+      "js-07",
+      "js-08",
+      "js-09",
+      "js-10",
+    ],
+  },
+  ...[
+    { number: 12, title: "else if", count: 20, missing: 3 },
+    { number: 13, title: "Логічні оператори", count: 24, missing: 4 },
+    { number: 14, title: "Тернарний оператор", count: 27, missing: 3 },
+    { number: 15, title: "switch", count: 32, missing: 5 },
+    { number: 16, title: "Оголошення функцій", count: 32, missing: 5 },
+    {
+      number: 17,
+      title: "Параметри й значення за замовчуванням",
+      count: 32,
+      missing: 5,
+    },
+    { number: 18, title: "return та ранній вихід", count: 32, missing: 7 },
+    { number: 19, title: "Стрілкові функції", count: 32, missing: 3 },
+    {
+      number: 20,
+      title: "Область видимості та замикання",
+      count: 32,
+      missing: 3,
+    },
+  ].map(({ number, title, count, missing }) => ({
+    id: `js-${number}`,
+    previous: `js-${number - 1}`,
+    title,
+    count,
+    missing,
+    prerequisites: Array.from(
+      { length: number - 2 },
+      (_, index) => `js-${String(index + 2).padStart(2, "0")}`,
+    ),
+  })),
 ]) {
   test(
     lesson.id + " inherits files, validates fixtures and preserves source",
@@ -340,6 +389,9 @@ for (const lesson of [
         source,
       );
       await page.goto("/course/javascript");
+      await page
+        .getByRole("searchbox", { name: "Пошук уроків" })
+        .fill(lesson.id);
       await expect(
         page.getByRole("link", {
           name: lesson.id.slice(3) + ". " + lesson.title + ". Завершено",
