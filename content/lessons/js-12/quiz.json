@@ -1,0 +1,46 @@
+[
+  {
+    "id": "first-match",
+    "prompt": "Якщо перша і друга умови істинні, яка гілка виконається в ланцюжку if / else if / else?",
+    "options": [
+      {
+        "id": "second",
+        "label": "Лише else if",
+        "explanation": "До else if JavaScript переходить, коли умова if хибна."
+      },
+      {
+        "id": "first",
+        "label": "Лише if",
+        "explanation": "Перша істинна умова визначає результат усього ланцюжка."
+      },
+      {
+        "id": "both",
+        "label": "Обидві гілки",
+        "explanation": "Обидва блоки можуть виконатися у двох окремих if. Ланцюжок обирає одну гілку."
+      }
+    ],
+    "correctOptionId": "first"
+  },
+  {
+    "id": "fallback",
+    "prompt": "Коли виконується останній блок else?",
+    "options": [
+      {
+        "id": "no-match",
+        "label": "Коли всі попередні умови хибні",
+        "explanation": "До else виконання доходить, коли жодна умова не спрацювала."
+      },
+      {
+        "id": "one-false",
+        "label": "Щойно якась умова хибна",
+        "explanation": "Після хибної умови JavaScript спочатку перевіряє наступну умову, якщо вона є."
+      },
+      {
+        "id": "always",
+        "label": "Після кожної гілки",
+        "explanation": "Обравши гілку, JavaScript пропускає решту ланцюжка."
+      }
+    ],
+    "correctOptionId": "no-match"
+  }
+]

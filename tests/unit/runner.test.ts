@@ -1,4 +1,6 @@
 import { describe, expect, it } from "vitest";
+import { evaluateChecks } from "@/lib/lessons/checks";
+import { checksSchema, type LessonCheck } from "@/lib/lessons/schema";
 import {
   acceptMessage,
   envelopeSchema,
@@ -18,6 +20,20 @@ const data = {
   payload: { kind: "ready" },
 };
 const source = {} as MessageEventSource;
+const callCheck = {
+  id: "title",
+  kind: "callEquals",
+  binding: "validateTitle",
+  args: ["Завдання"],
+  expected: null,
+  feedback: "Функція має повернути null для коректної назви.",
+} satisfies LessonCheck;
+const generatorCheck = {
+  id: "ids",
+  kind: "generatorSequence",
+  feedback: "Кожен генератор має власний лічильник.",
+} satisfies LessonCheck;
+
 describe("runner protocol boundary", () => {
   it("requires exact source, opaque origin, nonce, runId and strict schema", () => {
     const event = { source, origin: "null", data };
@@ -48,6 +64,88 @@ describe("runner protocol boundary", () => {
         false,
       );
   });
+  it("accepts a bounded JSON plan for the four lesson functions and the fixed generator", () => {
+    const checks = [
+      {
+        ...callCheck,
+        id: "priority",
+        binding: "getPriorityLabel",
+        args: [false],
+        expected: "Невідомий",
+      },
+      {
+        ...callCheck,
+        id: "task",
+        binding: "formatTaskText",
+        args: ["Завдання", 0],
+        expected: "Завдання · 0 хв",
+      },
+      callCheck,
+      {
+        ...callCheck,
+        id: "minutes",
+        binding: "formatMinutes",
+        args: [],
+        expected: 0,
+      },
+      { ...callCheck, id: "missing-title", args: [null], expected: false },
+      generatorCheck,
+    ];
+    const input = {
+      ...runnerFixtures[0].positive,
+      mode: "lesson",
+      assertion: { kind: "lesson", operation: "check", checks },
+    };
+    expect(runInputSchema.parse(input).assertion).toEqual(input.assertion);
+  });
+  it("rejects non-primitive, oversized or executable probe plans", () => {
+    for (const check of [
+      { ...callCheck, binding: "constructor" },
+      { ...callCheck, expression: "validateTitle()" },
+      { ...callCheck, args: [1, 2, 3] },
+      { ...callCheck, args: [{}] },
+      { ...callCheck, args: [[]] },
+      { ...callCheck, args: [Infinity] },
+      { ...callCheck, args: [undefined] },
+      { ...callCheck, args: ["x".repeat(1001)] },
+      { ...callCheck, expected: { value: null } },
+      { ...callCheck, expected: NaN },
+      { ...callCheck, expected: "x".repeat(1001) },
+      { ...callCheck, expected: undefined },
+      { ...generatorCheck, binding: "createIdGenerator" },
+      { ...generatorCheck, expected: [1, 2, 1, 3, 2] },
+    ])
+      expect(
+        checksSchema.safeParse([check, { ...callCheck, id: "other" }]).success,
+      ).toBe(false);
+  });
+});
+it("compares only recorded probe outcomes in the author harness", () => {
+  const checks = [callCheck, generatorCheck];
+  const observation = {
+    bindings: {
+      validateTitle: () => {
+        throw new Error("Only the Worker may call learner functions.");
+      },
+    },
+    logs: [],
+  };
+  expect(
+    evaluateChecks(checks, observation).map(({ passed }) => passed),
+  ).toEqual([false, false]);
+  const observed = {
+    ...observation,
+    probeResults: { title: true, ids: false },
+  };
+  expect(evaluateChecks(checks, observed)).toEqual([
+    { id: "title", passed: true, feedback: callCheck.feedback },
+    { id: "ids", passed: false, feedback: generatorCheck.feedback },
+  ]);
+  expect(
+    evaluateChecks(checks, { ...observed, runtimeError: "Помилка" }).map(
+      ({ passed }) => passed,
+    ),
+  ).toEqual([false, false]);
 });
 describe("runner file preparation", () => {
   it("prepares all four fixtures and rewrites both sides of the cycle", async () => {

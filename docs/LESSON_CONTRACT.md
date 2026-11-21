@@ -26,13 +26,11 @@ This is a target contract; implementations can choose one machine-validated equi
 - `reference`: complete cumulative checkpoint of FocusBoard at this lesson.
 - `starter`: previous verified checkpoint plus only the intentional gap (or official approved recovery checkpoint); NEVER overwrite live user workspace to apply a starter silently.
 
-## Example: lesson 16
-- Topic: function declarations.
-- Business context: cards need a priority label.
-- Editable file: `src/app.js`.
-- Student task: implement `getPriorityLabel(priority)`, handling 1,2,3 and invalid priority; write a small call using a sample priority.
-- Tests: all valid priorities, out-of-range, unexpected type, guarantee no mutation.
-- Contribution: the reusable label function is used by a later DOM-card lesson.
+## Приклад уроку 16
+
+- Учень оголошує `getPriorityLabel(priority)` у `src/app.js` і замінює два повторені обчислення викликами функції.
+- Для числового пріоритету від 2 включно функція повертає «Підвищений». Для менших значень повертає «Звичайний».
+- Перевірки викликають функцію з різними числами, зокрема по обидва боки порога. Попередні позначки й текст картки зберігаються.
 
 ## Critical pipeline
 1. Validate metadata and lesson text.
@@ -110,3 +108,9 @@ Reference, negative fixtures, hashes і starters підготовлено, ал�
 ## Приймання P06 — 2026-11-18
 
 Попередній статус відкладених перевірок js-06–js-10 замінено: структура й hashes валідні; reference, negative fixtures та переходи 01–10 перевірено в ізольованому runner. Авторський harness розширено до js-10. Педагогічний перегляд завершено; докази та межі — P06_ACCEPTANCE.md.
+
+## P07 — умови та функції
+
+Пакети успадковують попередній еталон і ту саму HTML/CSS основу. Спільна межа становить 32 checks на урок. Після js-11 кожний новий пакет покриває поточну тему та ключові накопичувальні результати, а повна регресія всіх еталонів лишається окремим критерієм приймання P07.
+
+У js-16–js-20 Check може викликати функції за декларативним контрактом [ADR-024](DECISIONS.md#adr-024--перевірка-функцій-і-замикань-у-p07-2026-11-21). Закладай і звичайні, і крайові аргументи. У завданні пояснюй очікуваний тип повернення і збереження виведення програми. Для `validateTitle` успішна валідація повертає значення `null`. Для `createIdGenerator` кожен виклик фабрики створює власну послідовність чисел із 1. Функції під час Check викликає тільки уроковий Worker.

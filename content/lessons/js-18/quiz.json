@@ -1,0 +1,58 @@
+[
+  {
+    "id": "returns-early",
+    "prompt": "Що станеться з командами у функції після виконаного return?",
+    "options": [
+      {
+        "id": "skipped",
+        "label": "Решта команд поточного виклику не виконається",
+        "explanation": "return одразу завершує поточний виклик."
+      },
+      {
+        "id": "still-executed",
+        "label": "Вони виконаються після повернення значення",
+        "explanation": "Після return керування вже передано в місце виклику."
+      }
+    ],
+    "correctOptionId": "skipped"
+  },
+  {
+    "id": "check-type-first",
+    "prompt": "Яку перевірку слід виконати перед title.trim()?",
+    "options": [
+      {
+        "id": "type-check",
+        "label": "Перевірити, чи title є рядком",
+        "explanation": "Метод .trim() застосовуй до рядка після перевірки типу."
+      },
+      {
+        "id": "empty-check",
+        "label": "Порівняти title з порожнім рядком",
+        "explanation": "Число теж відрізняється від порожнього рядка, а застосовувати .trim() до нього не можна."
+      }
+    ],
+    "correctOptionId": "type-check"
+  },
+  {
+    "id": "no-error",
+    "prompt": "Яке повернене значення має позначати відсутність помилки у validateTitle?",
+    "options": [
+      {
+        "id": "string",
+        "label": "Рядок \"null\"",
+        "explanation": "У лапках записано текст, а завдання очікує окреме значення."
+      },
+      {
+        "id": "undefined",
+        "label": "undefined",
+        "explanation": "Таке значення можна отримати без return. Завдання просить явно повернути null."
+      },
+      {
+        "id": "null",
+        "label": "null",
+        "explanation": "Значення null без лапок позначає, що помилки немає."
+      }
+    ],
+    "correctOptionId": "null"
+  }
+]

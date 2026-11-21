@@ -1,0 +1,5 @@
+[
+  "Запиши поряд дві відповідності. true дає «Виконана», false дає «Відкрита».",
+  "Розмісти ознаку завершення перед ?, значення для true між ? та :, значення для false після :.",
+  "Почни з const completionLabel = completed ? … та повтори вираз із secondCompleted. У шаблон completionPreview підстав priorityPreview і готовий completionLabel."
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "id": "continue-after-match",
+    "prompt": "Що станеться, якщо після присвоєння у збіжній гілці case прибрати break?",
+    "options": [
+      {
+        "id": "stops",
+        "label": "Виконання switch зупиниться після присвоєння",
+        "explanation": "Присвоєння змінює значення змінної. Щоб вийти зі switch у цьому місці, потрібен break."
+      },
+      {
+        "id": "continues",
+        "label": "Виконання продовжиться в наступній гілці",
+        "explanation": "Після збігу JavaScript виконує наступні рядки, доки не натрапить на break або кінець switch."
+      },
+      {
+        "id": "restarts",
+        "label": "JavaScript знову почне пошук збігу з першого case",
+        "explanation": "JavaScript продовжує виконання з поточного місця."
+      }
+    ],
+    "correctOptionId": "continues"
+  },
+  {
+    "id": "exact-status",
+    "prompt": "Яка гілка виконається для статусу «готово», якщо є case «Готово» та default?",
+    "options": [
+      {
+        "id": "case",
+        "label": "case «Готово»",
+        "explanation": "Значення рядків порівнюються строго, тож різний регістр дає різні значення."
+      },
+      {
+        "id": "fallback",
+        "label": "default",
+        "explanation": "Жодного точного збігу немає, тому JavaScript обирає default."
+      }
+    ],
+    "correctOptionId": "fallback"
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "id": "js-15",
+  "number": 15,
+  "title": "switch",
+  "module": 2,
+  "prerequisites": [
+    "js-14"
+  ],
+  "durationMinutes": 38,
+  "objectives": [
+    "Зіставити одне значення з кількома варіантами через switch.",
+    "Зупинити виконання гілки через break і обробити невідоме значення через default.",
+    "Вибрати назву Kanban-колонки для статусу задачі."
+  ],
+  "editablePaths": [
+    "src/app.js"
+  ],
+  "courseContentVersion": 1
+}

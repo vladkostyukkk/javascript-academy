@@ -1,0 +1,19 @@
+{
+  "id": "js-11",
+  "number": 11,
+  "title": "if / else",
+  "module": 2,
+  "prerequisites": [
+    "js-10"
+  ],
+  "durationMinutes": 30,
+  "objectives": [
+    "Вибрати одну з двох дій за булевою умовою.",
+    "Присвоїти текстову позначку пріоритету в кожній гілці.",
+    "Перевірити, яка гілка спрацьовує на межі та нижче за неї."
+  ],
+  "editablePaths": [
+    "src/app.js"
+  ],
+  "courseContentVersion": 1
+}

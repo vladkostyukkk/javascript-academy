@@ -1,0 +1,41 @@
+[
+  {
+    "id": "either",
+    "prompt": "Чому дорівнює true || true для двох булевих значень?",
+    "options": [
+      {
+        "id": "false",
+        "label": "false",
+        "explanation": "Для || достатньо хоча б одного true. Два true теж достатньо."
+      },
+      {
+        "id": "true",
+        "label": "true",
+        "explanation": "Цей результат істинний, бо хоча б одна умова істинна."
+      }
+    ],
+    "correctOptionId": "true"
+  },
+  {
+    "id": "grouping",
+    "prompt": "Який вираз завжди вимагає, щоб задача ще не була завершена, і допускає коротку або важливу задачу?",
+    "options": [
+      {
+        "id": "ungrouped",
+        "label": "!done && isShort || isImportant",
+        "explanation": "Важливість тут може зробити весь вираз істинним незалежно від done."
+      },
+      {
+        "id": "grouped",
+        "label": "!done && (isShort || isImportant)",
+        "explanation": "Ліва частина && обов’язкова. Праворуч достатньо однієї з двох умов."
+      },
+      {
+        "id": "all",
+        "label": "!done && isShort && isImportant",
+        "explanation": "Друге && вимагає, щоб задача була одночасно короткою і важливою."
+      }
+    ],
+    "correctOptionId": "grouped"
+  }
+]
