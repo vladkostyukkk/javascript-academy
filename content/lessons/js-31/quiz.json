@@ -1,0 +1,53 @@
+[
+  {
+    "id": "selector",
+    "prompt": "Який селектор знаходить h1 усередині main?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "main h1",
+        "explanation": "Пробіл означає елемент-нащадок."
+      },
+      {
+        "id": "other",
+        "label": "main.h1",
+        "explanation": "Крапка означає клас. Цей селектор шукає main із класом h1."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "no-match",
+    "prompt": "Що повертає querySelector без збігів?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "null",
+        "explanation": "null позначає відсутній елемент."
+      },
+      {
+        "id": "other",
+        "label": "Порожній масив",
+        "explanation": "Метод повертає перший збіг або null."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "element-text",
+    "prompt": "Яка властивість змінює текст знайденого елемента?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "textContent",
+        "explanation": "Присвоєння замінює текст усередині елемента."
+      },
+      {
+        "id": "other",
+        "label": "id",
+        "explanation": "id задає ідентифікатор елемента."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

@@ -1,0 +1,5 @@
+[
+  "Знайди h1 усередині main у файлі index.html.",
+  "Передай селектор `main h1` у document.querySelector і збережи результат у змінну.",
+  "Присвой textContent знайденого заголовка рядок «FocusBoard — дошка задач»."
+]

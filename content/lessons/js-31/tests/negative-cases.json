@@ -1,0 +1,35 @@
+[
+  {
+    "id": "empty-source",
+    "category": "empty",
+    "source": "",
+    "failedCheckIds": [
+      "heading-text"
+    ]
+  },
+  {
+    "id": "only-console",
+    "category": "invalid",
+    "source": "console.log(\"FocusBoard — дошка задач\");",
+    "failedCheckIds": [
+      "heading-text"
+    ]
+  },
+  {
+    "id": "wrong-element",
+    "category": "edge",
+    "source": "\nconst boardHeading = document.querySelector(\"main p\");\nboardHeading.textContent = \"FocusBoard — дошка задач\";\n",
+    "failedCheckIds": [
+      "heading-text",
+      "description-preserved"
+    ]
+  },
+  {
+    "id": "extra-space",
+    "category": "edge",
+    "source": "\nconst boardHeading = document.querySelector(\"main h1\");\nboardHeading.textContent = \"FocusBoard — дошка задач \";\n",
+    "failedCheckIds": [
+      "heading-text"
+    ]
+  }
+]

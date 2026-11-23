@@ -15,7 +15,7 @@ export const limits = {
 const text = z.string().max(limits.text);
 export const runInputSchema = z
   .object({
-    mode: z.enum(["pure", "classic", "module", "lesson"]),
+    mode: z.enum(["pure", "classic", "module", "lesson", "lesson-dom"]),
     files: fileMapSchema,
     entry: z.literal("src/app.js"),
     assertion: z.discriminatedUnion("kind", [
@@ -53,10 +53,17 @@ export const runInputSchema = z
       .strict(),
   })
   .strict()
-  .refine(
-    (plan) => (plan.mode === "lesson") === (plan.assertion.kind === "lesson"),
-    "Lesson mode requires lesson checks.",
-  );
+  .refine((plan) => {
+    if (plan.assertion.kind !== "lesson")
+      return plan.mode !== "lesson" && plan.mode !== "lesson-dom";
+    const dom = plan.assertion.checks.every(
+      ({ kind }) => kind === "domTextEquals",
+    );
+    return dom
+      ? plan.mode === "lesson-dom"
+      : plan.mode === "lesson" &&
+          plan.assertion.checks.every(({ kind }) => kind !== "domTextEquals");
+  }, "Lesson mode requires lesson checks.");
 export type RunInput = z.infer<typeof runInputSchema>;
 export type PreparedRun = RunInput;
 export const payloadSchema = z.discriminatedUnion("kind", [

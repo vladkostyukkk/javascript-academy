@@ -316,6 +316,7 @@ for (const lesson of [
     { number: 28, title: "filter і find", count: 32, missing: 8 },
     { number: 29, title: "sort", count: 32, missing: 4 },
     { number: 30, title: "reduce", count: 32, missing: 5 },
+    { number: 31, title: "Пошук DOM-елементів", count: 2, missing: 1 },
   ].map(({ number, title, count, missing }) => ({
     id: `js-${number}`,
     previous: `js-${number - 1}`,
@@ -402,6 +403,21 @@ for (const lesson of [
           "\n// learner target " +
           lesson.id,
       );
+      if (lesson.id === "js-31") {
+        await page
+          .getByRole("button", { name: "Запустити", exact: true })
+          .click();
+        const preview = page.frameLocator(
+          'iframe[title="Ізольований перегляд FocusBoard"]',
+        );
+        await expect(
+          preview.getByRole("heading", {
+            name: "FocusBoard — дошка задач",
+            exact: true,
+          }),
+        ).toBeVisible();
+        await expect(page.locator("[data-check-id]:visible")).toHaveCount(0);
+      }
       await check();
       await expect(
         page.locator('[data-check-id][data-passed="true"]:visible'),

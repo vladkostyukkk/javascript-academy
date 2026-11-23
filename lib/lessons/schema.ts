@@ -363,6 +363,12 @@ export const checksSchema = z
         expected: probeValue,
       }),
       z.strictObject({ ...checkBase, kind: z.literal("generatorSequence") }),
+      z.strictObject({
+        ...checkBase,
+        kind: z.literal("domTextEquals"),
+        selector: z.string().min(1).max(100),
+        expected: z.string().max(500),
+      }),
       bindingStructure,
       callStructure,
     ]),

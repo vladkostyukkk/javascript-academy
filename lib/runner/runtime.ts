@@ -214,7 +214,7 @@ async function executeSandbox(
       result = await pureEntry();
     } else {
       renderPreview(plan);
-      if (plan.mode === "classic") {
+      if (plan.mode === "classic" || plan.mode === "lesson-dom") {
         await new Promise<void>((resolve, reject) => {
           const script = document.createElement("script");
           script.src = createUrl(entry.content);
@@ -269,6 +269,7 @@ async function executeSandbox(
     if (!failed) {
       if (plan.assertion.kind === "lesson") {
         const successFeedback = {
+          domTextEquals: "Текст елемента відповідає умові.",
           bindingEquals: "Значення відповідає умові.",
           consoleEquals: "Виведення консолі відповідає умові.",
           callEquals: "Функція повертає очікуване значення.",
@@ -289,6 +290,11 @@ async function executeSandbox(
                 }
                 let passed: boolean;
                 switch (check.kind) {
+                  case "domTextEquals":
+                    passed =
+                      document.querySelector(check.selector)?.textContent ===
+                      check.expected;
+                    break;
                   case "bindingEquals":
                     passed = bindings[check.binding] === check.expected;
                     break;

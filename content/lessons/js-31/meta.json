@@ -1,0 +1,19 @@
+{
+  "id": "js-31",
+  "number": 31,
+  "title": "Пошук DOM-елементів",
+  "module": 4,
+  "prerequisites": [
+    "js-30"
+  ],
+  "durationMinutes": 25,
+  "objectives": [
+    "Знайти елемент за CSS-селектором через document.querySelector.",
+    "Змінити видимий заголовок за допомогою textContent.",
+    "Розпізнати null, коли селектор не знаходить елемента."
+  ],
+  "editablePaths": [
+    "src/app.js"
+  ],
+  "courseContentVersion": 1
+}

@@ -58,7 +58,9 @@ export function lessonRun(
       "Файли основи проєкту змінені. Віднови їх перед перевіркою.",
     );
   return {
-    mode: "lesson",
+    mode: checks.some(({ kind }) => kind === "domTextEquals")
+      ? "lesson-dom"
+      : "lesson",
     files: parsed,
     entry: "src/app.js",
     assertion: { kind: "lesson", checks, operation },
