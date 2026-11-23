@@ -1,0 +1,24 @@
+{
+  "id": "js-45",
+  "number": 45,
+  "title": "JSON і localStorage",
+  "module": 5,
+  "prerequisites": [
+    "js-44"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Працюй з одним ключем focusboard.",
+    "Серіалізуй задачі через JSON.stringify.",
+    "Підпиши збереження на зміну посилання на масив задач."
+  ],
+  "editablePaths": [
+    "src/storage.js",
+    "src/app.js",
+    "index.html",
+    "src/state/store.js",
+    "src/domain/index.js",
+    "src/domain/tasks.js"
+  ],
+  "courseContentVersion": 1
+}

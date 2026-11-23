@@ -1,0 +1,24 @@
+{
+  "id": "js-49",
+  "number": 49,
+  "title": "Сортування та налаштування",
+  "module": 5,
+  "prerequisites": [
+    "js-48"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Створи копію списку перед sort.",
+    "Прочитай order зі стану після фільтра й пошуку.",
+    "Збережи відомі значення order разом зі списком."
+  ],
+  "editablePaths": [
+    "src/state/store.js",
+    "src/app.js",
+    "src/storage.js",
+    "index.html",
+    "src/domain/tasks.js",
+    "src/domain/index.js"
+  ],
+  "courseContentVersion": 1
+}

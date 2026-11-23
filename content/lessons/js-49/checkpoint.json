@@ -1,0 +1,13 @@
+{
+  "lessonId": "js-49",
+  "courseContentVersion": 1,
+  "fileHashes": {
+    "index.html": "283ac34aded50d7b6dc49d2eeab544c8f17ffd41d99fa581f7d58a18af1113d6",
+    "src/app.js": "297137b6b7445c259a0075496613f2874e17cee6dddc7ef509bb4e2933b20f04",
+    "src/domain/tasks.js": "bf018d427ce93e6cf173d16c04bdeba469f97ec2eb71b1d4026736dd623b2c4c",
+    "styles.css": "2a2097385f0b32af9a13a7d9e00c2180ea4258061deea60a9bbb8f5b602db5c4",
+    "src/domain/index.js": "bd1c18cb2451e08206f962a8825d9d1424838a9079437934ae1e450b8b7b231d",
+    "src/state/store.js": "bf3edb16368e0faf0d4eae0698cb660f3643f1e7cf5389f0b1f99503db44cd95",
+    "src/storage.js": "682e2989adc31becd0e683532d30ee3df75464833864819c411d53dbe2ad43e9"
+  }
+}

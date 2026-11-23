@@ -1,0 +1,53 @@
+[
+  {
+    "id": "board-ready",
+    "kind": "moduleCallEquals",
+    "path": "src/app.js",
+    "binding": "waitForBoard",
+    "args": [],
+    "expected": "Задачі завантажено",
+    "feedback": "Дочекайся початкового завантаження і онови повідомлення."
+  },
+  {
+    "id": "initial-card",
+    "kind": "domTextEquals",
+    "selector": "#doing article h2",
+    "expected": "Вивчити JavaScript",
+    "feedback": "Після завершення Promise відобрази початкові задачі."
+  },
+  {
+    "id": "doing-stage",
+    "kind": "moduleCallEquals",
+    "path": "src/ui/board.js",
+    "binding": "stageToStatus",
+    "args": [
+      "doing"
+    ],
+    "expected": "У роботі",
+    "feedback": "Зв’яжи ID Doing зі статусом «У роботі»."
+  },
+  {
+    "id": "unknown-stage",
+    "kind": "moduleCallEquals",
+    "path": "src/ui/board.js",
+    "binding": "stageToStatus",
+    "args": [
+      "missing"
+    ],
+    "expected": null,
+    "feedback": "Невідома колонка не має змінювати задачу."
+  },
+  {
+    "id": "button-moves-card",
+    "kind": "domTextEquals",
+    "selector": "#doing [data-task-id=\"3\"] h2",
+    "expected": "Зробити перерву",
+    "feedback": "Кнопка картки має перемістити вибрану задачу до колонки Doing.",
+    "steps": [
+      {
+        "kind": "click",
+        "selector": "[data-task-id=\"3\"] [data-action=\"doing\"]"
+      }
+    ]
+  }
+]

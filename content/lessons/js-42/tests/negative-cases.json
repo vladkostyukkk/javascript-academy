@@ -1,0 +1,45 @@
+[
+  {
+    "id": "empty-entry",
+    "category": "empty",
+    "path": "src/app.js",
+    "source": "",
+    "failedCheckIds": [
+      "heading-text",
+      "doing-duration",
+      "move-to-done"
+    ]
+  },
+  {
+    "id": "missing-public-exports",
+    "category": "invalid",
+    "path": "src/domain/index.js",
+    "source": "// Тут буде публічний інтерфейс модуля задач.\n",
+    "failedCheckIds": [
+      "heading-text",
+      "description-preserved",
+      "doing-duration",
+      "move-to-done",
+      "public-duration",
+      "public-validation"
+    ]
+  },
+  {
+    "id": "formats-fixed-duration",
+    "category": "edge",
+    "path": "src/domain/tasks.js",
+    "source": "export const formatMinutes = (minutes) => \"25 хв\";\n\nexport function validateTitle(title) {\n  if (typeof title !== \"string\") {\n    return \"Назва має бути рядком.\";\n  }\n  if (title.trim() === \"\") {\n    return \"Введіть назву задачі.\";\n  }\n  return null;\n}\n",
+    "failedCheckIds": [
+      "public-duration"
+    ]
+  },
+  {
+    "id": "accepts-blank",
+    "category": "edge",
+    "path": "src/domain/tasks.js",
+    "source": "export const formatMinutes = (minutes) => `${minutes} хв`;\n\nexport function validateTitle(title) {\n  if (typeof title !== \"string\") {\n    return \"Назва має бути рядком.\";\n  }\n  if (title === \"\") {\n    return \"Введіть назву задачі.\";\n  }\n  return null;\n}\n",
+    "failedCheckIds": [
+      "public-validation"
+    ]
+  }
+]

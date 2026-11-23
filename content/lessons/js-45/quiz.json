@@ -1,0 +1,53 @@
+[
+  {
+    "id": "question-1",
+    "prompt": "Що приймає setItem як значення?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Масив задач",
+        "explanation": "Сховище не зберігає об’єкти напряму."
+      },
+      {
+        "id": "correct",
+        "label": "Рядок",
+        "explanation": "JSON.stringify готує рядкове значення."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-2",
+    "prompt": "Коли зберігати список?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "Після зміни даних",
+        "explanation": "Це оновлює останню копію задач."
+      },
+      {
+        "id": "other",
+        "label": "Перед зміною масиву",
+        "explanation": "Тоді сховище отримає стару копію."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-3",
+    "prompt": "Що дає getItem, якщо ключа ще немає?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Порожній масив",
+        "explanation": "Масив створює код застосунку."
+      },
+      {
+        "id": "correct",
+        "label": "null",
+        "explanation": "Це означає відсутню копію."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

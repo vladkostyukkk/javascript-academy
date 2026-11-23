@@ -1,0 +1,32 @@
+{
+  "id": "js-60",
+  "number": 60,
+  "title": "Фінальне складання",
+  "module": 6,
+  "prerequisites": [
+    "js-59"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Застосуй runSmokeChecks з попереднього уроку.",
+    "Дочекайся fetchTasks і виведи окремий результат для порожнього масиву.",
+    "Після завершення перевір розпаковану копію незалежно від платформи."
+  ],
+  "editablePaths": [
+    "src/tests/release.js",
+    "src/app.js",
+    "src/tests/smoke.js",
+    "src/ui/stats.js",
+    "src/services/transfer.js",
+    "src/ui/board.js",
+    "src/services/tasks-api.js",
+    "src/ui/async-state.js",
+    "mock/tasks.json",
+    "src/state/store.js",
+    "index.html",
+    "src/storage.js",
+    "src/domain/tasks.js",
+    "src/domain/index.js"
+  ],
+  "courseContentVersion": 1
+}

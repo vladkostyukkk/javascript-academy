@@ -1,0 +1,53 @@
+[
+  {
+    "id": "loop-value",
+    "prompt": "Що отримує змінна task у for (const task of list)?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Індекс поточної задачі",
+        "explanation": "Цей цикл перебирає значення, а не індекси."
+      },
+      {
+        "id": "correct",
+        "label": "Поточну задачу",
+        "explanation": "for...of дає значення елемента."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "rerender",
+    "prompt": "Що станеться після двох рендерів без очищення контейнера?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Другий рендер замінить перший",
+        "explanation": "append залишає вже додані елементи в контейнері."
+      },
+      {
+        "id": "correct",
+        "label": "Картки продублюються",
+        "explanation": "Кожний append додає новий елемент у кінець."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "empty-list",
+    "prompt": "Що лишиться в контейнері після рендера порожнього масиву?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Попередні картки",
+        "explanation": "Очищення виконується до початку циклу."
+      },
+      {
+        "id": "correct",
+        "label": "Жодної картки",
+        "explanation": "Очищення відбудеться, а цикл не матиме елементів."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

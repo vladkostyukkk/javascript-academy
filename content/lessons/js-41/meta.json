@@ -1,0 +1,21 @@
+{
+  "id": "js-41",
+  "number": 41,
+  "title": "ES-модулі",
+  "module": 5,
+  "prerequisites": [
+    "js-40"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Відокремити допоміжні функції для даних задач від DOM-коду.",
+    "Використати два файли як один застосунок через відносний імпорт.",
+    "Зберегти поведінку Kanban після перенесення функцій."
+  ],
+  "editablePaths": [
+    "src/domain/tasks.js",
+    "src/app.js",
+    "index.html"
+  ],
+  "courseContentVersion": 1
+}

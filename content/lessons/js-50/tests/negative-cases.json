@@ -1,0 +1,43 @@
+[
+  {
+    "id": "empty-entry",
+    "category": "empty",
+    "path": "src/app.js",
+    "source": "",
+    "failedCheckIds": [
+      "heading-text",
+      "doing-duration",
+      "undo-add",
+      "undo-complete"
+    ]
+  },
+  {
+    "id": "undo-never-runs",
+    "category": "invalid",
+    "path": "src/state/store.js",
+    "source": "export function createStore(initialState) {\n  let state = initialState;\n  const listeners = new Set();\n  const taskHistory = [];\n\n  function getState() {\n    return state;\n  }\n\n  function setState(nextState) {\n    if (nextState.tasks !== state.tasks) {\n      taskHistory.push(state.tasks);\n      if (taskHistory.length > 10) taskHistory.shift();\n    }\n    state = nextState;\n    notify();\n  }\n\n  function subscribe(listener) {\n    listeners.add(listener);\n    return () => listeners.delete(listener);\n  }\n\n  function notify() {\n    for (const listener of listeners) listener(state);\n  }\n\n  function undoTasks() {\n    const previous = null;\n    if (!previous) return;\n    state = { ...state, tasks: previous };\n    notify();\n  }\n\n  return { getState, setState, subscribe, undoTasks };\n}\n\nexport function addTask(list, task) {\n  return [...list, task];\n}\n\nexport function updateTask(list, id, changes) {\n  return list.map((task) => task.id === id ? { ...task, ...changes } : task);\n}\n\nexport function removeTask(list, id) {\n  return list.filter((task) => task.id !== id);\n}\n\nexport function sortVisibleTasks(list, order) {\n  const sorted = [...list];\n  if (order === \"newest\") sorted.sort((first, second) => second.id - first.id);\n  if (order === \"priority\") sorted.sort((first, second) => second.priority - first.priority);\n  return sorted;\n}\n",
+    "failedCheckIds": [
+      "undo-add",
+      "undo-complete"
+    ]
+  },
+  {
+    "id": "records-new-snapshot",
+    "category": "edge",
+    "path": "src/state/store.js",
+    "source": "export function createStore(initialState) {\n  let state = initialState;\n  const listeners = new Set();\n  const taskHistory = [];\n\n  function getState() {\n    return state;\n  }\n\n  function setState(nextState) {\n    if (nextState.tasks !== state.tasks) {\n      taskHistory.push(nextState.tasks);\n      if (taskHistory.length > 10) taskHistory.shift();\n    }\n    state = nextState;\n    notify();\n  }\n\n  function subscribe(listener) {\n    listeners.add(listener);\n    return () => listeners.delete(listener);\n  }\n\n  function notify() {\n    for (const listener of listeners) listener(state);\n  }\n\n  function undoTasks() {\n    const previous = taskHistory.pop();\n    if (!previous) return;\n    state = { ...state, tasks: previous };\n    notify();\n  }\n\n  return { getState, setState, subscribe, undoTasks };\n}\n\nexport function addTask(list, task) {\n  return [...list, task];\n}\n\nexport function updateTask(list, id, changes) {\n  return list.map((task) => task.id === id ? { ...task, ...changes } : task);\n}\n\nexport function removeTask(list, id) {\n  return list.filter((task) => task.id !== id);\n}\n\nexport function sortVisibleTasks(list, order) {\n  const sorted = [...list];\n  if (order === \"newest\") sorted.sort((first, second) => second.id - first.id);\n  if (order === \"priority\") sorted.sort((first, second) => second.priority - first.priority);\n  return sorted;\n}\n",
+    "failedCheckIds": [
+      "undo-add",
+      "undo-complete"
+    ]
+  },
+  {
+    "id": "only-undoes-add",
+    "category": "edge",
+    "path": "src/state/store.js",
+    "source": "export function createStore(initialState) {\n  let state = initialState;\n  const listeners = new Set();\n  const taskHistory = [];\n\n  function getState() {\n    return state;\n  }\n\n  function setState(nextState) {\n    if (nextState.tasks.length > state.tasks.length) {\n      taskHistory.push(state.tasks);\n      if (taskHistory.length > 10) taskHistory.shift();\n    }\n    state = nextState;\n    notify();\n  }\n\n  function subscribe(listener) {\n    listeners.add(listener);\n    return () => listeners.delete(listener);\n  }\n\n  function notify() {\n    for (const listener of listeners) listener(state);\n  }\n\n  function undoTasks() {\n    const previous = taskHistory.pop();\n    if (!previous) return;\n    state = { ...state, tasks: previous };\n    notify();\n  }\n\n  return { getState, setState, subscribe, undoTasks };\n}\n\nexport function addTask(list, task) {\n  return [...list, task];\n}\n\nexport function updateTask(list, id, changes) {\n  return list.map((task) => task.id === id ? { ...task, ...changes } : task);\n}\n\nexport function removeTask(list, id) {\n  return list.filter((task) => task.id !== id);\n}\n\nexport function sortVisibleTasks(list, order) {\n  const sorted = [...list];\n  if (order === \"newest\") sorted.sort((first, second) => second.id - first.id);\n  if (order === \"priority\") sorted.sort((first, second) => second.priority - first.priority);\n  return sorted;\n}\n",
+    "failedCheckIds": [
+      "undo-complete"
+    ]
+  }
+]

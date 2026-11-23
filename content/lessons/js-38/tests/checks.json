@@ -1,0 +1,62 @@
+[
+  {
+    "id": "heading-text",
+    "kind": "domTextEquals",
+    "selector": "main h1",
+    "expected": "FocusBoard — дошка задач",
+    "feedback": "Зміни текст заголовка h1 усередині main на «FocusBoard — дошка задач». Зверни увагу на пробіли й тире."
+  },
+  {
+    "id": "description-preserved",
+    "kind": "domTextEquals",
+    "selector": "main p",
+    "expected": "Місце для важливих задач. Починаємо з першої команди.",
+    "feedback": "Залиш текст абзацу під заголовком без змін."
+  },
+  {
+    "id": "active-filter",
+    "kind": "domTextEquals",
+    "selector": "[data-task-id=\"2\"] h2",
+    "expected": null,
+    "feedback": "У режимі «Активні» приховай завершену задачу.",
+    "steps": [
+      {
+        "kind": "click",
+        "selector": "#task-filters [data-filter=\"active\"]"
+      }
+    ]
+  },
+  {
+    "id": "active-planned",
+    "kind": "domTextEquals",
+    "selector": "[data-task-id=\"3\"] h2",
+    "expected": "Зробити перерву",
+    "feedback": "Запланована задача теж належить до активних."
+  },
+  {
+    "id": "completed-filter",
+    "kind": "domTextEquals",
+    "selector": "#tasks article:only-child h2",
+    "expected": "Перевірити план",
+    "feedback": "У режимі «Завершені» покажи лише виконану задачу.",
+    "steps": [
+      {
+        "kind": "click",
+        "selector": "#task-filters [data-filter=\"completed\"]"
+      }
+    ]
+  },
+  {
+    "id": "all-filter",
+    "kind": "domTextEquals",
+    "selector": "[data-task-id=\"3\"] h2",
+    "expected": "Зробити перерву",
+    "feedback": "Повернення до «Усі» має відновити повний список.",
+    "steps": [
+      {
+        "kind": "click",
+        "selector": "#task-filters [data-filter=\"all\"]"
+      }
+    ]
+  }
+]

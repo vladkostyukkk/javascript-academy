@@ -1,0 +1,41 @@
+[
+  {
+    "id": "empty-entry",
+    "category": "empty",
+    "path": "src/app.js",
+    "source": "",
+    "failedCheckIds": [
+      "board-ready",
+      "initial-card"
+    ]
+  },
+  {
+    "id": "always-ready",
+    "category": "invalid",
+    "path": "src/ui/async-state.js",
+    "source": "export function getLoadMessage() { return \"Задачі завантажено\"; }",
+    "failedCheckIds": [
+      "empty-label",
+      "error-label",
+      "loading-label"
+    ]
+  },
+  {
+    "id": "empty-is-error",
+    "category": "edge",
+    "path": "src/ui/async-state.js",
+    "source": "export function getLoadMessage(status) {\n  if (status === \"loading\") return \"Завантаження…\";\n  if (status === \"empty\") return \"Не вдалося завантажити задачі\";\n  if (status === \"error\") return \"Не вдалося завантажити задачі\";\n  return \"Задачі завантажено\";\n}\n",
+    "failedCheckIds": [
+      "empty-label"
+    ]
+  },
+  {
+    "id": "error-is-ready",
+    "category": "edge",
+    "path": "src/ui/async-state.js",
+    "source": "export function getLoadMessage(status) {\n  if (status === \"loading\") return \"Завантаження…\";\n  if (status === \"empty\") return \"Задач поки немає\";\n  if (status === \"error\") return \"Задачі завантажено\";\n  return \"Задачі завантажено\";\n}\n",
+    "failedCheckIds": [
+      "error-label"
+    ]
+  }
+]

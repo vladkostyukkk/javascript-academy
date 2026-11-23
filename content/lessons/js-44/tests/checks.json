@@ -1,0 +1,83 @@
+[
+  {
+    "id": "heading-text",
+    "kind": "domTextEquals",
+    "selector": "main h1",
+    "expected": "FocusBoard — дошка задач",
+    "feedback": "Зміни текст заголовка h1 усередині main на «FocusBoard — дошка задач». Зверни увагу на пробіли й тире."
+  },
+  {
+    "id": "description-preserved",
+    "kind": "domTextEquals",
+    "selector": "main p",
+    "expected": "Місце для важливих задач. Починаємо з першої команди.",
+    "feedback": "Залиш текст абзацу під заголовком без змін."
+  },
+  {
+    "id": "doing-duration",
+    "kind": "domTextEquals",
+    "selector": "#doing article p",
+    "expected": "25 хв",
+    "feedback": "Збережи відображення тривалості картки після перенесення formatMinutes."
+  },
+  {
+    "id": "public-duration",
+    "kind": "moduleCallEquals",
+    "path": "src/domain/index.js",
+    "binding": "formatTaskDuration",
+    "args": [
+      0
+    ],
+    "expected": "0 хв",
+    "feedback": "Реекспортуй форматування як formatTaskDuration і збережи випадок 0 хв."
+  },
+  {
+    "id": "public-validation",
+    "kind": "moduleCallEquals",
+    "path": "src/domain/index.js",
+    "binding": "validateTitle",
+    "args": [
+      "   "
+    ],
+    "expected": "Введіть назву задачі.",
+    "feedback": "Реекспортуй validateTitle і збережи валідацію назви з пробілів."
+  },
+  {
+    "id": "renames-selected",
+    "kind": "domTextEquals",
+    "selector": "[data-task-id=\"1\"] h2",
+    "expected": "Інша назва",
+    "feedback": "Онови вибрану задачу за ID, зберігши решту списку.",
+    "steps": [
+      {
+        "kind": "input",
+        "selector": "[data-task-id=\"1\"] .task-edit-title",
+        "value": "Інша назва"
+      },
+      {
+        "kind": "click",
+        "selector": "[data-task-id=\"1\"] [data-action=\"edit\"]"
+      }
+    ]
+  },
+  {
+    "id": "keeps-neighbor",
+    "kind": "domTextEquals",
+    "selector": "[data-task-id=\"2\"] h2",
+    "expected": "Перевірити план",
+    "feedback": "Зміна однієї задачі має зберегти сусідню картку."
+  },
+  {
+    "id": "removes-selected",
+    "kind": "domTextEquals",
+    "selector": "[data-task-id=\"1\"]",
+    "expected": null,
+    "feedback": "Створи новий масив без задачі з вибраним ID.",
+    "steps": [
+      {
+        "kind": "click",
+        "selector": "[data-task-id=\"1\"] [data-action=\"delete\"]"
+      }
+    ]
+  }
+]

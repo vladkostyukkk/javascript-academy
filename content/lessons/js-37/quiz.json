@@ -1,0 +1,53 @@
+[
+  {
+    "id": "question-1",
+    "prompt": "Що ідентифікує задачу після видалення сусідньої картки?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "Її ID",
+        "explanation": "ID не залежить від позиції в масиві."
+      },
+      {
+        "id": "other",
+        "label": "Старий індекс",
+        "explanation": "Після видалення індекси можуть зсунутися."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-2",
+    "prompt": "Як змінити назву, зберігши статус?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Створити новий ID",
+        "explanation": "Нова назва не потребує іншого запису."
+      },
+      {
+        "id": "correct",
+        "label": "Присвоїти нове значення task.title",
+        "explanation": "Інші властивості того самого запису збережуться."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-3",
+    "prompt": "Скільки записів має вилучити splice(index, 1)?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "Один",
+        "explanation": "Другий аргумент вказує кількість видалених елементів."
+      },
+      {
+        "id": "other",
+        "label": "Усі після index",
+        "explanation": "Так могло б статися без другого аргументу."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

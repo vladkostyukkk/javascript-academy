@@ -1,0 +1,39 @@
+[
+  {
+    "id": "empty-entry",
+    "category": "empty",
+    "path": "src/app.js",
+    "source": "",
+    "failedCheckIds": [
+      "heading-text",
+      "doing-duration"
+    ]
+  },
+  {
+    "id": "only-current",
+    "category": "invalid",
+    "path": "src/storage.js",
+    "source": "const storageKey = \"focusboard\";\nlet memory = null;\n\nfunction getStorage() {\n  if (globalThis.focusBoardStorage) return globalThis.focusBoardStorage;\n  try {\n    return globalThis.localStorage;\n  } catch {\n    return {\n      getItem: () => memory,\n      setItem: (key, value) => { memory = value; },\n    };\n  }\n}\n\nexport function saveTasks(tasks) {\n  try {\n    getStorage().setItem(storageKey, JSON.stringify({ version: 2, tasks }));\n    return \"Збережено\";\n  } catch {\n    return \"Сховище недоступне\";\n  }\n}\n\nexport function readTasksJSON() {\n  try {\n    return getStorage().getItem(storageKey);\n  } catch {\n    return null;\n  }\n}\n\nexport function restoreTasks(raw) {\n  if (raw === null) return null;\n  try {\n    const value = JSON.parse(raw);\n    const version = readSnapshotVersion(value);\n    if (version === null) return null;\n    const list = version === 1 ? value : value.tasks;\n    if (!Array.isArray(list) || list.length > 100) return null;\n    const ids = new Set();\n    for (const task of list) {\n      if (!task || !Number.isSafeInteger(task.id) || task.id < 1 || ids.has(task.id) ||\n          typeof task.title !== \"string\" || task.title.trim() === \"\" ||\n          ![\"Заплановано\", \"У роботі\", \"Готово\"].includes(task.status) ||\n          !Number.isFinite(task.minutes) || task.minutes < 0 ||\n          !Number.isFinite(task.priority)) return null;\n      ids.add(task.id);\n    }\n    return list;\n  } catch {\n    return null;\n  }\n}\n\nexport function isTaskSnapshot(raw) {\n  return restoreTasks(raw) !== null;\n}\n\nexport function readSnapshotVersion(value) {\n  \n  return value?.version === 2 ? 2 : null;\n}\n",
+    "failedCheckIds": [
+      "migrates-legacy"
+    ]
+  },
+  {
+    "id": "only-legacy",
+    "category": "edge",
+    "path": "src/storage.js",
+    "source": "const storageKey = \"focusboard\";\nlet memory = null;\n\nfunction getStorage() {\n  if (globalThis.focusBoardStorage) return globalThis.focusBoardStorage;\n  try {\n    return globalThis.localStorage;\n  } catch {\n    return {\n      getItem: () => memory,\n      setItem: (key, value) => { memory = value; },\n    };\n  }\n}\n\nexport function saveTasks(tasks) {\n  try {\n    getStorage().setItem(storageKey, JSON.stringify({ version: 2, tasks }));\n    return \"Збережено\";\n  } catch {\n    return \"Сховище недоступне\";\n  }\n}\n\nexport function readTasksJSON() {\n  try {\n    return getStorage().getItem(storageKey);\n  } catch {\n    return null;\n  }\n}\n\nexport function restoreTasks(raw) {\n  if (raw === null) return null;\n  try {\n    const value = JSON.parse(raw);\n    const version = readSnapshotVersion(value);\n    if (version === null) return null;\n    const list = version === 1 ? value : value.tasks;\n    if (!Array.isArray(list) || list.length > 100) return null;\n    const ids = new Set();\n    for (const task of list) {\n      if (!task || !Number.isSafeInteger(task.id) || task.id < 1 || ids.has(task.id) ||\n          typeof task.title !== \"string\" || task.title.trim() === \"\" ||\n          ![\"Заплановано\", \"У роботі\", \"Готово\"].includes(task.status) ||\n          !Number.isFinite(task.minutes) || task.minutes < 0 ||\n          !Number.isFinite(task.priority)) return null;\n      ids.add(task.id);\n    }\n    return list;\n  } catch {\n    return null;\n  }\n}\n\nexport function isTaskSnapshot(raw) {\n  return restoreTasks(raw) !== null;\n}\n\nexport function readSnapshotVersion(value) {\n  if (Array.isArray(value)) return 1;\n  return null;\n}\n",
+    "failedCheckIds": [
+      "accepts-v2"
+    ]
+  },
+  {
+    "id": "takes-any-version",
+    "category": "edge",
+    "path": "src/storage.js",
+    "source": "const storageKey = \"focusboard\";\nlet memory = null;\n\nfunction getStorage() {\n  if (globalThis.focusBoardStorage) return globalThis.focusBoardStorage;\n  try {\n    return globalThis.localStorage;\n  } catch {\n    return {\n      getItem: () => memory,\n      setItem: (key, value) => { memory = value; },\n    };\n  }\n}\n\nexport function saveTasks(tasks) {\n  try {\n    getStorage().setItem(storageKey, JSON.stringify({ version: 2, tasks }));\n    return \"Збережено\";\n  } catch {\n    return \"Сховище недоступне\";\n  }\n}\n\nexport function readTasksJSON() {\n  try {\n    return getStorage().getItem(storageKey);\n  } catch {\n    return null;\n  }\n}\n\nexport function restoreTasks(raw) {\n  if (raw === null) return null;\n  try {\n    const value = JSON.parse(raw);\n    const version = readSnapshotVersion(value);\n    if (version === null) return null;\n    const list = version === 1 ? value : value.tasks;\n    if (!Array.isArray(list) || list.length > 100) return null;\n    const ids = new Set();\n    for (const task of list) {\n      if (!task || !Number.isSafeInteger(task.id) || task.id < 1 || ids.has(task.id) ||\n          typeof task.title !== \"string\" || task.title.trim() === \"\" ||\n          ![\"Заплановано\", \"У роботі\", \"Готово\"].includes(task.status) ||\n          !Number.isFinite(task.minutes) || task.minutes < 0 ||\n          !Number.isFinite(task.priority)) return null;\n      ids.add(task.id);\n    }\n    return list;\n  } catch {\n    return null;\n  }\n}\n\nexport function isTaskSnapshot(raw) {\n  return restoreTasks(raw) !== null;\n}\n\nexport function readSnapshotVersion(value) {\n  if (Array.isArray(value)) return 1;\n  return typeof value?.version === \"number\" ? 2 : null;\n}\n",
+    "failedCheckIds": [
+      "rejects-unknown-version"
+    ]
+  }
+]

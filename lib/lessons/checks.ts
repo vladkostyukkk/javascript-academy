@@ -16,6 +16,7 @@ function matches(check: LessonCheck, observation: LessonObservation): boolean {
         JSON.stringify(observation.logs) === JSON.stringify(check.expected)
       );
     case "domTextEquals":
+    case "moduleCallEquals":
     case "callEquals":
     case "generatorSequence":
     case "bindingStructure":

@@ -1,0 +1,53 @@
+[
+  {
+    "id": "question-1",
+    "prompt": "Що робити з об’єктом зміненої задачі?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Змінити властивість старого об’єкта",
+        "explanation": "Попередній стан побачить ту саму зміну."
+      },
+      {
+        "id": "correct",
+        "label": "Створити новий об’єкт",
+        "explanation": "Так попередній запис збережеться."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-2",
+    "prompt": "Що робити з незміненою задачею в map?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "Повернути ту саму задачу",
+        "explanation": "Її поля лишаються незмінними."
+      },
+      {
+        "id": "other",
+        "label": "Вилучити її",
+        "explanation": "Інші картки мають залишитися."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-3",
+    "prompt": "Який метод підходить для видалення без мутації?",
+    "options": [
+      {
+        "id": "other",
+        "label": "splice",
+        "explanation": "Він змінює переданий масив."
+      },
+      {
+        "id": "correct",
+        "label": "filter",
+        "explanation": "Він повертає новий масив."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

@@ -1,0 +1,106 @@
+[
+  {
+    "id": "heading-text",
+    "kind": "domTextEquals",
+    "selector": "main h1",
+    "expected": "FocusBoard — дошка задач",
+    "feedback": "Зміни текст заголовка h1 усередині main на «FocusBoard — дошка задач». Зверни увагу на пробіли й тире."
+  },
+  {
+    "id": "description-preserved",
+    "kind": "domTextEquals",
+    "selector": "main p",
+    "expected": "Місце для важливих задач. Починаємо з першої команди.",
+    "feedback": "Залиш текст абзацу під заголовком без змін."
+  },
+  {
+    "id": "doing-duration",
+    "kind": "domTextEquals",
+    "selector": "#doing article p",
+    "expected": "25 хв",
+    "feedback": "Збережи відображення тривалості картки після перенесення formatMinutes."
+  },
+  {
+    "id": "public-duration",
+    "kind": "moduleCallEquals",
+    "path": "src/domain/index.js",
+    "binding": "formatTaskDuration",
+    "args": [
+      0
+    ],
+    "expected": "0 хв",
+    "feedback": "Реекспортуй форматування як formatTaskDuration і збережи випадок 0 хв."
+  },
+  {
+    "id": "public-validation",
+    "kind": "moduleCallEquals",
+    "path": "src/domain/index.js",
+    "binding": "validateTitle",
+    "args": [
+      "   "
+    ],
+    "expected": "Введіть назву задачі.",
+    "feedback": "Реекспортуй validateTitle і збережи валідацію назви з пробілів."
+  },
+  {
+    "id": "visible-count",
+    "kind": "domTextEquals",
+    "selector": "#visible-count",
+    "expected": "3",
+    "feedback": "Після першого рендерингу покажи кількість видимих задач."
+  },
+  {
+    "id": "filtered-count",
+    "kind": "domTextEquals",
+    "selector": "#visible-count",
+    "expected": "1",
+    "feedback": "Онови лічильник через підписку після вибору завершених задач.",
+    "steps": [
+      {
+        "kind": "click",
+        "selector": "#task-filters [data-filter=\"completed\"]"
+      }
+    ]
+  },
+  {
+    "id": "empty-count",
+    "kind": "domTextEquals",
+    "selector": "#visible-count",
+    "expected": "0",
+    "feedback": "Онови той самий лічильник, якщо пошук відсіяв усі задачі.",
+    "steps": [
+      {
+        "kind": "input",
+        "selector": "#task-search",
+        "value": "невідома задача"
+      }
+    ]
+  },
+  {
+    "id": "added-count",
+    "kind": "domTextEquals",
+    "selector": "#visible-count",
+    "expected": "4",
+    "feedback": "Після додавання задачі підписник має оновити лічильник.",
+    "steps": [
+      {
+        "kind": "click",
+        "selector": "#task-filters [data-filter=\"all\"]"
+      },
+      {
+        "kind": "input",
+        "selector": "#task-search",
+        "value": ""
+      },
+      {
+        "kind": "input",
+        "selector": "#task-title",
+        "value": "Нова задача"
+      },
+      {
+        "kind": "submit",
+        "selector": "#task-form"
+      }
+    ]
+  }
+]

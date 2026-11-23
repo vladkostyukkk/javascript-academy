@@ -1,0 +1,41 @@
+[
+  {
+    "id": "empty-entry",
+    "category": "empty",
+    "path": "src/app.js",
+    "source": "",
+    "failedCheckIds": [
+      "board-ready",
+      "initial-stats",
+      "updates-stats"
+    ]
+  },
+  {
+    "id": "counts-open",
+    "category": "invalid",
+    "path": "src/ui/stats.js",
+    "source": "export function completionPercent(completed, total) {\n  if (total === 0) return 0;\n  return Math.round(completed * 100 / total);\n}\n\nexport function renderStats(container, tasks) {\n  const completed = tasks.filter((task) => task.status !== \"Готово\").length;\n  const percent = completionPercent(completed, tasks.length);\n  const label = document.createElement(\"p\");\n  label.textContent = `Виконано: ${completed} із ${tasks.length} (${percent}%)`;\n  const bar = document.createElement(\"progress\");\n  bar.max = 100;\n  bar.value = percent;\n  bar.setAttribute(\"aria-label\", \"Частка виконаних задач\");\n  container.replaceChildren(label, bar);\n}\n",
+    "failedCheckIds": [
+      "initial-stats",
+      "updates-stats"
+    ]
+  },
+  {
+    "id": "misses-empty",
+    "category": "edge",
+    "path": "src/ui/stats.js",
+    "source": "export function completionPercent(completed, total) {\n  return Math.round(completed * 100 / total);\n}\n\nexport function renderStats(container, tasks) {\n  const completed = tasks.filter((task) => task.status === \"Готово\").length;\n  const percent = completionPercent(completed, tasks.length);\n  const label = document.createElement(\"p\");\n  label.textContent = `Виконано: ${completed} із ${tasks.length} (${percent}%)`;\n  const bar = document.createElement(\"progress\");\n  bar.max = 100;\n  bar.value = percent;\n  bar.setAttribute(\"aria-label\", \"Частка виконаних задач\");\n  container.replaceChildren(label, bar);\n}\n",
+    "failedCheckIds": [
+      "zero-stats"
+    ]
+  },
+  {
+    "id": "rounds-down",
+    "category": "edge",
+    "path": "src/ui/stats.js",
+    "source": "export function completionPercent(completed, total) {\n  if (total === 0) return 0;\n  return Math.floor(completed * 100 / total);\n}\n\nexport function renderStats(container, tasks) {\n  const completed = tasks.filter((task) => task.status === \"Готово\").length;\n  const percent = completionPercent(completed, tasks.length);\n  const label = document.createElement(\"p\");\n  label.textContent = `Виконано: ${completed} із ${tasks.length} (${percent}%)`;\n  const bar = document.createElement(\"progress\");\n  bar.max = 100;\n  bar.value = percent;\n  bar.setAttribute(\"aria-label\", \"Частка виконаних задач\");\n  container.replaceChildren(label, bar);\n}\n",
+    "failedCheckIds": [
+      "updates-stats"
+    ]
+  }
+]

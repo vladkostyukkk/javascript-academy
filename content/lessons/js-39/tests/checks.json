@@ -1,0 +1,76 @@
+[
+  {
+    "id": "heading-text",
+    "kind": "domTextEquals",
+    "selector": "main h1",
+    "expected": "FocusBoard — дошка задач",
+    "feedback": "Зміни текст заголовка h1 усередині main на «FocusBoard — дошка задач». Зверни увагу на пробіли й тире."
+  },
+  {
+    "id": "description-preserved",
+    "kind": "domTextEquals",
+    "selector": "main p",
+    "expected": "Місце для важливих задач. Починаємо з першої команди.",
+    "feedback": "Залиш текст абзацу під заголовком без змін."
+  },
+  {
+    "id": "search-case-spaces",
+    "kind": "domTextEquals",
+    "selector": "#tasks article:only-child h2",
+    "expected": "Зробити перерву",
+    "feedback": "Шукай за частиною назви, ігноруючи регістр та пробіли по краях.",
+    "steps": [
+      {
+        "kind": "input",
+        "selector": "#task-search",
+        "value": "  ПЕРЕРВУ  "
+      }
+    ]
+  },
+  {
+    "id": "search-no-match",
+    "kind": "domTextEquals",
+    "selector": "#tasks article",
+    "expected": null,
+    "feedback": "При відсутності збігів список має бути порожнім.",
+    "steps": [
+      {
+        "kind": "input",
+        "selector": "#task-search",
+        "value": "невідома задача"
+      }
+    ]
+  },
+  {
+    "id": "search-with-status",
+    "kind": "domTextEquals",
+    "selector": "#tasks article",
+    "expected": null,
+    "feedback": "Пошук має враховувати поточний фільтр статусу.",
+    "steps": [
+      {
+        "kind": "click",
+        "selector": "#task-filters [data-filter=\"completed\"]"
+      },
+      {
+        "kind": "input",
+        "selector": "#task-search",
+        "value": "javascript"
+      }
+    ]
+  },
+  {
+    "id": "search-clear",
+    "kind": "domTextEquals",
+    "selector": "#tasks article:only-child h2",
+    "expected": "Перевірити план",
+    "feedback": "Очищення запиту має зберегти вибір «Завершені».",
+    "steps": [
+      {
+        "kind": "input",
+        "selector": "#task-search",
+        "value": ""
+      }
+    ]
+  }
+]

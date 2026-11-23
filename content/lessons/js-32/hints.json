@@ -1,0 +1,5 @@
+[
+  "Створи article, h2 і p окремими викликами document.createElement.",
+  "Запиши task.title і formatMinutes(task.minutes) у textContent дочірніх елементів. Додай їх до article.",
+  "Поверни article з функції, а потім виклич append у контейнера #tasks із результатом createTaskCard(tasks[0])."
+]

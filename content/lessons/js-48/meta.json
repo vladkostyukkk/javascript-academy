@@ -1,0 +1,24 @@
+{
+  "id": "js-48",
+  "number": 48,
+  "title": "Date і дедлайни",
+  "module": 5,
+  "prerequisites": [
+    "js-47"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Використай input з type=date.",
+    "Порівняй дати у форматі рік-місяць-день через строгий знак менше.",
+    "Додай показ дедлайну лише коли в задачі є дата."
+  ],
+  "editablePaths": [
+    "src/domain/tasks.js",
+    "src/app.js",
+    "index.html",
+    "src/storage.js",
+    "src/state/store.js",
+    "src/domain/index.js"
+  ],
+  "courseContentVersion": 1
+}

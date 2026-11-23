@@ -14,7 +14,15 @@ export function startRunner(
   runtime: string,
   plan: PreparedRun,
   onEvent: (event: RunnerEvent) => void,
+  requestedPreviewStorageKey?: string,
 ) {
+  const previewStorageKey =
+    plan.mode === "lesson-module" &&
+    plan.assertion.kind === "lesson" &&
+    plan.assertion.operation === "run" &&
+    plan.files.some(({ path }) => path === "src/storage.js")
+      ? requestedPreviewStorageKey
+      : undefined;
   const identity: RunIdentity = {
     runId: crypto.randomUUID(),
     nonce: Array.from(crypto.getRandomValues(new Uint8Array(16)), (byte) =>
@@ -34,6 +42,18 @@ export function startRunner(
   let count = 0;
   let output = 0;
   let logCount = 0;
+  let writes = 0;
+  let previewStorage: string | null | undefined;
+  if (previewStorageKey) {
+    previewStorage = null;
+    try {
+      const value = sessionStorage.getItem(previewStorageKey);
+      if (value !== null && value.length <= limits.previewStorage)
+        previewStorage = value;
+    } catch {
+      // The preview can still use an in-memory value if storage is unavailable.
+    }
+  }
   const dispose = () => {
     if (disposed) return;
     disposed = true;
@@ -44,9 +64,21 @@ export function startRunner(
     onEvent({ kind: "disposed" });
   };
   const receive = (event: MessageEvent<unknown>) => {
-    if (disposed || terminal) return;
+    if (disposed) return;
     const payload = acceptMessage(event, frame.contentWindow, identity);
     if (!payload) return;
+    if (payload.kind === "preview-storage") {
+      if (!previewStorageKey || ++writes > 40) return;
+      try {
+        if (payload.value === null)
+          sessionStorage.removeItem(previewStorageKey);
+        else sessionStorage.setItem(previewStorageKey, payload.value);
+      } catch {
+        // A browser can block or exhaust storage independently of the preview.
+      }
+      return;
+    }
+    if (terminal) return;
     if (++count > 80) {
       onEvent({
         kind: "error",
@@ -82,7 +114,7 @@ export function startRunner(
   // A completed preview cannot keep background scripts alive indefinitely.
   const lease = setTimeout(dispose, limits.previewMs);
   window.addEventListener("message", receive);
-  frame.srcdoc = createSandboxDocument(runtime, plan, identity);
+  frame.srcdoc = createSandboxDocument(runtime, plan, identity, previewStorage);
   container.replaceChildren(frame);
   return { dispose, runId: identity.runId };
 }

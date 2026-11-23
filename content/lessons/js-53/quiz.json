@@ -1,0 +1,53 @@
+[
+  {
+    "id": "question-1",
+    "prompt": "Чи автоматично fetch відхиляє Promise на HTTP 503?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Так, завжди",
+        "explanation": "Помилка мережі й HTTP-статус мають різну поведінку."
+      },
+      {
+        "id": "correct",
+        "label": "Потрібно перевірити response.ok",
+        "explanation": "Відповідь 503 може успішно дійти від сервера."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-2",
+    "prompt": "Що повертає response.json()?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "Promise з розібраним тілом",
+        "explanation": "Читання тіла асинхронне."
+      },
+      {
+        "id": "other",
+        "label": "Числовий HTTP-статус",
+        "explanation": "Статус доступний окремо."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-3",
+    "prompt": "Коли читати стартовий mock?",
+    "options": [
+      {
+        "id": "other",
+        "label": "На кожному запуску поверх збережених задач",
+        "explanation": "Це втратило б дані користувача."
+      },
+      {
+        "id": "correct",
+        "label": "Якщо збереженої копії немає",
+        "explanation": "Так збережені задачі не затираються."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

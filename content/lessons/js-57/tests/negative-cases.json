@@ -1,0 +1,39 @@
+[
+  {
+    "id": "empty-entry",
+    "category": "empty",
+    "path": "src/app.js",
+    "source": "",
+    "failedCheckIds": [
+      "board-ready",
+      "initial-card"
+    ]
+  },
+  {
+    "id": "rejects-all-files",
+    "category": "invalid",
+    "path": "src/services/transfer.js",
+    "source": "import { restoreTasks } from \"../storage.js\";\n\nexport function parseTaskFile(raw) {\n  return null;\n}\n\nexport function countImportedTasks(raw) {\n  return parseTaskFile(raw)?.length ?? -1;\n}\n\nexport function makeTaskBlob(tasks) {\n  return new Blob([JSON.stringify({ version: 2, tasks }, null, 2)], {\n    type: \"application/json\",\n  });\n}\n",
+    "failedCheckIds": [
+      "imports-empty"
+    ]
+  },
+  {
+    "id": "accepts-broken-file",
+    "category": "edge",
+    "path": "src/services/transfer.js",
+    "source": "import { restoreTasks } from \"../storage.js\";\n\nexport function parseTaskFile(raw) {\n  return raw === '{' ? [] : restoreTasks(raw);\n}\n\nexport function countImportedTasks(raw) {\n  return parseTaskFile(raw)?.length ?? -1;\n}\n\nexport function makeTaskBlob(tasks) {\n  return new Blob([JSON.stringify({ version: 2, tasks }, null, 2)], {\n    type: \"application/json\",\n  });\n}\n",
+    "failedCheckIds": [
+      "rejects-broken-json"
+    ]
+  },
+  {
+    "id": "accepts-duplicate-records",
+    "category": "edge",
+    "path": "src/services/transfer.js",
+    "source": "import { restoreTasks } from \"../storage.js\";\n\nexport function parseTaskFile(raw) {\n  try { return JSON.parse(raw); } catch { return null; }\n}\n\nexport function countImportedTasks(raw) {\n  return parseTaskFile(raw)?.length ?? -1;\n}\n\nexport function makeTaskBlob(tasks) {\n  return new Blob([JSON.stringify({ version: 2, tasks }, null, 2)], {\n    type: \"application/json\",\n  });\n}\n",
+    "failedCheckIds": [
+      "rejects-duplicate-ids"
+    ]
+  }
+]

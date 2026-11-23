@@ -1,0 +1,10 @@
+{
+  "lessonId": "js-41",
+  "courseContentVersion": 1,
+  "fileHashes": {
+    "index.html": "283ac34aded50d7b6dc49d2eeab544c8f17ffd41d99fa581f7d58a18af1113d6",
+    "src/app.js": "a7ec3536feac4d70f22511bb610642067da892510fc4d2974b0a8b1fbe1374d7",
+    "src/domain/tasks.js": "5d00a13ff110058eef4b1621c9cf590c19de19d3e46e4d4d3ae38536a76d778b",
+    "styles.css": "2a2097385f0b32af9a13a7d9e00c2180ea4258061deea60a9bbb8f5b602db5c4"
+  }
+}

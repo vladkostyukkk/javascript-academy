@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { FileMap, LessonCheck, LessonId } from "@/lib/lessons/schema";
 import { useDraftStorage } from "./use-draft-storage";
 import { startRunner, type RunnerEvent } from "@/lib/runner/controller";
-import { prepareRun } from "@/lib/runner/prepare";
+import { prepareRun, SourceParseError } from "@/lib/runner/prepare";
 import { editDraft, isDirty, lessonRun } from "@/lib/workspace/state";
 import type {
   DraftBackup,
@@ -224,11 +224,29 @@ export function useWorkspace(
               );
           }
         },
+        operation === "run" &&
+          plan.mode === "lesson-module" &&
+          plan.files.some(({ path }) => path === "src/storage.js")
+          ? `academy-preview:${lessonId}:${courseContentVersion}:${forkId ?? "main"}`
+          : undefined,
       );
     } catch (error) {
       if (version !== generation.current) return;
       setBusy(false);
-      setStatus("Не вдалося підготувати запуск.");
+      if (error instanceof SourceParseError) {
+        setStatus("Помилка JavaScript. Перевір код і спробуй ще раз.");
+        if (operation === "check") {
+          setResults(
+            checks.map(({ id }) => ({
+              id,
+              passed: false,
+              feedback: error.message,
+            })),
+          );
+        }
+      } else {
+        setStatus("Не вдалося підготувати запуск.");
+      }
       setEvents([
         {
           kind: "error",

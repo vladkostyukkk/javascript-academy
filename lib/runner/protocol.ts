@@ -11,11 +11,19 @@ export const limits = {
   logs: 40,
   text: 1024,
   output: 16384,
+  previewStorage: 8192,
 } as const;
 const text = z.string().max(limits.text);
 export const runInputSchema = z
   .object({
-    mode: z.enum(["pure", "classic", "module", "lesson", "lesson-dom"]),
+    mode: z.enum([
+      "pure",
+      "classic",
+      "module",
+      "lesson",
+      "lesson-dom",
+      "lesson-module",
+    ]),
     files: fileMapSchema,
     entry: z.literal("src/app.js"),
     assertion: z.discriminatedUnion("kind", [
@@ -54,15 +62,34 @@ export const runInputSchema = z
   })
   .strict()
   .refine((plan) => {
-    if (plan.assertion.kind !== "lesson")
-      return plan.mode !== "lesson" && plan.mode !== "lesson-dom";
-    const dom = plan.assertion.checks.every(
-      ({ kind }) => kind === "domTextEquals",
+    const lessonMode =
+      plan.mode === "lesson" ||
+      plan.mode === "lesson-dom" ||
+      plan.mode === "lesson-module";
+    if (plan.assertion.kind !== "lesson") return !lessonMode;
+    const { checks } = plan.assertion;
+    if (plan.mode === "lesson-module") {
+      const hasModuleProbe = checks.some(
+        ({ kind }) => kind === "moduleCallEquals",
+      );
+      return (
+        hasModuleProbe &&
+        checks.every(
+          (check) =>
+            check.kind === "domTextEquals" ||
+            (check.kind === "moduleCallEquals" &&
+              plan.files.some(({ path }) => path === check.path)),
+        )
+      );
+    }
+    if (plan.mode === "lesson-dom")
+      return checks.every(({ kind }) => kind === "domTextEquals");
+    return (
+      plan.mode === "lesson" &&
+      checks.every(
+        ({ kind }) => kind !== "domTextEquals" && kind !== "moduleCallEquals",
+      )
     );
-    return dom
-      ? plan.mode === "lesson-dom"
-      : plan.mode === "lesson" &&
-          plan.assertion.checks.every(({ kind }) => kind !== "domTextEquals");
   }, "Lesson mode requires lesson checks.");
 export type RunInput = z.infer<typeof runInputSchema>;
 export type PreparedRun = RunInput;
@@ -85,6 +112,10 @@ export const payloadSchema = z.discriminatedUnion("kind", [
     })
     .strict(),
   z.object({ kind: z.literal("ready") }).strict(),
+  z.strictObject({
+    kind: z.literal("preview-storage"),
+    value: z.string().max(limits.previewStorage).nullable(),
+  }),
   z
     .object({
       kind: z.literal("log"),

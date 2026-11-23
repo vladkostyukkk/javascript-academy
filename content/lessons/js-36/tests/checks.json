@@ -1,0 +1,66 @@
+[
+  {
+    "id": "heading-text",
+    "kind": "domTextEquals",
+    "selector": "main h1",
+    "expected": "FocusBoard — дошка задач",
+    "feedback": "Зміни текст заголовка h1 усередині main на «FocusBoard — дошка задач». Зверни увагу на пробіли й тире."
+  },
+  {
+    "id": "description-preserved",
+    "kind": "domTextEquals",
+    "selector": "main p",
+    "expected": "Місце для важливих задач. Починаємо з першої команди.",
+    "feedback": "Залиш текст абзацу під заголовком без змін."
+  },
+  {
+    "id": "blank-message",
+    "kind": "domTextEquals",
+    "selector": "#task-title-error",
+    "expected": "Введіть назву задачі.",
+    "feedback": "Після надсилання пробілів покажи пояснення біля поля.",
+    "steps": [
+      {
+        "kind": "input",
+        "selector": "#task-title",
+        "value": "   "
+      },
+      {
+        "kind": "submit",
+        "selector": "#task-form"
+      }
+    ]
+  },
+  {
+    "id": "blank-no-card",
+    "kind": "domTextEquals",
+    "selector": "#tasks article:nth-child(4)",
+    "expected": null,
+    "feedback": "Невдала валідація має залишити список без нової картки."
+  },
+  {
+    "id": "trimmed-title",
+    "kind": "domTextEquals",
+    "selector": "#tasks article:nth-child(4) h2",
+    "expected": "Нова задача",
+    "feedback": "Після виправлення додай одну задачу з очищеною назвою.",
+    "steps": [
+      {
+        "kind": "input",
+        "selector": "#task-title",
+        "value": "  Нова задача  "
+      },
+      {
+        "kind": "submit",
+        "selector": "#task-form"
+      }
+    ]
+  },
+  {
+    "id": "cleared-message",
+    "kind": "domTextEquals",
+    "selector": "#task-title-error",
+    "expected": "",
+    "feedback": "Успішне надсилання має очистити попереднє повідомлення."
+  }
+]

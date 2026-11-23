@@ -1,0 +1,54 @@
+[
+  {
+    "id": "heading-text",
+    "kind": "domTextEquals",
+    "selector": "main h1",
+    "expected": "FocusBoard — дошка задач",
+    "feedback": "Зміни текст заголовка h1 усередині main на «FocusBoard — дошка задач». Зверни увагу на пробіли й тире."
+  },
+  {
+    "id": "description-preserved",
+    "kind": "domTextEquals",
+    "selector": "main p",
+    "expected": "Місце для важливих задач. Починаємо з першої команди.",
+    "feedback": "Залиш текст абзацу під заголовком без змін."
+  },
+  {
+    "id": "rename-task",
+    "kind": "domTextEquals",
+    "selector": "[data-task-id=\"2\"] h2",
+    "expected": "Оновити план",
+    "feedback": "Збережи очищену назву саме другої задачі.",
+    "steps": [
+      {
+        "kind": "input",
+        "selector": "[data-task-id=\"2\"] .task-edit-title",
+        "value": "  Оновити план  "
+      },
+      {
+        "kind": "click",
+        "selector": "[data-task-id=\"2\"] [data-action=\"edit\"]"
+      }
+    ]
+  },
+  {
+    "id": "delete-task",
+    "kind": "domTextEquals",
+    "selector": "[data-task-id=\"1\"]",
+    "expected": null,
+    "feedback": "Видали запис із вибраним ID та онови список.",
+    "steps": [
+      {
+        "kind": "click",
+        "selector": "[data-task-id=\"1\"] [data-action=\"delete\"]"
+      }
+    ]
+  },
+  {
+    "id": "keep-neighbor",
+    "kind": "domTextEquals",
+    "selector": "[data-task-id=\"2\"] h2",
+    "expected": "Оновити план",
+    "feedback": "Видалення сусідньої задачі має зберегти перейменовану картку."
+  }
+]

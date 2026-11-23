@@ -1,0 +1,53 @@
+[
+  {
+    "id": "question-1",
+    "prompt": "Скільки колонок має залишитися після пошуку без збігів?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "Три",
+        "explanation": "Колонки описують стани дошки незалежно від кількості карток."
+      },
+      {
+        "id": "other",
+        "label": "Жодної",
+        "explanation": "Порожні колонки теж потрібні для стабільного вигляду."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-2",
+    "prompt": "За яким ключем шукати контейнер картки?",
+    "options": [
+      {
+        "id": "other",
+        "label": "За назвою задачі",
+        "explanation": "Назва використовується для показу й пошуку."
+      },
+      {
+        "id": "correct",
+        "label": "За статусом задачі",
+        "explanation": "Статус визначає колонку."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-3",
+    "prompt": "Звідки брати задачі у renderTasks?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "З переданого списку",
+        "explanation": "Список уже враховує пошук і фільтр."
+      },
+      {
+        "id": "other",
+        "label": "З усього tasks",
+        "explanation": "Так приховані задачі з’являться знову."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "id": "js-35",
+  "number": 35,
+  "title": "Делегування подій",
+  "module": 4,
+  "prerequisites": [
+    "js-34"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Пояснити спливання кліку до спільного контейнера.",
+    "Знайти кнопку й картку через closest.",
+    "Змінити статус потрібної задачі за числовим ID."
+  ],
+  "editablePaths": [
+    "src/app.js"
+  ],
+  "courseContentVersion": 1
+}

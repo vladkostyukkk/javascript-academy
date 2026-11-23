@@ -1,0 +1,26 @@
+{
+  "id": "js-53",
+  "number": 53,
+  "title": "fetch і Response",
+  "module": 6,
+  "prerequisites": [
+    "js-52"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Очікуй спочатку fetch, потім response.json.",
+    "Перед читанням тіла перевір response.ok.",
+    "Для першого запуску використовуй mock; після відновлення збережи наявний список."
+  ],
+  "editablePaths": [
+    "src/services/tasks-api.js",
+    "src/app.js",
+    "mock/tasks.json",
+    "src/state/store.js",
+    "index.html",
+    "src/storage.js",
+    "src/domain/tasks.js",
+    "src/domain/index.js"
+  ],
+  "courseContentVersion": 1
+}

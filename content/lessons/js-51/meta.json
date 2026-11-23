@@ -1,0 +1,25 @@
+{
+  "id": "js-51",
+  "number": 51,
+  "title": "Promise",
+  "module": 6,
+  "prerequisites": [
+    "js-50"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Створи Promise і виклич resolve в таймері.",
+    "Рендер початкових задач перенеси в then.",
+    "Збережи Promise підготовки й повертай його з waitForBoard."
+  ],
+  "editablePaths": [
+    "src/services/tasks-api.js",
+    "src/app.js",
+    "src/state/store.js",
+    "index.html",
+    "src/storage.js",
+    "src/domain/tasks.js",
+    "src/domain/index.js"
+  ],
+  "courseContentVersion": 1
+}

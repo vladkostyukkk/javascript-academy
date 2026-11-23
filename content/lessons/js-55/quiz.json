@@ -1,0 +1,53 @@
+[
+  {
+    "id": "question-1",
+    "prompt": "Що робить debounce?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Запускає пошук на кожен символ одразу",
+        "explanation": "Мета — дочекатися паузи."
+      },
+      {
+        "id": "correct",
+        "label": "Чекає паузу між подіями",
+        "explanation": "Це зменшує кількість запусків пошуку."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-2",
+    "prompt": "Що скасовує стара операція?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "Поточний таймер і Promise",
+        "explanation": "Старий запит більше не потрібен."
+      },
+      {
+        "id": "other",
+        "label": "Всі майбутні запити",
+        "explanation": "Новий контролер має власний сигнал."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-3",
+    "prompt": "Що робити з AbortError для старого запиту?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Показати помилку мережі",
+        "explanation": "Це введе користувача в оману."
+      },
+      {
+        "id": "correct",
+        "label": "Залишити актуальний пошук",
+        "explanation": "Скасування очікуване."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

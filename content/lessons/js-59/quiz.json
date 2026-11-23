@@ -1,0 +1,53 @@
+[
+  {
+    "id": "question-1",
+    "prompt": "Що порівнює тест незмінності?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Тільки текст кнопки",
+        "explanation": "Це не перевіряє стан."
+      },
+      {
+        "id": "correct",
+        "label": "Старий і новий записи",
+        "explanation": "Старий запис має лишитися тим самим за змістом."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-2",
+    "prompt": "Який елемент підтримує Enter і Space?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "button",
+        "explanation": "Він має нативну клавіатурну поведінку."
+      },
+      {
+        "id": "other",
+        "label": "Довільний div",
+        "explanation": "Без додаткової логіки він не активується так само."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-3",
+    "prompt": "Куди перенести фокус, якщо картка зникла через фільтр?",
+    "options": [
+      {
+        "id": "other",
+        "label": "У випадкове поле",
+        "explanation": "Це ускладнює навігацію."
+      },
+      {
+        "id": "correct",
+        "label": "До заголовка дошки",
+        "explanation": "Користувач зберігає контекст."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "id": "js-55",
+  "number": 55,
+  "title": "AbortController та debounce",
+  "module": 6,
+  "prerequisites": [
+    "js-54"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Перед запуском перевір signal.aborted.",
+    "При abort виклич clearTimeout і відхили Promise.",
+    "Збережи посилання на поточний контролер для наступного вводу."
+  ],
+  "editablePaths": [
+    "src/services/tasks-api.js",
+    "src/app.js",
+    "src/ui/async-state.js",
+    "mock/tasks.json",
+    "src/state/store.js",
+    "index.html",
+    "src/storage.js",
+    "src/domain/tasks.js",
+    "src/domain/index.js"
+  ],
+  "courseContentVersion": 1
+}

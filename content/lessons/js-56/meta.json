@@ -1,0 +1,28 @@
+{
+  "id": "js-56",
+  "number": 56,
+  "title": "Drag and drop",
+  "module": 6,
+  "prerequisites": [
+    "js-55"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Передавай лише ID як текст.",
+    "Перетвори значення з dataTransfer на число й перевір його.",
+    "Використай той самий moveTask для обох способів керування."
+  ],
+  "editablePaths": [
+    "src/ui/board.js",
+    "src/app.js",
+    "src/services/tasks-api.js",
+    "src/ui/async-state.js",
+    "mock/tasks.json",
+    "src/state/store.js",
+    "index.html",
+    "src/storage.js",
+    "src/domain/tasks.js",
+    "src/domain/index.js"
+  ],
+  "courseContentVersion": 1
+}

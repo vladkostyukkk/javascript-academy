@@ -1,0 +1,25 @@
+{
+  "id": "js-52",
+  "number": 52,
+  "title": "async / await",
+  "module": 6,
+  "prerequisites": [
+    "js-51"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Збережи delay з попереднього уроку.",
+    "Зроби функцію async і поверни копію після await.",
+    "Порівняй стан до та після очікування."
+  ],
+  "editablePaths": [
+    "src/services/tasks-api.js",
+    "src/app.js",
+    "src/state/store.js",
+    "index.html",
+    "src/storage.js",
+    "src/domain/tasks.js",
+    "src/domain/index.js"
+  ],
+  "courseContentVersion": 1
+}

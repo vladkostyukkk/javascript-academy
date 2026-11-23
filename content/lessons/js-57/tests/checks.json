@@ -1,0 +1,51 @@
+[
+  {
+    "id": "board-ready",
+    "kind": "moduleCallEquals",
+    "path": "src/app.js",
+    "binding": "waitForBoard",
+    "args": [],
+    "expected": "Задачі завантажено",
+    "feedback": "Дочекайся початкового завантаження і онови повідомлення."
+  },
+  {
+    "id": "initial-card",
+    "kind": "domTextEquals",
+    "selector": "#doing article h2",
+    "expected": "Вивчити JavaScript",
+    "feedback": "Після завершення Promise відобрази початкові задачі."
+  },
+  {
+    "id": "imports-empty",
+    "kind": "moduleCallEquals",
+    "path": "src/services/transfer.js",
+    "binding": "countImportedTasks",
+    "args": [
+      "[]"
+    ],
+    "expected": 0,
+    "feedback": "Дозволь імпорт валідного порожнього списку."
+  },
+  {
+    "id": "rejects-broken-json",
+    "kind": "moduleCallEquals",
+    "path": "src/services/transfer.js",
+    "binding": "countImportedTasks",
+    "args": [
+      "{"
+    ],
+    "expected": -1,
+    "feedback": "Відхили пошкоджений JSON перед заміною списку."
+  },
+  {
+    "id": "rejects-duplicate-ids",
+    "kind": "moduleCallEquals",
+    "path": "src/services/transfer.js",
+    "binding": "countImportedTasks",
+    "args": [
+      "[{\"id\":1,\"title\":\"А\",\"status\":\"Готово\",\"minutes\":0,\"priority\":1},{\"id\":1,\"title\":\"Б\",\"status\":\"Готово\",\"minutes\":0,\"priority\":1}]"
+    ],
+    "expected": -1,
+    "feedback": "Відхили файл із повтореними ID."
+  }
+]

@@ -39,15 +39,27 @@ Functions, conditions, ID generation, validation, integration. Gate: 20 valid cu
 Collections, objects, functional array transforms and stats. Gate: project domain logic works; 30 cumulative checkpoints.
 
 ## P09 — lessons 31–40
+
+Статус — прийнято 2026-11-23. [Докази й межі](P09_ACCEPTANCE.md)
+
 DOM app, form, filtering, search and Kanban board. Gate: real interactive preview and Playwright browser flow through lesson 40.
 
 ## P10 — lessons 41–50
+
+Статус — прийнято 2026-11-23. [Докази й межі](P10_ACCEPTANCE.md)
+
 Modules, state, localStorage bridge, migrations and undo. Gate: virtual file module imports verified; persistence works safely in preview harness; project export replay.
 
 ## P11 — lessons 51–60
+
+Статус — прийнято 2026-11-23. [Докази й межі](P11_ACCEPTANCE.md)
+
 Async mock API, error/loading, abort, drag/drop, import/export, stats, testing, accessibility and end-to-end project ZIP. Gate: all 60 complete with checkpoints and deterministic tests, finished FocusBoard runs independently.
 
 ## P12 — release hardening (MVP)
+
+Статус — локальний аудит виконано 2026-11-23. Публічне приймання заблоковане. [Звіт аудиту](P12_RELEASE_AUDIT.md)
+
 Final accessibility, security review of runner and CSP, perf, e2e, CI, error boundary, deployment instructions, smoke deploy. Gate: verification results and known risks documented; no placeholder flows.
 
 ## Later optional P13 — accounts/cloud sync

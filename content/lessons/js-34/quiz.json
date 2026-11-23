@@ -1,0 +1,53 @@
+[
+  {
+    "id": "question-1",
+    "prompt": "На якому елементі слухати submit?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "На формі",
+        "explanation": "Вона отримує подію, коли користувач натискає Enter або кнопку надсилання."
+      },
+      {
+        "id": "other",
+        "label": "Лише на кнопці",
+        "explanation": "Клік кнопки не покриває всі способи надсилання."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-2",
+    "prompt": "Що робить preventDefault()?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Очищає поле вводу",
+        "explanation": "Очищення потребує присвоєння value."
+      },
+      {
+        "id": "correct",
+        "label": "Скасовує стандартну дію",
+        "explanation": "Подія продовжує оброблятися, а браузер не надсилає форму."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-3",
+    "prompt": "Що зробити після tasks.push?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "Викликати renderTasks",
+        "explanation": "Масив змінився, і список треба відобразити знову."
+      },
+      {
+        "id": "other",
+        "label": "Повторно реєструвати submit",
+        "explanation": "Один обробник працює для кожного надсилання."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

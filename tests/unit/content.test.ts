@@ -115,7 +115,7 @@ describe("registry boundaries", () => {
 describe("complete lesson content", () => {
   it("loads the sample, checks its reference checksum and keeps planned lessons unpopulated", async () => {
     const content = await readValidatedCourseContent();
-    expect(content).toHaveLength(31);
+    expect(content).toHaveLength(60);
     expect(content[0].meta.id).toBe("js-01");
     expect(content[0].hints).toHaveLength(3);
     expect(
@@ -131,9 +131,18 @@ describe("complete lesson content", () => {
     expect(content[4].starter).toEqual(content[3].solution);
     for (let i = 5; i < content.length; i++) {
       expect(content[i].meta.id).toBe(`js-${String(i + 1).padStart(2, "0")}`);
-      expect(content[i].starter).toEqual(content[i - 1].solution);
+      const previous = content[i - 1].solution;
+      expect(
+        content[i].starter.filter(({ path }) =>
+          previous.some((file) => file.path === path),
+        ),
+      ).toEqual(previous);
     }
-    await expect(readLessonBundle("js-32")).rejects.toThrow(/не зареєстровано/);
+    expect(
+      content
+        .find(({ meta }) => meta.id === "js-41")
+        ?.starter.find(({ path }) => path === "src/domain/tasks.js")?.content,
+    ).toMatch(/^\/\//);
     await expect(readLessonBundle("../js-01")).rejects.toThrow(/Невідомий ID/);
   });
 

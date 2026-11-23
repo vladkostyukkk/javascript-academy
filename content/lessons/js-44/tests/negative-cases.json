@@ -1,0 +1,43 @@
+[
+  {
+    "id": "empty-entry",
+    "category": "empty",
+    "path": "src/app.js",
+    "source": "",
+    "failedCheckIds": [
+      "heading-text",
+      "doing-duration",
+      "renames-selected",
+      "keeps-neighbor",
+      "removes-selected"
+    ]
+  },
+  {
+    "id": "wrong-task-updated",
+    "category": "invalid",
+    "path": "src/state/store.js",
+    "source": "export function createStore(initialState) {\n  let state = initialState;\n  const listeners = new Set();\n\n  function getState() {\n    return state;\n  }\n\n  function setState(nextState) {\n    state = nextState;\n    for (const listener of listeners) listener(state);\n  }\n\n  function subscribe(listener) {\n    listeners.add(listener);\n    return () => listeners.delete(listener);\n  }\n\n  return { getState, setState, subscribe };\n}\n\nexport function addTask(list, task) {\n  return [...list, task];\n}\n\nexport function updateTask(list, id, changes) {\n  return list.map((task) => task.id !== id ? { ...task, ...changes } : task);\n}\n\nexport function removeTask(list, id) {\n  return list.filter((task) => task.id !== id);\n}\n",
+    "failedCheckIds": [
+      "renames-selected",
+      "keeps-neighbor"
+    ]
+  },
+  {
+    "id": "keeps-deleted-task",
+    "category": "edge",
+    "path": "src/state/store.js",
+    "source": "export function createStore(initialState) {\n  let state = initialState;\n  const listeners = new Set();\n\n  function getState() {\n    return state;\n  }\n\n  function setState(nextState) {\n    state = nextState;\n    for (const listener of listeners) listener(state);\n  }\n\n  function subscribe(listener) {\n    listeners.add(listener);\n    return () => listeners.delete(listener);\n  }\n\n  return { getState, setState, subscribe };\n}\n\nexport function addTask(list, task) {\n  return [...list, task];\n}\n\nexport function updateTask(list, id, changes) {\n  return list.map((task) => task.id === id ? { ...task, ...changes } : task);\n}\n\nexport function removeTask(list, id) {\n  return list.filter((task) => task.id === id);\n}\n",
+    "failedCheckIds": [
+      "removes-selected"
+    ]
+  },
+  {
+    "id": "drops-title-change",
+    "category": "edge",
+    "path": "src/state/store.js",
+    "source": "export function createStore(initialState) {\n  let state = initialState;\n  const listeners = new Set();\n\n  function getState() {\n    return state;\n  }\n\n  function setState(nextState) {\n    state = nextState;\n    for (const listener of listeners) listener(state);\n  }\n\n  function subscribe(listener) {\n    listeners.add(listener);\n    return () => listeners.delete(listener);\n  }\n\n  return { getState, setState, subscribe };\n}\n\nexport function addTask(list, task) {\n  return [...list, task];\n}\n\nexport function updateTask(list, id, changes) {\n  return list.map((task) => task.id === id ? { ...changes, ...task } : task);\n}\n\nexport function removeTask(list, id) {\n  return list.filter((task) => task.id !== id);\n}\n",
+    "failedCheckIds": [
+      "renames-selected"
+    ]
+  }
+]

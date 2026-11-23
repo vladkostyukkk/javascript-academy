@@ -1,0 +1,78 @@
+[
+  {
+    "id": "heading-text",
+    "kind": "domTextEquals",
+    "selector": "main h1",
+    "expected": "FocusBoard — дошка задач",
+    "feedback": "Зміни текст заголовка h1 усередині main на «FocusBoard — дошка задач». Зверни увагу на пробіли й тире."
+  },
+  {
+    "id": "description-preserved",
+    "kind": "domTextEquals",
+    "selector": "main p",
+    "expected": "Місце для важливих задач. Починаємо з першої команди.",
+    "feedback": "Залиш текст абзацу під заголовком без змін."
+  },
+  {
+    "id": "doing-duration",
+    "kind": "domTextEquals",
+    "selector": "#doing article p",
+    "expected": "25 хв",
+    "feedback": "Збережи відображення тривалості картки після перенесення formatMinutes."
+  },
+  {
+    "id": "public-duration",
+    "kind": "moduleCallEquals",
+    "path": "src/domain/index.js",
+    "binding": "formatTaskDuration",
+    "args": [
+      0
+    ],
+    "expected": "0 хв",
+    "feedback": "Реекспортуй форматування як formatTaskDuration і збережи випадок 0 хв."
+  },
+  {
+    "id": "public-validation",
+    "kind": "moduleCallEquals",
+    "path": "src/domain/index.js",
+    "binding": "validateTitle",
+    "args": [
+      "   "
+    ],
+    "expected": "Введіть назву задачі.",
+    "feedback": "Реекспортуй validateTitle і збережи валідацію назви з пробілів."
+  },
+  {
+    "id": "rejects-corrupt",
+    "kind": "moduleCallEquals",
+    "path": "src/storage.js",
+    "binding": "isTaskSnapshot",
+    "args": [
+      "{broken"
+    ],
+    "expected": false,
+    "feedback": "Відхили пошкоджений JSON і залиш запасний список."
+  },
+  {
+    "id": "accepts-empty",
+    "kind": "moduleCallEquals",
+    "path": "src/storage.js",
+    "binding": "isTaskSnapshot",
+    "args": [
+      "[]"
+    ],
+    "expected": true,
+    "feedback": "Порожній збережений список є коректним."
+  },
+  {
+    "id": "rejects-shape",
+    "kind": "moduleCallEquals",
+    "path": "src/storage.js",
+    "binding": "isTaskSnapshot",
+    "args": [
+      "{\"tasks\":[]}"
+    ],
+    "expected": false,
+    "feedback": "Після JSON.parse перевір, що значення є масивом."
+  }
+]

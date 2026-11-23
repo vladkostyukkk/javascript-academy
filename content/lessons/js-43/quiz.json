@@ -1,0 +1,53 @@
+[
+  {
+    "id": "question-1",
+    "prompt": "Де зберігати обраний фільтр?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Лише в тексті кнопки",
+        "explanation": "Текст підписує кнопку, але не є станом."
+      },
+      {
+        "id": "correct",
+        "label": "У стані дошки",
+        "explanation": "Рендеринг читає його разом із запитом і задачами."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-2",
+    "prompt": "Коли викликається підписник?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "Після заміни стану",
+        "explanation": "Тоді він отримує актуальні дані."
+      },
+      {
+        "id": "other",
+        "label": "Перед заміною стану",
+        "explanation": "Це дало б старі дані."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-3",
+    "prompt": "Що має робити відписка?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Очищати стан",
+        "explanation": "Відписка керує реєстрацією функції."
+      },
+      {
+        "id": "correct",
+        "label": "Видаляти слухача",
+        "explanation": "Інші слухачі продовжують працювати."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

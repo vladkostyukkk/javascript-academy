@@ -1,0 +1,24 @@
+{
+  "id": "js-47",
+  "number": 47,
+  "title": "Версії даних",
+  "module": 5,
+  "prerequisites": [
+    "js-46"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Розпізнай стару схему через Array.isArray.",
+    "Для версії 2 перевір поле tasks попереднім валідатором.",
+    "Створи обгортку version тільки під час запису."
+  ],
+  "editablePaths": [
+    "src/storage.js",
+    "src/app.js",
+    "index.html",
+    "src/state/store.js",
+    "src/domain/index.js",
+    "src/domain/tasks.js"
+  ],
+  "courseContentVersion": 1
+}

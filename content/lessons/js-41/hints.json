@@ -1,0 +1,5 @@
+[
+  "Знайди в app.js оголошення formatMinutes і validateTitle. Їхні тіла можна перенести без змін.",
+  "Перед перенесеними оголошеннями у src/domain/tasks.js постав export.",
+  "Додай import { formatMinutes, validateTitle } from \"./domain/tasks.js\"; на початку app.js і прибери старі оголошення."
+]

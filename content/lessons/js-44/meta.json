@@ -1,0 +1,23 @@
+{
+  "id": "js-44",
+  "number": 44,
+  "title": "Незмінні оновлення",
+  "module": 5,
+  "prerequisites": [
+    "js-43"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Додай елемент через [...list, task].",
+    "У map створи новий об’єкт лише для вибраного ID.",
+    "Для видалення поверни результат filter без запису з цим ID."
+  ],
+  "editablePaths": [
+    "src/state/store.js",
+    "src/app.js",
+    "index.html",
+    "src/domain/index.js",
+    "src/domain/tasks.js"
+  ],
+  "courseContentVersion": 1
+}

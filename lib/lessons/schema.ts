@@ -365,9 +365,36 @@ export const checksSchema = z
       z.strictObject({ ...checkBase, kind: z.literal("generatorSequence") }),
       z.strictObject({
         ...checkBase,
+        kind: z.literal("moduleCallEquals"),
+        path: virtualPathSchema.refine((path) => path.endsWith(".js")),
+        binding: z
+          .string()
+          .regex(/^[a-zA-Z_$][a-zA-Z0-9_$]*$/)
+          .max(100),
+        args: z.array(probeValue).max(2),
+        expected: probeValue,
+      }),
+      z.strictObject({
+        ...checkBase,
         kind: z.literal("domTextEquals"),
         selector: z.string().min(1).max(100),
-        expected: z.string().max(500),
+        expected: z.string().max(500).nullable(),
+        steps: z
+          .array(
+            z.discriminatedUnion("kind", [
+              z.strictObject({
+                kind: z.literal("input"),
+                selector: z.string().min(1).max(100),
+                value: z.string().max(500),
+              }),
+              z.strictObject({
+                kind: z.enum(["click", "submit"]),
+                selector: z.string().min(1).max(100),
+              }),
+            ]),
+          )
+          .max(8)
+          .optional(),
       }),
       bindingStructure,
       callStructure,
@@ -386,6 +413,7 @@ export const negativeCasesSchema = z
     z.strictObject({
       id: identifier,
       category: z.enum(["empty", "invalid", "edge"]),
+      path: virtualPathSchema.optional(),
       source: z.string().max(65_536),
       failedCheckIds: z.array(identifier).min(1),
     }),

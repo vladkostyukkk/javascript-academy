@@ -1,0 +1,53 @@
+[
+  {
+    "id": "question-1",
+    "prompt": "Чи є порожній масив помилкою?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Так, завжди",
+        "explanation": "Порожні дані можуть бути валідними."
+      },
+      {
+        "id": "correct",
+        "label": "Це успішний порожній стан",
+        "explanation": "Обробка помилки потрібна для невдалого запиту."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-2",
+    "prompt": "Де обробити відхилений Promise з await?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "У catch",
+        "explanation": "catch перехоплює помилку очікуваної операції."
+      },
+      {
+        "id": "other",
+        "label": "Лише в finally",
+        "explanation": "finally виконується і після успіху."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-3",
+    "prompt": "Коли показувати кнопку повтору?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Під час поточного запиту",
+        "explanation": "Це могло б створити два запити."
+      },
+      {
+        "id": "correct",
+        "label": "Після помилки",
+        "explanation": "Вона дає спосіб повторити невдалу дію."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "heading-text",
+    "kind": "domTextEquals",
+    "selector": "main h1",
+    "expected": "FocusBoard — дошка задач",
+    "feedback": "Зміни текст заголовка h1 усередині main на «FocusBoard — дошка задач». Зверни увагу на пробіли й тире."
+  },
+  {
+    "id": "description-preserved",
+    "kind": "domTextEquals",
+    "selector": "main p",
+    "expected": "Місце для важливих задач. Починаємо з першої команди.",
+    "feedback": "Залиш текст абзацу під заголовком без змін."
+  },
+  {
+    "id": "first-card-title",
+    "kind": "domTextEquals",
+    "selector": "#tasks > article:only-child > h2",
+    "expected": "Вивчити JavaScript",
+    "feedback": "Додай до #tasks одну картку article із заголовком першої задачі."
+  },
+  {
+    "id": "first-card-duration",
+    "kind": "domTextEquals",
+    "selector": "#tasks > article:only-child > p",
+    "expected": "25 хв",
+    "feedback": "Запиши тривалість першої задачі в абзац картки у форматі «25 хв»."
+  }
+]

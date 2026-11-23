@@ -1,0 +1,53 @@
+[
+  {
+    "id": "question-1",
+    "prompt": "Коли виконується then?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Одразу при створенні таймера",
+        "explanation": "Таймер завершується пізніше."
+      },
+      {
+        "id": "correct",
+        "label": "Коли Promise успішно завершився",
+        "explanation": "Обробник отримує значення від resolve."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-2",
+    "prompt": "Що передати resolve?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "Результат асинхронної роботи",
+        "explanation": "Це значення доступне в then."
+      },
+      {
+        "id": "other",
+        "label": "Ім’я файла",
+        "explanation": "Promise не потребує файла."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-3",
+    "prompt": "Що показувати до готовності задач?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Фінальний статус",
+        "explanation": "Дані ще готуються."
+      },
+      {
+        "id": "correct",
+        "label": "Повідомлення про завантаження",
+        "explanation": "Користувач бачить стан операції."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

@@ -1,0 +1,39 @@
+[
+  {
+    "id": "empty-entry",
+    "category": "empty",
+    "path": "src/app.js",
+    "source": "",
+    "failedCheckIds": [
+      "board-ready",
+      "initial-card"
+    ]
+  },
+  {
+    "id": "wrong-count",
+    "category": "invalid",
+    "path": "src/services/tasks-api.js",
+    "source": "export function waitForTasks(milliseconds = 80) {\n  const duration = Math.max(0, milliseconds);\n  return new Promise((resolve) => {\n    setTimeout(() => resolve(duration), duration);\n  });\n}\n\nexport async function loadInitialTasks(tasks, milliseconds = 80) {\n  await waitForTasks(milliseconds);\n  return Array.isArray(tasks) ? [...tasks] : [];\n}\n\nexport async function countLoadedTasks(tasks) {\n  return 99;\n}\n",
+    "failedCheckIds": [
+      "async-count"
+    ]
+  },
+  {
+    "id": "unhandled-invalid-list",
+    "category": "edge",
+    "path": "src/services/tasks-api.js",
+    "source": "export function waitForTasks(milliseconds = 80) {\n  const duration = Math.max(0, milliseconds);\n  return new Promise((resolve) => {\n    setTimeout(() => resolve(duration), duration);\n  });\n}\n\nexport async function loadInitialTasks(tasks, milliseconds = 80) {\n  await waitForTasks(milliseconds);\n  return [...tasks];\n}\n\nexport async function countLoadedTasks(tasks) {\n  return (await loadInitialTasks(tasks, 0)).length;\n}\n",
+    "failedCheckIds": [
+      "async-count"
+    ]
+  },
+  {
+    "id": "drops-valid-tasks",
+    "category": "edge",
+    "path": "src/services/tasks-api.js",
+    "source": "export function waitForTasks(milliseconds = 80) {\n  const duration = Math.max(0, milliseconds);\n  return new Promise((resolve) => {\n    setTimeout(() => resolve(duration), duration);\n  });\n}\n\nexport async function loadInitialTasks(tasks, milliseconds = 80) {\n  await waitForTasks(milliseconds);\n  return [];\n}\n\nexport async function countLoadedTasks(tasks) {\n  return (await loadInitialTasks(tasks, 0)).length;\n}\n",
+    "failedCheckIds": [
+      "initial-card"
+    ]
+  }
+]

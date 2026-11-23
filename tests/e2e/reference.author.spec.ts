@@ -72,7 +72,7 @@ test("reference checkpoint passes; starter, invalid inputs and edge cases fail m
   page,
 }) => {
   const bundle = await readLessonBundle("js-01");
-  await page.goto("about:blank");
+  await page.goto("/");
   await page.route("**/*", (route) => route.abort());
   const reference = evaluateChecks(
     bundle.checks,

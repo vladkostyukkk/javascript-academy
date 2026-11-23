@@ -1,0 +1,53 @@
+[
+  {
+    "id": "question-1",
+    "prompt": "Яка колекція передається в сортування?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Усі задачі зі store",
+        "explanation": "Так приховані задачі повернуться."
+      },
+      {
+        "id": "correct",
+        "label": "Видимі задачі",
+        "explanation": "Пошук і статус уже визначили набір."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-2",
+    "prompt": "Навіщо зробити копію перед sort?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "Щоб зберегти вихідний порядок",
+        "explanation": "sort змінює масив на місці."
+      },
+      {
+        "id": "other",
+        "label": "Щоб змінити ID задач",
+        "explanation": "Сортування змінює лише порядок."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-3",
+    "prompt": "Що використати без збереженого режиму?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Випадковий порядок",
+        "explanation": "Результат має бути передбачуваним."
+      },
+      {
+        "id": "correct",
+        "label": "Початковий порядок",
+        "explanation": "Це також підтримує старі записи."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

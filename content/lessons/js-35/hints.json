@@ -1,0 +1,5 @@
+[
+  "Запиши ID у card.dataset.taskId, а дію у doneButton.dataset.action.",
+  "Почни із closest і селектора кнопки виконання, щоб спрацював також клік по її тексту.",
+  "Знайди найближчу картку з data-task-id. Після зміни статусу виклич renderTasks(tasks)."
+]

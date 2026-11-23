@@ -1,0 +1,53 @@
+[
+  {
+    "id": "question-1",
+    "prompt": "Як розпізнати стару копію?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Це об’єкт із version 2",
+        "explanation": "Це нове представлення."
+      },
+      {
+        "id": "correct",
+        "label": "Це масив верхнього рівня",
+        "explanation": "У початковій схемі не було поля version."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-2",
+    "prompt": "Що робити з версією 9?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "Повернути запасний результат",
+        "explanation": "Підтримка невідомої схеми потребує окремої міграції."
+      },
+      {
+        "id": "other",
+        "label": "Ігнорувати номер і брати tasks",
+        "explanation": "Поле може мати інше значення в майбутній схемі."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-3",
+    "prompt": "Коли зберігати формат версії 2?",
+    "options": [
+      {
+        "id": "other",
+        "label": "До валідації старих даних",
+        "explanation": "Спочатку треба переконатися в коректності даних."
+      },
+      {
+        "id": "correct",
+        "label": "При наступному записі",
+        "explanation": "Читання може бути чистою операцією."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

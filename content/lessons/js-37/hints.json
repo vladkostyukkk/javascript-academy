@@ -1,0 +1,5 @@
+[
+  "Знайди кнопку через closest('button[data-action]') і прочитай button.dataset.action.",
+  "Для edit знайди .task-edit-title лише всередині вибраної картки. Використай trim і validateTitle.",
+  "Для delete передай у splice позицію з findIndex і кількість 1. Не використовуй ID як позицію."
+]

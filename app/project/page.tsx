@@ -16,13 +16,13 @@ export default function ProjectPage() {
           <span className="text-accent">Власний FocusBoard.</span>
         </h1>
         <p>
-          Один проєкт на весь курс. Від назви в консолі до менеджера задач,
-          <br className="desktop-break" /> який можна забрати із собою.
+          Після завершення уроку 60 завантаж ZIP зі збережених версій нижче.
+          Архів містить файли FocusBoard та інструкцію локального запуску.
         </p>
       </div>
       <section className="project-showcase">
         <div>
-          <span className="small-tag">Ілюстрація майбутнього результату</span>
+          <span className="small-tag">Приклад дошки FocusBoard</span>
           <h2>
             Твої задачі.
             <br />

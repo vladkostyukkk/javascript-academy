@@ -4,6 +4,7 @@ import { matchesStructure } from "./structure";
 
 interface RuntimeConfig extends RunIdentity {
   plan: PreparedRun;
+  previewStorage?: string | null;
 }
 
 // Self-contained: the same function is serialized into a Worker created INSIDE
@@ -209,11 +210,14 @@ async function executeSandbox(
     const entry = plan.files.find((file) => file.path === plan.entry);
     if (!entry) throw new Error("Основний файл відсутній.");
     let result: unknown;
+    const imports: Record<string, string> = Object.create(null);
     if (plan.mode === "pure" || plan.mode === "lesson") {
       if (!pureEntry) throw new Error("Функцію обчислення не підготовлено.");
       result = await pureEntry();
     } else {
       renderPreview(plan);
+      if (plan.mode === "lesson-dom" || plan.mode === "lesson-module")
+        wirePreviewSubmit();
       if (plan.mode === "classic" || plan.mode === "lesson-dom") {
         await new Promise<void>((resolve, reject) => {
           const script = document.createElement("script");
@@ -224,7 +228,6 @@ async function executeSandbox(
           document.body.append(script);
         });
       } else {
-        const imports: Record<string, string> = {};
         for (const file of plan.files.filter((file) =>
           file.path.endsWith(".js"),
         ))
@@ -262,6 +265,21 @@ async function executeSandbox(
           probeResults.set(check.id, runProbe(check, bindings));
         else if (check.kind === "callStructure")
           probeResults.set(check.id, runStructureCheck(check, bindings));
+        else if (check.kind === "moduleCallEquals") {
+          try {
+            const exports = await import(
+              /* webpackIgnore: true */ imports[`academy:/${check.path}`]
+            );
+            const fn: unknown = exports[check.binding];
+            probeResults.set(
+              check.id,
+              typeof fn === "function" &&
+                (await fn(...check.args)) === check.expected,
+            );
+          } catch {
+            probeResults.set(check.id, false);
+          }
+        }
       }
     }
     // Allow queued rejection/error events and logs to arrive before reporting assertions.
@@ -273,6 +291,7 @@ async function executeSandbox(
           bindingEquals: "Значення відповідає умові.",
           consoleEquals: "Виведення консолі відповідає умові.",
           callEquals: "Функція повертає очікуване значення.",
+          moduleCallEquals: "Експортована функція повертає очікуване значення.",
           generatorSequence: "Генератори створюють незалежні послідовності ID.",
           bindingStructure: "Поля або елементи відповідають умові.",
           callStructure: "Результат виклику відповідає умові.",
@@ -292,8 +311,36 @@ async function executeSandbox(
                 switch (check.kind) {
                   case "domTextEquals":
                     passed =
-                      document.querySelector(check.selector)?.textContent ===
-                      check.expected;
+                      (check.steps?.every((step) => {
+                        const target = document.querySelector(step.selector);
+                        switch (step.kind) {
+                          case "input":
+                            if (!(target instanceof HTMLInputElement))
+                              return false;
+                            target.value = step.value;
+                            target.dispatchEvent(
+                              new Event("input", { bubbles: true }),
+                            );
+                            return true;
+                          case "click":
+                            if (!(target instanceof HTMLElement)) return false;
+                            target.click();
+                            return true;
+                          case "submit":
+                            return (
+                              target instanceof HTMLFormElement &&
+                              !target.dispatchEvent(
+                                new Event("submit", {
+                                  bubbles: true,
+                                  cancelable: true,
+                                }),
+                              )
+                            );
+                        }
+                      }) ??
+                        true) &&
+                      (document.querySelector(check.selector)?.textContent ??
+                        null) === check.expected;
                     break;
                   case "bindingEquals":
                     passed = bindings[check.binding] === check.expected;
@@ -304,6 +351,7 @@ async function executeSandbox(
                       JSON.stringify(check.expected);
                     break;
                   case "callEquals":
+                  case "moduleCallEquals":
                   case "generatorSequence":
                   case "bindingStructure":
                   case "callStructure":
@@ -320,6 +368,7 @@ async function executeSandbox(
                 };
               })
             : [];
+        if (failed) return;
         send({
           kind: "execution",
           operation: plan.assertion.operation,
@@ -351,6 +400,57 @@ async function executeSandbox(
     finished = true;
     for (const url of urls) URL.revokeObjectURL(url);
   }
+}
+
+function wirePreviewSubmit() {
+  // The iframe blocks native form submission. Recreate only the local event
+  // so learners can use their preview by mouse and keyboard.
+  document.addEventListener("click", (event) => {
+    if (event.defaultPrevented || !(event.target instanceof Element)) return;
+    const button = event.target.closest("button");
+    if (
+      !(button instanceof HTMLButtonElement) ||
+      button.type !== "submit" ||
+      button.matches(":disabled") ||
+      !button.form
+    )
+      return;
+    event.preventDefault();
+    if (button.form.checkValidity()) {
+      button.form.dispatchEvent(
+        new SubmitEvent("submit", {
+          bubbles: true,
+          cancelable: true,
+          submitter: button,
+        }),
+      );
+    }
+  });
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.defaultPrevented ||
+      event.isComposing ||
+      event.repeat ||
+      event.key !== "Enter"
+    )
+      return;
+    const input = event.target;
+    if (
+      !(input instanceof HTMLInputElement) ||
+      !["text", "search"].includes(input.type) ||
+      !input.form
+    )
+      return;
+    const button = Array.from(input.form.elements).find(
+      (element): element is HTMLButtonElement =>
+        element instanceof HTMLButtonElement &&
+        element.type === "submit" &&
+        !element.matches(":disabled"),
+    );
+    if (!button) return;
+    event.preventDefault();
+    button.click();
+  });
 }
 
 function renderPreview(plan: PreparedRun) {
@@ -421,6 +521,34 @@ export function boot(config: RuntimeConfig) {
       },
       "*",
     );
+  if (
+    config.plan.mode === "lesson-module" &&
+    config.previewStorage !== undefined
+  ) {
+    let value = config.previewStorage;
+    let writes = 0;
+    Object.defineProperty(globalThis, "focusBoardStorage", {
+      value: Object.freeze({
+        getItem(key: string) {
+          return key === "focusboard" ? value : null;
+        },
+        setItem(key: string, next: string) {
+          if (key !== "focusboard") return;
+          if (typeof next !== "string" || next.length > 8192 || ++writes > 40)
+            throw new Error("Ліміт сховища перегляду вичерпано.");
+          value = next;
+          send({ kind: "preview-storage", value });
+        },
+        removeItem(key: string) {
+          if (key !== "focusboard") return;
+          if (++writes > 40)
+            throw new Error("Ліміт сховища перегляду вичерпано.");
+          value = null;
+          send({ kind: "preview-storage", value });
+        },
+      }),
+    });
+  }
   if (config.plan.mode === "lesson") renderPreview(config.plan);
   if (config.plan.mode === "pure" || config.plan.mode === "lesson") {
     const entry = config.plan.files.find(

@@ -1,0 +1,9 @@
+{
+  "lessonId": "js-37",
+  "courseContentVersion": 1,
+  "fileHashes": {
+    "index.html": "495b748626fb4ad0aadcdd2681e5f552108419e1cca31581ead4ce685ca4dd24",
+    "src/app.js": "510e1ab29df9850d6043b800aa1f3799d5e44dbcfff7b0460dbb6e5e3d8d3759",
+    "styles.css": "2a2097385f0b32af9a13a7d9e00c2180ea4258061deea60a9bbb8f5b602db5c4"
+  }
+}

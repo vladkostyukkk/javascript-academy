@@ -1,0 +1,11 @@
+{
+  "lessonId": "js-42",
+  "courseContentVersion": 1,
+  "fileHashes": {
+    "index.html": "283ac34aded50d7b6dc49d2eeab544c8f17ffd41d99fa581f7d58a18af1113d6",
+    "src/app.js": "6b7aee68c4703876608f548b15ac8be053f1a6c08e3bb67fceb045a15e1fd5b2",
+    "src/domain/tasks.js": "5d00a13ff110058eef4b1621c9cf590c19de19d3e46e4d4d3ae38536a76d778b",
+    "styles.css": "2a2097385f0b32af9a13a7d9e00c2180ea4258061deea60a9bbb8f5b602db5c4",
+    "src/domain/index.js": "bd1c18cb2451e08206f962a8825d9d1424838a9079437934ae1e450b8b7b231d"
+  }
+}

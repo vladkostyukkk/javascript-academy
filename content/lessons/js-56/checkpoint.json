@@ -1,0 +1,17 @@
+{
+  "lessonId": "js-56",
+  "courseContentVersion": 1,
+  "fileHashes": {
+    "index.html": "283ac34aded50d7b6dc49d2eeab544c8f17ffd41d99fa581f7d58a18af1113d6",
+    "src/app.js": "f3438adbac5d587b19b40de35d064fa7bdd454a04dbfeb334846c3b6d052bd1d",
+    "src/domain/tasks.js": "bf018d427ce93e6cf173d16c04bdeba469f97ec2eb71b1d4026736dd623b2c4c",
+    "styles.css": "2a2097385f0b32af9a13a7d9e00c2180ea4258061deea60a9bbb8f5b602db5c4",
+    "src/domain/index.js": "bd1c18cb2451e08206f962a8825d9d1424838a9079437934ae1e450b8b7b231d",
+    "src/state/store.js": "aaf00994c0ba40c1a9827876c74c68701669b97f92a8f269e4d3c7359624a284",
+    "src/storage.js": "682e2989adc31becd0e683532d30ee3df75464833864819c411d53dbe2ad43e9",
+    "src/services/tasks-api.js": "90296e8ee1adde35ab5f9b767545f1c32649b51fc908b43be088cd4a871ee6db",
+    "mock/tasks.json": "77c65202c9f12b5fd886ebaf49ded8f1ca0e9f850bd0b9797c2a273d6c31d67c",
+    "src/ui/async-state.js": "b09c78182c5f61cea3086aa85a06eace864cca32eac87876c915168e0b185158",
+    "src/ui/board.js": "d07b8d34130943fbf22a244004bf038c977cba5f30a2d2e5d7add506f3ced9ac"
+  }
+}

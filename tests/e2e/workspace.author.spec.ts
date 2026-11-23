@@ -69,7 +69,9 @@ test("editing during a pending check cancels its result; shortcuts execute curre
   release();
   await handled;
   await page.unroute("**/runner/runtime.js");
-  await expect(page.getByRole("status")).toContainText("Код змінено");
+  await expect(
+    page.getByRole("status").filter({ hasText: "Код змінено" }),
+  ).toBeVisible();
   await expect(page.locator("[data-check-id]:visible")).toHaveCount(0);
   await page.keyboard.press("ControlOrMeta+Shift+Enter");
   await expect(
@@ -77,7 +79,9 @@ test("editing during a pending check cancels its result; shortcuts execute curre
   ).toHaveCount(2);
   await page.getByRole("textbox", { name: /Код src\/app.js/ }).focus();
   await page.keyboard.press("ControlOrMeta+Enter");
-  await expect(page.getByRole("status")).toContainText("Код виконано");
+  await expect(
+    page.getByRole("status").filter({ hasText: "Код виконано" }),
+  ).toBeVisible();
   await expect(page.locator("[data-check-id]:visible")).toHaveCount(0);
 });
 test("dirty navigation can be cancelled and next lesson remains locked", async ({
@@ -100,6 +104,6 @@ test("dirty navigation can be cancelled and next lesson remains locked", async (
     .click();
   await page.locator('[data-lesson-id="js-02"] a').click();
   await expect(
-    page.getByRole("heading", { name: "Цей урок ще заблоковано" }),
-  ).toBeVisible();
+    page.getByRole("region", { name: "Доступ до уроку" }),
+  ).toContainText("Спочатку заверши попередній урок");
 });

@@ -1,0 +1,29 @@
+{
+  "id": "js-57",
+  "number": 57,
+  "title": "File, Blob та JSON",
+  "module": 6,
+  "prerequisites": [
+    "js-56"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Повторно використай restoreTasks.",
+    "Спочатку перевір file.size, потім дочекайся file.text().",
+    "Звільни попередній blob URL перед створенням наступного."
+  ],
+  "editablePaths": [
+    "src/services/transfer.js",
+    "src/app.js",
+    "src/ui/board.js",
+    "src/services/tasks-api.js",
+    "src/ui/async-state.js",
+    "mock/tasks.json",
+    "src/state/store.js",
+    "index.html",
+    "src/storage.js",
+    "src/domain/tasks.js",
+    "src/domain/index.js"
+  ],
+  "courseContentVersion": 1
+}

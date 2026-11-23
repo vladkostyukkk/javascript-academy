@@ -1,0 +1,53 @@
+[
+  {
+    "id": "question-1",
+    "prompt": "Як порівняти два ISO-календарні дні?",
+    "options": [
+      {
+        "id": "other",
+        "label": "За довжиною рядків",
+        "explanation": "У днів однакова кількість символів."
+      },
+      {
+        "id": "correct",
+        "label": "За порядком рядків",
+        "explanation": "Поля починаються з року і мають фіксовану довжину."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-2",
+    "prompt": "Чи прострочена задача з дедлайном сьогодні?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "Дедлайн ще не минув",
+        "explanation": "Строге порівняння менше відхиляє рівність."
+      },
+      {
+        "id": "other",
+        "label": "Дедлайн уже минув",
+        "explanation": "Для цього дата мала б бути раніше."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-3",
+    "prompt": "Що означає порожня дата?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Дедлайн завжди минув",
+        "explanation": "Порожній рядок не є датою."
+      },
+      {
+        "id": "correct",
+        "label": "Дедлайн відсутній",
+        "explanation": "Його не потрібно перевіряти."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

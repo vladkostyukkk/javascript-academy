@@ -8,10 +8,11 @@ export function createSandboxDocument(
   runtime: string,
   plan: PreparedRun,
   identity: RunIdentity,
+  previewStorage?: string | null,
 ): string {
   if (!/^[a-f0-9]{32}$/.test(identity.nonce))
     throw new Error("Invalid runner nonce");
-  const config = JSON.stringify({ ...identity, plan })
+  const config = JSON.stringify({ ...identity, plan, previewStorage })
     .replaceAll("<", "\\u003c")
     .replaceAll("\u2028", "\\u2028")
     .replaceAll("\u2029", "\\u2029");

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "board-ready",
+    "kind": "moduleCallEquals",
+    "path": "src/app.js",
+    "binding": "waitForBoard",
+    "args": [],
+    "expected": "Задачі завантажено",
+    "feedback": "Дочекайся початкового завантаження і онови повідомлення."
+  },
+  {
+    "id": "initial-card",
+    "kind": "domTextEquals",
+    "selector": "#doing article h2",
+    "expected": "Вивчити JavaScript",
+    "feedback": "Після завершення Promise відобрази початкові задачі."
+  },
+  {
+    "id": "verify-release",
+    "kind": "moduleCallEquals",
+    "path": "src/tests/release.js",
+    "binding": "verifyRelease",
+    "args": [],
+    "expected": "FocusBoard готовий",
+    "feedback": "Підтвердь бізнес-перевірки й доступність стартового JSON."
+  },
+  {
+    "id": "release-file-list",
+    "kind": "moduleCallEquals",
+    "path": "src/tests/release.js",
+    "binding": "getReleaseFiles",
+    "args": [],
+    "expected": "index.html, styles.css, src/, mock/tasks.json",
+    "feedback": "Переліч HTML, CSS, усі модулі й локальний JSON."
+  }
+]

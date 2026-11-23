@@ -70,15 +70,15 @@ test("roadmap search, empty state and locked lesson survive reload", async ({
     "Знайдено уроків: 1 із 60",
   );
   await page.locator("[data-lesson-id='js-51'] a").click();
-  await expect(
-    page.getByRole("heading", { name: "Цей урок ще заблоковано" }),
-  ).toBeVisible();
+  const access = page.getByRole("region", { name: "Доступ до уроку" });
+  await expect(access).toContainText("Спочатку заверши попередній урок");
   await expect(page.getByRole("tab")).toHaveCount(0);
   await page.reload();
-  await expect(
-    page.getByRole("heading", { name: "Цей урок ще заблоковано" }),
-  ).toBeVisible();
-  await page.getByRole("link", { name: "Повернутися до програми" }).click();
+  await expect(access).toContainText("Спочатку заверши попередній урок");
+  await page
+    .getByRole("main")
+    .getByRole("link", { name: "До програми курсу" })
+    .click();
   await search.fill("<script>несуществующаятема</script>");
   await expect(page.locator(".module-jump")).toHaveCount(0);
   await expect(

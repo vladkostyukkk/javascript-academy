@@ -1,0 +1,53 @@
+[
+  {
+    "id": "question-1",
+    "prompt": "Який атрибут робить картку доступною для перетягування?",
+    "options": [
+      {
+        "id": "other",
+        "label": "hidden",
+        "explanation": "Він приховує елемент."
+      },
+      {
+        "id": "correct",
+        "label": "draggable",
+        "explanation": "Браузер ініціює drag для позначеної картки."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-2",
+    "prompt": "Що передавати через dataTransfer?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "ID задачі",
+        "explanation": "За ID можна знайти актуальні дані."
+      },
+      {
+        "id": "other",
+        "label": "HTML картки",
+        "explanation": "Розмітку будує рендеринг."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-3",
+    "prompt": "Навіщо залишити кнопки?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Щоб подвоїти зміни статусу",
+        "explanation": "Обидва способи викликають одну дію."
+      },
+      {
+        "id": "correct",
+        "label": "Щоб дію можна було виконати клавіатурою",
+        "explanation": "Кнопка є доступним шляхом."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

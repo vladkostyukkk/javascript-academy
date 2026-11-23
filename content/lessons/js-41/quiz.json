@@ -1,0 +1,53 @@
+[
+  {
+    "id": "module-scope",
+    "prompt": "Як зробити функцію з модуля доступною для імпорту?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Оголосити її будь-де в модулі",
+        "explanation": "Власна область видимості модуля не відкриває функцію автоматично."
+      },
+      {
+        "id": "correct",
+        "label": "Експортувати її",
+        "explanation": "Іменований експорт надає ім’я іншим модулям."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "module-path",
+    "prompt": "Який шлях веде від src/app.js до src/domain/tasks.js?",
+    "options": [
+      {
+        "id": "other",
+        "label": "./src/domain/tasks.js",
+        "explanation": "Поточний файл уже лежить у src."
+      },
+      {
+        "id": "correct",
+        "label": "./domain/tasks.js",
+        "explanation": "Шлях розв’язується від каталогу файла з імпортом."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "module-ui",
+    "prompt": "Що може лишитися у модулі для даних?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Обробник кліку по картці",
+        "explanation": "Він залежить від елементів сторінки та подій."
+      },
+      {
+        "id": "correct",
+        "label": "Валідація назви за переданим рядком",
+        "explanation": "Перевірці достатньо аргумента, і DOM їй не потрібен."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

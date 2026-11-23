@@ -1,0 +1,19 @@
+{
+  "id": "js-40",
+  "number": 40,
+  "title": "Kanban-подання",
+  "module": 4,
+  "prerequisites": [
+    "js-39"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Побудувати три колонки з постійними назвами.",
+    "Розкласти видимі задачі за статусами.",
+    "Переміщувати картку після зміни статусу, зберігаючи фільтр і пошук."
+  ],
+  "editablePaths": [
+    "src/app.js"
+  ],
+  "courseContentVersion": 1
+}

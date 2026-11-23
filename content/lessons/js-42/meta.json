@@ -1,0 +1,22 @@
+{
+  "id": "js-42",
+  "number": 42,
+  "title": "import / export",
+  "module": 5,
+  "prerequisites": [
+    "js-41"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Створи явні реекспорти з ./tasks.js у модулі index.js.",
+    "Задай нове ім’я форматування через as.",
+    "Імпортуй публічні імена в app.js і використовуй їх у наявних викликах."
+  ],
+  "editablePaths": [
+    "src/app.js",
+    "src/domain/index.js",
+    "src/domain/tasks.js",
+    "index.html"
+  ],
+  "courseContentVersion": 1
+}

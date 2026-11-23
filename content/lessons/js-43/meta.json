@@ -1,0 +1,23 @@
+{
+  "id": "js-43",
+  "number": 43,
+  "title": "Єдиний стан застосунку",
+  "module": 5,
+  "prerequisites": [
+    "js-42"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Зберігай стан у замиканні createStore.",
+    "Після setState перебери зареєстрованих слухачів.",
+    "Оновлюй фільтр або запит через новий об’єкт стану."
+  ],
+  "editablePaths": [
+    "src/state/store.js",
+    "src/app.js",
+    "index.html",
+    "src/domain/index.js",
+    "src/domain/tasks.js"
+  ],
+  "courseContentVersion": 1
+}

@@ -1,0 +1,71 @@
+[
+  {
+    "id": "heading-text",
+    "kind": "domTextEquals",
+    "selector": "main h1",
+    "expected": "FocusBoard — дошка задач",
+    "feedback": "Зміни текст заголовка h1 усередині main на «FocusBoard — дошка задач». Зверни увагу на пробіли й тире."
+  },
+  {
+    "id": "description-preserved",
+    "kind": "domTextEquals",
+    "selector": "main p",
+    "expected": "Місце для важливих задач. Починаємо з першої команди.",
+    "feedback": "Залиш текст абзацу під заголовком без змін."
+  },
+  {
+    "id": "todo-placement",
+    "kind": "domTextEquals",
+    "selector": "#todo article h2",
+    "expected": "Зробити перерву",
+    "feedback": "Поклади заплановану задачу в Todo."
+  },
+  {
+    "id": "doing-placement",
+    "kind": "domTextEquals",
+    "selector": "#doing article h2",
+    "expected": "Вивчити JavaScript",
+    "feedback": "Поклади задачу в роботі в Doing."
+  },
+  {
+    "id": "done-placement",
+    "kind": "domTextEquals",
+    "selector": "#done article h2",
+    "expected": "Перевірити план",
+    "feedback": "Поклади завершену задачу в Done."
+  },
+  {
+    "id": "move-to-done",
+    "kind": "domTextEquals",
+    "selector": "#done [data-task-id=\"1\"] h2",
+    "expected": "Вивчити JavaScript",
+    "feedback": "Після завершення перемісти картку з Doing у Done.",
+    "steps": [
+      {
+        "kind": "click",
+        "selector": "#doing [data-task-id=\"1\"] [data-action=\"complete\"]"
+      }
+    ]
+  },
+  {
+    "id": "search-keeps-board",
+    "kind": "domTextEquals",
+    "selector": "#tasks .kanban-column:nth-child(3) > h2",
+    "expected": "Done",
+    "feedback": "Навіть якщо пошук нічого не знайшов, збережи всі три колонки.",
+    "steps": [
+      {
+        "kind": "input",
+        "selector": "#task-search",
+        "value": "невідома задача"
+      }
+    ]
+  },
+  {
+    "id": "empty-board-cards",
+    "kind": "domTextEquals",
+    "selector": "#tasks",
+    "expected": "TodoDoingDone",
+    "feedback": "Після пошуку без збігів залиш тільки три порожні колонки з їхніми заголовками."
+  }
+]

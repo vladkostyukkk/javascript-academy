@@ -1,0 +1,39 @@
+[
+  {
+    "id": "empty-entry",
+    "category": "empty",
+    "path": "src/app.js",
+    "source": "",
+    "failedCheckIds": [
+      "board-ready",
+      "initial-card"
+    ]
+  },
+  {
+    "id": "missing-mock-listing",
+    "category": "invalid",
+    "path": "src/tests/release.js",
+    "source": "import { runSmokeChecks } from \"./smoke.js\";\nimport { fetchTasks } from \"../services/tasks-api.js\";\n\nexport async function verifyRelease() {\n  if (!runSmokeChecks()) return \"Є невдалі перевірки\";\n  try {\n    const tasks = await fetchTasks();\n    return tasks.length > 0 ? \"FocusBoard готовий\" : \"Перевір стартові дані\";\n  } catch {\n    return \"Стартові дані недоступні\";\n  }\n}\n\nexport function getReleaseFiles() {\n  return \"index.html, styles.css, src/\";\n}\n",
+    "failedCheckIds": [
+      "release-file-list"
+    ]
+  },
+  {
+    "id": "rejects-nonempty",
+    "category": "edge",
+    "path": "src/tests/release.js",
+    "source": "import { runSmokeChecks } from \"./smoke.js\";\nimport { fetchTasks } from \"../services/tasks-api.js\";\n\nexport async function verifyRelease() {\n  if (!runSmokeChecks()) return \"Є невдалі перевірки\";\n  try {\n    const tasks = await fetchTasks();\n    return tasks.length === 0 ? \"FocusBoard готовий\" : \"Перевір стартові дані\";\n  } catch {\n    return \"Стартові дані недоступні\";\n  }\n}\n\nexport function getReleaseFiles() {\n  return \"index.html, styles.css, src/, mock/tasks.json\";\n}\n",
+    "failedCheckIds": [
+      "verify-release"
+    ]
+  },
+  {
+    "id": "skips-valid-smoke",
+    "category": "edge",
+    "path": "src/tests/release.js",
+    "source": "import { runSmokeChecks } from \"./smoke.js\";\nimport { fetchTasks } from \"../services/tasks-api.js\";\n\nexport async function verifyRelease() {\n  if (runSmokeChecks()) return \"Є невдалі перевірки\";\n  try {\n    const tasks = await fetchTasks();\n    return tasks.length > 0 ? \"FocusBoard готовий\" : \"Перевір стартові дані\";\n  } catch {\n    return \"Стартові дані недоступні\";\n  }\n}\n\nexport function getReleaseFiles() {\n  return \"index.html, styles.css, src/, mock/tasks.json\";\n}\n",
+    "failedCheckIds": [
+      "verify-release"
+    ]
+  }
+]

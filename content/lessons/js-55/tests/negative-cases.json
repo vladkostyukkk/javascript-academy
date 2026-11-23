@@ -1,0 +1,40 @@
+[
+  {
+    "id": "empty-entry",
+    "category": "empty",
+    "path": "src/app.js",
+    "source": "",
+    "failedCheckIds": [
+      "board-ready",
+      "initial-card"
+    ]
+  },
+  {
+    "id": "keeps-aborted-timer",
+    "category": "invalid",
+    "path": "src/services/tasks-api.js",
+    "source": "export function waitForTasks(milliseconds = 80) {\n  const duration = Math.max(0, milliseconds);\n  return new Promise((resolve) => {\n    setTimeout(() => resolve(duration), duration);\n  });\n}\n\nexport async function loadInitialTasks(tasks, milliseconds = 80) {\n  await waitForTasks(milliseconds);\n  return Array.isArray(tasks) ? [...tasks] : [];\n}\n\nexport async function countLoadedTasks(tasks) {\n  return (await loadInitialTasks(tasks, 0)).length;\n}\n\nexport async function fetchTasks(signal) {\n  const response = await fetch(\"/mock/tasks.json\", { signal });\n  if (!response.ok) throw new Error(\"Не вдалося завантажити задачі.\");\n  const tasks = await response.json();\n  if (!Array.isArray(tasks)) throw new Error(\"API має повертати масив задач.\");\n  return tasks;\n}\n\nexport async function countRemoteTasks() {\n  return (await fetchTasks()).length;\n}\n\nexport function normalizeQuery(value) {\n  return value.trim().toLowerCase();\n}\n\nexport function waitForSearch(query, milliseconds = 150, signal) {\n  return new Promise((resolve, reject) => {\n    if (signal?.aborted) {\n      reject(new DOMException(\"Пошук скасовано\", \"AbortError\"));\n      return;\n    }\n    const abort = () => {\n      clearTimeout(timer);\n      reject(new DOMException(\"Пошук скасовано\", \"AbortError\"));\n    };\n    const timer = setTimeout(() => {\n      signal?.removeEventListener(\"abort\", abort);\n      resolve(normalizeQuery(query));\n    }, milliseconds);\n\n  });\n}\n\nexport async function getCanceledSearchResult() {\n  const controller = new AbortController();\n  const pending = waitForSearch(\"старий запит\", 10, controller.signal);\n  controller.abort();\n  try {\n    await pending;\n    return \"завершено\";\n  } catch (error) {\n    return error.name;\n  }\n}\n",
+    "failedCheckIds": [
+      "old-query-canceled"
+    ]
+  },
+  {
+    "id": "case-sensitive-query",
+    "category": "edge",
+    "path": "src/services/tasks-api.js",
+    "source": "export function waitForTasks(milliseconds = 80) {\n  const duration = Math.max(0, milliseconds);\n  return new Promise((resolve) => {\n    setTimeout(() => resolve(duration), duration);\n  });\n}\n\nexport async function loadInitialTasks(tasks, milliseconds = 80) {\n  await waitForTasks(milliseconds);\n  return Array.isArray(tasks) ? [...tasks] : [];\n}\n\nexport async function countLoadedTasks(tasks) {\n  return (await loadInitialTasks(tasks, 0)).length;\n}\n\nexport async function fetchTasks(signal) {\n  const response = await fetch(\"/mock/tasks.json\", { signal });\n  if (!response.ok) throw new Error(\"Не вдалося завантажити задачі.\");\n  const tasks = await response.json();\n  if (!Array.isArray(tasks)) throw new Error(\"API має повертати масив задач.\");\n  return tasks;\n}\n\nexport async function countRemoteTasks() {\n  return (await fetchTasks()).length;\n}\n\nexport function normalizeQuery(value) {\n  return value.trim();\n}\n\nexport function waitForSearch(query, milliseconds = 150, signal) {\n  return new Promise((resolve, reject) => {\n    if (signal?.aborted) {\n      reject(new DOMException(\"Пошук скасовано\", \"AbortError\"));\n      return;\n    }\n    const abort = () => {\n      clearTimeout(timer);\n      reject(new DOMException(\"Пошук скасовано\", \"AbortError\"));\n    };\n    const timer = setTimeout(() => {\n      signal?.removeEventListener(\"abort\", abort);\n      resolve(normalizeQuery(query));\n    }, milliseconds);\n    signal?.addEventListener(\"abort\", abort, { once: true });\n  });\n}\n\nexport async function getCanceledSearchResult() {\n  const controller = new AbortController();\n  const pending = waitForSearch(\"старий запит\", 10, controller.signal);\n  controller.abort();\n  try {\n    await pending;\n    return \"завершено\";\n  } catch (error) {\n    return error.name;\n  }\n}\n",
+    "failedCheckIds": [
+      "query-normalized"
+    ]
+  },
+  {
+    "id": "keeps-whitespace",
+    "category": "edge",
+    "path": "src/services/tasks-api.js",
+    "source": "export function waitForTasks(milliseconds = 80) {\n  const duration = Math.max(0, milliseconds);\n  return new Promise((resolve) => {\n    setTimeout(() => resolve(duration), duration);\n  });\n}\n\nexport async function loadInitialTasks(tasks, milliseconds = 80) {\n  await waitForTasks(milliseconds);\n  return Array.isArray(tasks) ? [...tasks] : [];\n}\n\nexport async function countLoadedTasks(tasks) {\n  return (await loadInitialTasks(tasks, 0)).length;\n}\n\nexport async function fetchTasks(signal) {\n  const response = await fetch(\"/mock/tasks.json\", { signal });\n  if (!response.ok) throw new Error(\"Не вдалося завантажити задачі.\");\n  const tasks = await response.json();\n  if (!Array.isArray(tasks)) throw new Error(\"API має повертати масив задач.\");\n  return tasks;\n}\n\nexport async function countRemoteTasks() {\n  return (await fetchTasks()).length;\n}\n\nexport function normalizeQuery(value) {\n  return value.toLowerCase();\n}\n\nexport function waitForSearch(query, milliseconds = 150, signal) {\n  return new Promise((resolve, reject) => {\n    if (signal?.aborted) {\n      reject(new DOMException(\"Пошук скасовано\", \"AbortError\"));\n      return;\n    }\n    const abort = () => {\n      clearTimeout(timer);\n      reject(new DOMException(\"Пошук скасовано\", \"AbortError\"));\n    };\n    const timer = setTimeout(() => {\n      signal?.removeEventListener(\"abort\", abort);\n      resolve(normalizeQuery(query));\n    }, milliseconds);\n    signal?.addEventListener(\"abort\", abort, { once: true });\n  });\n}\n\nexport async function getCanceledSearchResult() {\n  const controller = new AbortController();\n  const pending = waitForSearch(\"старий запит\", 10, controller.signal);\n  controller.abort();\n  try {\n    await pending;\n    return \"завершено\";\n  } catch (error) {\n    return error.name;\n  }\n}\n",
+    "failedCheckIds": [
+      "query-normalized",
+      "empty-query"
+    ]
+  }
+]

@@ -1,6 +1,14 @@
 import { parse } from "es-module-lexer/js";
 import { runInputSchema, type PreparedRun } from "./protocol";
 
+export class SourceParseError extends Error {
+  constructor(path: string, cause: unknown) {
+    super(`Синтаксична помилка у файлі ${path}. Перевір лапки та дужки.`, {
+      cause,
+    });
+  }
+}
+
 export function resolveModule(
   specifier: string,
   importer: string,
@@ -32,11 +40,16 @@ export async function prepareRun(input: unknown): Promise<PreparedRun> {
   const files = await Promise.all(
     plan.files.map(async (file) => {
       if (!file.path.endsWith(".js")) return file;
-      const [imports] = await parse(file.content);
+      let imports;
+      try {
+        [imports] = await parse(file.content);
+      } catch (error) {
+        throw new SourceParseError(file.path, error);
+      }
       let source = file.content;
       for (const item of [...imports].reverse()) {
         if (
-          plan.mode !== "module" ||
+          (plan.mode !== "module" && plan.mode !== "lesson-module") ||
           (item.type !== "static" && item.type !== "reexport-star") ||
           item.attributesStart !== -1 ||
           item.phase !== null ||

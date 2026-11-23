@@ -1,0 +1,53 @@
+[
+  {
+    "id": "question-1",
+    "prompt": "Що робить as у реекспорті?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Копіює тіло функції",
+        "explanation": "Реекспорт передає наявний експорт."
+      },
+      {
+        "id": "correct",
+        "label": "Створює ім’я для імпортера",
+        "explanation": "Реалізація лишається у вихідному модулі."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-2",
+    "prompt": "Від якого файла рахується шлях ./tasks.js у реекспорті?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "Від index.js",
+        "explanation": "Шлях належить рядку export у цьому файлі."
+      },
+      {
+        "id": "other",
+        "label": "Від app.js",
+        "explanation": "app.js розв’язує свій власний імпорт."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-3",
+    "prompt": "Яке ім’я бачить імпортер після formatMinutes as formatTaskDuration?",
+    "options": [
+      {
+        "id": "other",
+        "label": "formatMinutes",
+        "explanation": "Початкове ім’я лишається у вихідному модулі."
+      },
+      {
+        "id": "correct",
+        "label": "formatTaskDuration",
+        "explanation": "Ім’я після as доступне зовні."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

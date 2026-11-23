@@ -1,0 +1,55 @@
+[
+  {
+    "id": "board-ready",
+    "kind": "moduleCallEquals",
+    "path": "src/app.js",
+    "binding": "waitForBoard",
+    "args": [],
+    "expected": "Задачі завантажено",
+    "feedback": "Дочекайся початкового завантаження і онови повідомлення."
+  },
+  {
+    "id": "zero-stats",
+    "kind": "moduleCallEquals",
+    "path": "src/ui/stats.js",
+    "binding": "completionPercent",
+    "args": [
+      0,
+      0
+    ],
+    "expected": 0,
+    "feedback": "Для порожнього списку показуй 0%."
+  },
+  {
+    "id": "full-stats",
+    "kind": "moduleCallEquals",
+    "path": "src/ui/stats.js",
+    "binding": "completionPercent",
+    "args": [
+      3,
+      3
+    ],
+    "expected": 100,
+    "feedback": "Для повністю виконаного списку показуй 100%."
+  },
+  {
+    "id": "initial-stats",
+    "kind": "domTextEquals",
+    "selector": "#task-stats p",
+    "expected": "Виконано: 1 із 3 (33%)",
+    "feedback": "Покажи частку завершених задач усієї дошки."
+  },
+  {
+    "id": "updates-stats",
+    "kind": "domTextEquals",
+    "selector": "#task-stats p",
+    "expected": "Виконано: 2 із 3 (67%)",
+    "feedback": "Перерахуй статистику після завершення задачі.",
+    "steps": [
+      {
+        "kind": "click",
+        "selector": "#doing [data-task-id=\"1\"] [data-action=\"complete\"]"
+      }
+    ]
+  }
+]

@@ -1,0 +1,53 @@
+[
+  {
+    "id": "question-1",
+    "prompt": "Коли замінювати задачі?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Одразу після вибору файла",
+        "explanation": "Розмір і дані ще невідомі."
+      },
+      {
+        "id": "correct",
+        "label": "Після повної перевірки файла",
+        "explanation": "Помилка не повинна стирати поточні дані."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-2",
+    "prompt": "Як прочитати File як рядок?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "Через await file.text()",
+        "explanation": "Метод повертає Promise."
+      },
+      {
+        "id": "other",
+        "label": "Через file.name",
+        "explanation": "Ім’я не містить даних."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-3",
+    "prompt": "Коли звільнити тимчасовий URL?",
+    "options": [
+      {
+        "id": "other",
+        "label": "До створення посилання",
+        "explanation": "Посилання стало б недійсним."
+      },
+      {
+        "id": "correct",
+        "label": "Після використання або під час заміни",
+        "explanation": "Так об’єкт не залишається зайнятим."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

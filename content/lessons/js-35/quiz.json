@@ -1,0 +1,53 @@
+[
+  {
+    "id": "question-1",
+    "prompt": "Куди спливає клік із кнопки картки?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "До контейнера задач",
+        "explanation": "Обробник на контейнері отримує клік із дочірнього елемента."
+      },
+      {
+        "id": "other",
+        "label": "Лише до самої кнопки",
+        "explanation": "Клік зазвичай спливає через предків."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-2",
+    "prompt": "Навіщо викликати closest?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Щоб прочитати номер задачі як число",
+        "explanation": "Тип ID змінює Number."
+      },
+      {
+        "id": "correct",
+        "label": "Щоб знайти кнопку для вкладеного елемента",
+        "explanation": "Клік може початися на span всередині кнопки."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-3",
+    "prompt": "Який тип у dataset.taskId?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "Рядок",
+        "explanation": "DOM зберігає data-атрибути як текст."
+      },
+      {
+        "id": "other",
+        "label": "Число",
+        "explanation": "Навіть цифровий атрибут повертається як рядок."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

@@ -1,0 +1,5 @@
+[
+  "Додай p після поля через taskTitleInput.after(taskTitleError).",
+  "Використай taskTitleError.textContent = порожній рядок для null перед раннім return.",
+  "У новій задачі передай title, отриманий після trim(), замість сирого value."
+]

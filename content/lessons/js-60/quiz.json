@@ -1,0 +1,53 @@
+[
+  {
+    "id": "question-1",
+    "prompt": "Які файли мають бути в архіві?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Лише app.js",
+        "explanation": "Імпортовані модулі й дані не будуть доступні."
+      },
+      {
+        "id": "correct",
+        "label": "HTML, CSS, модулі та mock JSON",
+        "explanation": "Збірка потребує всього дерева залежностей."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-2",
+    "prompt": "Чому потрібен статичний сервер?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "Він віддає модулі й JSON через HTTP",
+        "explanation": "Так працюють відносні імпорти та fetch."
+      },
+      {
+        "id": "other",
+        "label": "Щоб виконувати учнівський код на сервері",
+        "explanation": "Код виконується в браузері."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-3",
+    "prompt": "Що підтверджує незалежний запуск?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Лише те, що ZIP відкрився",
+        "explanation": "Архів може відкриватися і без потрібних залежностей."
+      },
+      {
+        "id": "correct",
+        "label": "Що архів містить необхідні файли",
+        "explanation": "Окрема копія не використовує файли платформи."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

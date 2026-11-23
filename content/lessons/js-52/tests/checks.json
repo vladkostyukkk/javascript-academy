@@ -1,0 +1,40 @@
+[
+  {
+    "id": "board-ready",
+    "kind": "moduleCallEquals",
+    "path": "src/app.js",
+    "binding": "waitForBoard",
+    "args": [],
+    "expected": "Задачі завантажено",
+    "feedback": "Дочекайся початкового завантаження і онови повідомлення."
+  },
+  {
+    "id": "async-count",
+    "kind": "moduleCallEquals",
+    "path": "src/services/tasks-api.js",
+    "binding": "countLoadedTasks",
+    "args": [
+      "not-a-list"
+    ],
+    "expected": 0,
+    "feedback": "Асинхронне завантаження некоректного списку має давати порожній список."
+  },
+  {
+    "id": "zero-delay",
+    "kind": "moduleCallEquals",
+    "path": "src/services/tasks-api.js",
+    "binding": "waitForTasks",
+    "args": [
+      0
+    ],
+    "expected": 0,
+    "feedback": "Нульова затримка має залишатися нульовою."
+  },
+  {
+    "id": "initial-card",
+    "kind": "domTextEquals",
+    "selector": "#doing article h2",
+    "expected": "Вивчити JavaScript",
+    "feedback": "Після завершення Promise відобрази початкові задачі."
+  }
+]

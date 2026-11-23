@@ -1,0 +1,52 @@
+[
+  {
+    "id": "heading-text",
+    "kind": "domTextEquals",
+    "selector": "main h1",
+    "expected": "FocusBoard — дошка задач",
+    "feedback": "Зміни текст заголовка h1 усередині main на «FocusBoard — дошка задач». Зверни увагу на пробіли й тире."
+  },
+  {
+    "id": "description-preserved",
+    "kind": "domTextEquals",
+    "selector": "main p",
+    "expected": "Місце для важливих задач. Починаємо з першої команди.",
+    "feedback": "Залиш текст абзацу під заголовком без змін."
+  },
+  {
+    "id": "first-submit",
+    "kind": "domTextEquals",
+    "selector": "#tasks > article:nth-child(4) h2",
+    "expected": "Записати <ідею>",
+    "feedback": "Оброби submit, скасуй навігацію і додай задачу в кінець списку.",
+    "steps": [
+      {
+        "kind": "input",
+        "selector": "#task-title",
+        "value": "Записати <ідею>"
+      },
+      {
+        "kind": "submit",
+        "selector": "#task-form"
+      }
+    ]
+  },
+  {
+    "id": "second-submit",
+    "kind": "domTextEquals",
+    "selector": "#tasks > article:nth-child(5):last-child h2",
+    "expected": "Перевірити форму",
+    "feedback": "Кожне надсилання має додавати рівно одну нову картку.",
+    "steps": [
+      {
+        "kind": "input",
+        "selector": "#task-title",
+        "value": "Перевірити форму"
+      },
+      {
+        "kind": "submit",
+        "selector": "#task-form"
+      }
+    ]
+  }
+]

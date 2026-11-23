@@ -87,6 +87,13 @@ export function validateLessonBundle(
     );
   for (const scenario of negativeCases) {
     if (
+      scenario.path !== undefined &&
+      !meta.editablePaths.includes(scenario.path)
+    )
+      throw new Error(
+        `${summary.id}: негативний сценарій має редагувати доступний файл.`,
+      );
+    if (
       scenario.failedCheckIds.some(
         (id) => !checks.some((check) => check.id === id),
       )

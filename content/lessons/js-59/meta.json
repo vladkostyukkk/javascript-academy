@@ -1,0 +1,31 @@
+{
+  "id": "js-59",
+  "number": 59,
+  "title": "Автоматичні тести й доступність",
+  "module": 6,
+  "prerequisites": [
+    "js-58"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Тестуй виклики реальних функцій на малих прикладах.",
+    "Після рендерингу знайди картку з тим самим ID і кнопку тієї самої дії.",
+    "Зроби заголовок програмно фокусованим через tabIndex = -1."
+  ],
+  "editablePaths": [
+    "src/tests/smoke.js",
+    "src/app.js",
+    "src/ui/stats.js",
+    "src/services/transfer.js",
+    "src/ui/board.js",
+    "src/services/tasks-api.js",
+    "src/ui/async-state.js",
+    "mock/tasks.json",
+    "src/state/store.js",
+    "index.html",
+    "src/storage.js",
+    "src/domain/tasks.js",
+    "src/domain/index.js"
+  ],
+  "courseContentVersion": 1
+}

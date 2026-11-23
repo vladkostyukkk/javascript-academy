@@ -1,0 +1,5 @@
+[
+  "Створи form, label, input і button через document.createElement. Встав форму перед секцією задач методом before.",
+  "У callback для submit виклич event.preventDefault(), а тоді прочитай taskTitleInput.value.",
+  "Додай один об’єкт через tasks.push, очисти поле та відобрази оновлений масив."
+]

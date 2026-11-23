@@ -20,7 +20,9 @@ test("starter fails; edited code runs and passes; changes revoke results", async
   ).toHaveCount(2);
   await writeCode(page, 'const appName = "FocusBoard";\nconsole.log(appName);');
   await page.getByRole("button", { name: "Запустити", exact: true }).click();
-  await expect(page.getByRole("status")).toContainText("Код виконано");
+  await expect(
+    page.getByRole("status").filter({ hasText: "Код виконано" }),
+  ).toBeVisible();
   await expect(
     page.getByRole("region", { name: "Консоль виконання" }),
   ).toContainText("FocusBoard");
@@ -34,9 +36,9 @@ test("starter fails; edited code runs and passes; changes revoke results", async
   await expect(
     page.locator('[data-check-id][data-passed="true"]:visible'),
   ).toHaveCount(2);
-  await expect(page.getByRole("status")).toContainText(
-    "Результат ще не збережено",
-  );
+  await expect(
+    page.getByRole("status").filter({ hasText: "Усі перевірки пройдено" }),
+  ).toBeVisible();
   expect(external).toEqual([]);
   const audit = await new AxeBuilder({ page })
     .exclude("iframe")
@@ -51,7 +53,9 @@ test("starter fails; edited code runs and passes; changes revoke results", async
   });
   await writeCode(page, 'const appName = "wrong"; console.log(appName);');
   await expect(page.locator("[data-check-id]:visible")).toHaveCount(0);
-  await expect(page.getByRole("status")).toContainText("Код змінено");
+  await expect(
+    page.getByRole("status").filter({ hasText: "Код змінено" }),
+  ).toBeVisible();
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= innerWidth,
@@ -119,15 +123,17 @@ test("syntax errors, infinite loops and restart have real feedback", async ({
     page.getByRole("list", { name: "Підказки синтаксису" }),
   ).toBeVisible();
   await checkCode(page);
-  await expect(page.getByRole("status")).toContainText("Помилка JavaScript");
+  await expect(
+    page.getByRole("status").filter({ hasText: "Помилка JavaScript" }),
+  ).toBeVisible();
   await expect(
     page.getByRole("region", { name: "Консоль виконання" }),
-  ).toContainText(/Unexpected|Syntax|token/i);
+  ).toContainText(/Unexpected|Syntax|token|Синтаксична/i);
   await writeCode(page, "while (true) {}");
   await page.getByRole("button", { name: "Запустити", exact: true }).click();
-  await expect(page.getByRole("status")).toContainText(
-    "Час виконання вичерпано",
-  );
+  await expect(
+    page.getByRole("status").filter({ hasText: "Час виконання вичерпано" }),
+  ).toBeVisible();
   await expect(page.locator("iframe")).toHaveCount(0);
   await writeCode(page, 'const appName = "FocusBoard"; console.log(appName);');
   await checkCode(page);

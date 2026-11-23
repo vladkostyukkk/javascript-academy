@@ -1,0 +1,5 @@
+[
+  "Прибери окреме додавання картки tasks[0].",
+  "На початку renderTasks запиши порожній рядок у taskContainer.textContent.",
+  "У циклі for...of додай createTaskCard(task) у taskContainer і виклич renderTasks(tasks) після оголошення функції."
+]

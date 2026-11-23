@@ -1,6 +1,6 @@
 import { Circle, MoreHorizontal, Plus } from "lucide-react";
 
-// Static illustration of the future learner project. Not a workspace or saved user data.
+// A static illustration of the learner project.
 const demoColumns = [
   {
     title: "Зробити",
@@ -16,7 +16,7 @@ export function FocusBoardPreview() {
     <div
       className="board-preview"
       role="img"
-      aria-label="Ілюстрація майбутнього FocusBoard: задачі у колонках Зробити, У роботі та Готово"
+      aria-label="Приклад дошки FocusBoard із трьома колонками для задач"
     >
       <div aria-hidden="true">
         <div className="board-toolbar">

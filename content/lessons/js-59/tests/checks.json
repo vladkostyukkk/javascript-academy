@@ -1,0 +1,51 @@
+[
+  {
+    "id": "board-ready",
+    "kind": "moduleCallEquals",
+    "path": "src/app.js",
+    "binding": "waitForBoard",
+    "args": [],
+    "expected": "Задачі завантажено",
+    "feedback": "Дочекайся початкового завантаження і онови повідомлення."
+  },
+  {
+    "id": "checks-empty",
+    "kind": "moduleCallEquals",
+    "path": "src/tests/smoke.js",
+    "binding": "checksEmpty",
+    "args": [],
+    "expected": true,
+    "feedback": "Додай тест нульової статистики."
+  },
+  {
+    "id": "checks-broken-snapshot",
+    "kind": "moduleCallEquals",
+    "path": "src/tests/smoke.js",
+    "binding": "checksBrokenSnapshot",
+    "args": [],
+    "expected": true,
+    "feedback": "Додай тест пошкодженої копії."
+  },
+  {
+    "id": "checks-immutable-edit",
+    "kind": "moduleCallEquals",
+    "path": "src/tests/smoke.js",
+    "binding": "checksImmutableEdit",
+    "args": [],
+    "expected": true,
+    "feedback": "Перевір попередній і новий списки після редагування."
+  },
+  {
+    "id": "smoke-button",
+    "kind": "domTextEquals",
+    "selector": "#smoke-result",
+    "expected": "Перевірки пройдено",
+    "feedback": "Покажи результат самоперевірки після кліку.",
+    "steps": [
+      {
+        "kind": "click",
+        "selector": "#run-smoke"
+      }
+    ]
+  }
+]

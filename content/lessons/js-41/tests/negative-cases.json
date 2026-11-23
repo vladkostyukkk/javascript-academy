@@ -1,0 +1,41 @@
+[
+  {
+    "id": "empty-entry",
+    "category": "empty",
+    "path": "src/app.js",
+    "source": "",
+    "failedCheckIds": [
+      "heading-text",
+      "doing-duration",
+      "move-to-done"
+    ]
+  },
+  {
+    "id": "constant-duration",
+    "category": "invalid",
+    "path": "src/domain/tasks.js",
+    "source": "export const formatMinutes = (minutes) => \"15 хв\";\n\nexport function validateTitle(title) {\n  if (typeof title !== \"string\") {\n    return \"Назва має бути рядком.\";\n  }\n  if (title.trim() === \"\") {\n    return \"Введіть назву задачі.\";\n  }\n  return null;\n}\n",
+    "failedCheckIds": [
+      "doing-duration",
+      "module-zero"
+    ]
+  },
+  {
+    "id": "drops-zero",
+    "category": "edge",
+    "path": "src/domain/tasks.js",
+    "source": "export const formatMinutes = (minutes) => minutes ? `${minutes} хв` : \"\";\n\nexport function validateTitle(title) {\n  if (typeof title !== \"string\") {\n    return \"Назва має бути рядком.\";\n  }\n  if (title.trim() === \"\") {\n    return \"Введіть назву задачі.\";\n  }\n  return null;\n}\n",
+    "failedCheckIds": [
+      "module-zero"
+    ]
+  },
+  {
+    "id": "accepts-spaces",
+    "category": "edge",
+    "path": "src/domain/tasks.js",
+    "source": "export const formatMinutes = (minutes) => `${minutes} хв`;\n\nexport function validateTitle(title) {\n  if (typeof title !== \"string\") {\n    return \"Назва має бути рядком.\";\n  }\n  if (title === \"\") {\n    return \"Введіть назву задачі.\";\n  }\n  return null;\n}\n",
+    "failedCheckIds": [
+      "module-blank"
+    ]
+  }
+]

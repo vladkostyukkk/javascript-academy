@@ -1,0 +1,53 @@
+[
+  {
+    "id": "question-1",
+    "prompt": "Які дії записувати до історії задач?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Кожне введення в пошук",
+        "explanation": "Це переповнило б історію без змін задач."
+      },
+      {
+        "id": "correct",
+        "label": "Зміни масиву задач",
+        "explanation": "Фільтри змінюють лише показ."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-2",
+    "prompt": "Який запис відкинути при переповненні?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "Найстаріший",
+        "explanation": "Останні зміни мають лишатися доступними."
+      },
+      {
+        "id": "other",
+        "label": "Останній",
+        "explanation": "Він найімовірніше знадобиться для Undo."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-3",
+    "prompt": "Що робити, коли історія порожня?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Повернути демонстраційні задачі",
+        "explanation": "Це могло б знищити робочі дані."
+      },
+      {
+        "id": "correct",
+        "label": "Залишити стан як є",
+        "explanation": "Відновлювати нічого."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

@@ -1,0 +1,53 @@
+[
+  {
+    "id": "question-1",
+    "prompt": "З якого списку рахувати прогрес?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Лише з видимих",
+        "explanation": "Пошук не має змінювати ці дані."
+      },
+      {
+        "id": "correct",
+        "label": "З усіх задач",
+        "explanation": "Фільтр показу не змінює виконання."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-2",
+    "prompt": "Що вивести для 0 задач?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "0%",
+        "explanation": "Порожній список має визначений показник."
+      },
+      {
+        "id": "other",
+        "label": "NaN",
+        "explanation": "Це не пояснює стан користувачу."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-3",
+    "prompt": "Чому варто додати текст поруч зі шкалою?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Щоб збільшити значення progress",
+        "explanation": "Текст і значення незалежні."
+      },
+      {
+        "id": "correct",
+        "label": "Він показує точні значення",
+        "explanation": "Шкала передає приблизну частку."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

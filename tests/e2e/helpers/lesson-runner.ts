@@ -4,10 +4,11 @@ import type { FileMap, LessonCheck } from "../../../lib/lessons/schema";
 import { createSandboxDocument } from "../../../lib/runner/document";
 import { prepareRun } from "../../../lib/runner/prepare";
 import { envelopeSchema } from "../../../lib/runner/protocol";
+import { lessonRun } from "../../../lib/workspace/state";
 
-// Author fixtures use the production bootstrap in its opaque iframe and Worker.
+// Author fixtures use the production bootstrap in its opaque iframe.
 export async function createLessonRunner(page: Page) {
-  await page.goto("about:blank");
+  await page.goto("/");
   const response = await page.request.get("/runner/runtime.js");
   if (!response.ok()) throw new Error(`Runner bootstrap: ${response.status()}`);
   const runtime = await response.text();
@@ -17,13 +18,9 @@ export async function createLessonRunner(page: Page) {
     checks: LessonCheck[],
     operation: "check" | "run" = "check",
   ) => {
-    const plan = await prepareRun({
-      mode: "lesson",
-      files,
-      entry: "src/app.js",
-      assertion: { kind: "lesson", operation, checks },
-      mock: { status: 200, delayMs: 0 },
-    });
+    const plan = await prepareRun(
+      lessonRun(files, files, [], checks, operation),
+    );
     const identity = {
       runId: randomUUID(),
       nonce: randomBytes(16).toString("hex"),

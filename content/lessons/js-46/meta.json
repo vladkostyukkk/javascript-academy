@@ -1,0 +1,24 @@
+{
+  "id": "js-46",
+  "number": 46,
+  "title": "Відновлення даних",
+  "module": 5,
+  "prerequisites": [
+    "js-45"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Загорни JSON.parse у try/catch.",
+    "Розрізняй коректний [] та відсутнє значення null.",
+    "Обчисли наступний ID від найбільшого ID у відновлених задачах."
+  ],
+  "editablePaths": [
+    "src/storage.js",
+    "src/app.js",
+    "index.html",
+    "src/state/store.js",
+    "src/domain/index.js",
+    "src/domain/tasks.js"
+  ],
+  "courseContentVersion": 1
+}

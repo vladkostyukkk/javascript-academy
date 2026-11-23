@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { readCheckpointHistory } from "@/lib/progress/checkpoint-store";
+import { createProjectZip } from "@/lib/progress/project-zip";
 import {
   checkpointKey,
   type CompletedCheckpoint,
@@ -31,16 +32,26 @@ export function CheckpointHistory() {
       cancelled = true;
     };
   }, [attempt]);
-  function download(record: CompletedCheckpoint) {
+  function download(
+    record: CompletedCheckpoint,
+    format: "json" | "zip" = "json",
+  ) {
     try {
       const url = URL.createObjectURL(
-        new Blob([JSON.stringify(record, null, 2)], {
-          type: "application/json",
-        }),
+        format === "zip"
+          ? new Blob([createProjectZip(record.fileMap)], {
+              type: "application/zip",
+            })
+          : new Blob([JSON.stringify(record, null, 2)], {
+              type: "application/json",
+            }),
       );
       const link = document.createElement("a");
       link.href = url;
-      link.download = `${record.lessonId}-v${record.courseContentVersion}-checkpoint.json`;
+      link.download =
+        format === "zip"
+          ? "FocusBoard.zip"
+          : `${record.lessonId}-v${record.courseContentVersion}-checkpoint.json`;
       link.click();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
     } catch {
@@ -98,6 +109,14 @@ export function CheckpointHistory() {
                 <Button variant="outline" onClick={() => download(record)}>
                   Завантажити checkpoint JSON
                 </Button>
+                {record.lessonId === "js-60" && (
+                  <Button
+                    variant="outline"
+                    onClick={() => download(record, "zip")}
+                  >
+                    Завантажити FocusBoard ZIP
+                  </Button>
+                )}
                 <Button asChild variant="ghost">
                   <Link href={`/learn/javascript/${record.lessonId}`}>
                     Відкрити урок і повторення

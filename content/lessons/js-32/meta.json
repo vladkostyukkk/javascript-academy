@@ -1,0 +1,19 @@
+{
+  "id": "js-32",
+  "number": 32,
+  "title": "Створення елементів",
+  "module": 4,
+  "prerequisites": [
+    "js-31"
+  ],
+  "durationMinutes": 30,
+  "objectives": [
+    "Створити елемент через document.createElement.",
+    "Записати дані задачі як звичайний текст.",
+    "Приєднати картку до контейнера задач."
+  ],
+  "editablePaths": [
+    "src/app.js"
+  ],
+  "courseContentVersion": 1
+}

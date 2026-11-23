@@ -1,0 +1,53 @@
+[
+  {
+    "id": "question-1",
+    "prompt": "Що означає збережений []?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Потрібно додати демонстраційні задачі",
+        "explanation": "Відсутність задач може бути навмисною."
+      },
+      {
+        "id": "correct",
+        "label": "Користувач має порожній список",
+        "explanation": "Це коректний стан."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-2",
+    "prompt": "Чи достатньо успішного JSON.parse?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "Потрібно перевірити форму",
+        "explanation": "Рядок може описувати будь-яке JSON-значення."
+      },
+      {
+        "id": "other",
+        "label": "Успішний parse гарантує правильні задачі",
+        "explanation": "Синтаксис і структура перевіряються окремо."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-3",
+    "prompt": "Звідки брати новий ID після відновлення?",
+    "options": [
+      {
+        "id": "other",
+        "label": "З довжини масиву",
+        "explanation": "Після видалення ID можуть мати пропуски."
+      },
+      {
+        "id": "correct",
+        "label": "Після найбільшого наявного ID",
+        "explanation": "Це уникає конфлікту."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

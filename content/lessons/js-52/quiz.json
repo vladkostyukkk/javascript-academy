@@ -1,0 +1,53 @@
+[
+  {
+    "id": "question-1",
+    "prompt": "Що повертає async-функція?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Лише масив напряму",
+        "explanation": "Навіть return масиву дає Promise."
+      },
+      {
+        "id": "correct",
+        "label": "Promise",
+        "explanation": "Звичайне значення стає результатом Promise."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-2",
+    "prompt": "Де продовжиться код після await?",
+    "options": [
+      {
+        "id": "correct",
+        "label": "У тій самій функції після результату",
+        "explanation": "Інтерфейс тим часом може реагувати."
+      },
+      {
+        "id": "other",
+        "label": "В усьому браузері після паузи",
+        "explanation": "await не зупиняє інші обробники."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "question-3",
+    "prompt": "Що робити, якщо стан змінився під час стартового завантаження?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Повернути старі задачі",
+        "explanation": "Це могло б стерти недавній ввід."
+      },
+      {
+        "id": "correct",
+        "label": "Зберегти новий стан",
+        "explanation": "Старий результат більше не відповідає дошці."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "id": "js-54",
+  "number": 54,
+  "title": "try/catch та стани запиту",
+  "module": 6,
+  "prerequisites": [
+    "js-53"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Винеси текст стану в getLoadMessage.",
+    "Використай try/catch/finally навколо fetchTasks.",
+    "Під час помилки покажи кнопку, а на початку повторного запиту сховай її."
+  ],
+  "editablePaths": [
+    "src/ui/async-state.js",
+    "src/app.js",
+    "src/services/tasks-api.js",
+    "mock/tasks.json",
+    "src/state/store.js",
+    "index.html",
+    "src/storage.js",
+    "src/domain/tasks.js",
+    "src/domain/index.js"
+  ],
+  "courseContentVersion": 1
+}

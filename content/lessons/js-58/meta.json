@@ -1,0 +1,30 @@
+{
+  "id": "js-58",
+  "number": 58,
+  "title": "Аналітика",
+  "module": 6,
+  "prerequisites": [
+    "js-57"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Оброби total === 0 до ділення.",
+    "Порахуй записи зі статусом «Готово».",
+    "Передай до renderStats весь список зі store."
+  ],
+  "editablePaths": [
+    "src/ui/stats.js",
+    "src/app.js",
+    "src/services/transfer.js",
+    "src/ui/board.js",
+    "src/services/tasks-api.js",
+    "src/ui/async-state.js",
+    "mock/tasks.json",
+    "src/state/store.js",
+    "index.html",
+    "src/storage.js",
+    "src/domain/tasks.js",
+    "src/domain/index.js"
+  ],
+  "courseContentVersion": 1
+}

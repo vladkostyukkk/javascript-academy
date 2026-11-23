@@ -1,0 +1,42 @@
+[
+  {
+    "id": "heading-text",
+    "kind": "domTextEquals",
+    "selector": "main h1",
+    "expected": "FocusBoard — дошка задач",
+    "feedback": "Зміни текст заголовка h1 усередині main на «FocusBoard — дошка задач». Зверни увагу на пробіли й тире."
+  },
+  {
+    "id": "description-preserved",
+    "kind": "domTextEquals",
+    "selector": "main p",
+    "expected": "Місце для важливих задач. Починаємо з першої команди.",
+    "feedback": "Залиш текст абзацу під заголовком без змін."
+  },
+  {
+    "id": "nested-complete",
+    "kind": "domTextEquals",
+    "selector": "[data-task-id=\"1\"] .task-status",
+    "expected": "Готово",
+    "feedback": "Клік по вкладеному тексту кнопки має завершувати першу задачу.",
+    "steps": [
+      {
+        "kind": "click",
+        "selector": "[data-task-id=\"1\"] [data-action=\"complete\"] span"
+      }
+    ]
+  },
+  {
+    "id": "second-complete",
+    "kind": "domTextEquals",
+    "selector": "[data-task-id=\"3\"] .task-status",
+    "expected": "Готово",
+    "feedback": "Після рендерингу делегований обробник має працювати для іншої картки.",
+    "steps": [
+      {
+        "kind": "click",
+        "selector": "[data-task-id=\"3\"] [data-action=\"complete\"]"
+      }
+    ]
+  }
+]

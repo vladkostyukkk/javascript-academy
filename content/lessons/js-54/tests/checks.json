@@ -1,0 +1,51 @@
+[
+  {
+    "id": "board-ready",
+    "kind": "moduleCallEquals",
+    "path": "src/app.js",
+    "binding": "waitForBoard",
+    "args": [],
+    "expected": "Задачі завантажено",
+    "feedback": "Дочекайся початкового завантаження і онови повідомлення."
+  },
+  {
+    "id": "empty-label",
+    "kind": "moduleCallEquals",
+    "path": "src/ui/async-state.js",
+    "binding": "getLoadMessage",
+    "args": [
+      "empty"
+    ],
+    "expected": "Задач поки немає",
+    "feedback": "Відрізняй порожню відповідь від помилки."
+  },
+  {
+    "id": "error-label",
+    "kind": "moduleCallEquals",
+    "path": "src/ui/async-state.js",
+    "binding": "getLoadMessage",
+    "args": [
+      "error"
+    ],
+    "expected": "Не вдалося завантажити задачі",
+    "feedback": "Для помилки покажи зрозуміле повідомлення."
+  },
+  {
+    "id": "loading-label",
+    "kind": "moduleCallEquals",
+    "path": "src/ui/async-state.js",
+    "binding": "getLoadMessage",
+    "args": [
+      "loading"
+    ],
+    "expected": "Завантаження…",
+    "feedback": "Покажи повідомлення, поки триває запит."
+  },
+  {
+    "id": "initial-card",
+    "kind": "domTextEquals",
+    "selector": "#doing article h2",
+    "expected": "Вивчити JavaScript",
+    "feedback": "Після завершення Promise відобрази початкові задачі."
+  }
+]

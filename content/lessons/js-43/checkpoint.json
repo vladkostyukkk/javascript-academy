@@ -1,0 +1,12 @@
+{
+  "lessonId": "js-43",
+  "courseContentVersion": 1,
+  "fileHashes": {
+    "index.html": "283ac34aded50d7b6dc49d2eeab544c8f17ffd41d99fa581f7d58a18af1113d6",
+    "src/app.js": "55d04a5049a9b7ae72d7a61c3de7e3775c8b305229fb8ff2bfac1e3c72761224",
+    "src/domain/tasks.js": "5d00a13ff110058eef4b1621c9cf590c19de19d3e46e4d4d3ae38536a76d778b",
+    "styles.css": "2a2097385f0b32af9a13a7d9e00c2180ea4258061deea60a9bbb8f5b602db5c4",
+    "src/domain/index.js": "bd1c18cb2451e08206f962a8825d9d1424838a9079437934ae1e450b8b7b231d",
+    "src/state/store.js": "6bc5cca70a05785aad2c1e7cb95c9f7a3677abf24eb89fe55aa7461dab10f67c"
+  }
+}

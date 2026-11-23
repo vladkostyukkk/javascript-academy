@@ -1,0 +1,24 @@
+{
+  "id": "js-50",
+  "number": 50,
+  "title": "Історія змін",
+  "module": 5,
+  "prerequisites": [
+    "js-49"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Зберігай попередній список лише коли змінилося посилання tasks.",
+    "Після додавання одинадцятого запису прибери найстаріший.",
+    "Віднови список та сповісти слухачів без повторного запису Undo в історію."
+  ],
+  "editablePaths": [
+    "src/state/store.js",
+    "src/app.js",
+    "index.html",
+    "src/storage.js",
+    "src/domain/tasks.js",
+    "src/domain/index.js"
+  ],
+  "courseContentVersion": 1
+}

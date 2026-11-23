@@ -1,0 +1,19 @@
+{
+  "id": "js-39",
+  "number": 39,
+  "title": "Пошук",
+  "module": 4,
+  "prerequisites": [
+    "js-38"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Оновлювати пошук на подію input.",
+    "Порівнювати частину назви без урахування регістру.",
+    "Поєднати текстовий запит із фільтром статусу."
+  ],
+  "editablePaths": [
+    "src/app.js"
+  ],
+  "courseContentVersion": 1
+}

@@ -1,0 +1,70 @@
+[
+  {
+    "id": "heading-text",
+    "kind": "domTextEquals",
+    "selector": "main h1",
+    "expected": "FocusBoard — дошка задач",
+    "feedback": "Зміни текст заголовка h1 усередині main на «FocusBoard — дошка задач». Зверни увагу на пробіли й тире."
+  },
+  {
+    "id": "description-preserved",
+    "kind": "domTextEquals",
+    "selector": "main p",
+    "expected": "Місце для важливих задач. Починаємо з першої команди.",
+    "feedback": "Залиш текст абзацу під заголовком без змін."
+  },
+  {
+    "id": "doing-duration",
+    "kind": "domTextEquals",
+    "selector": "#doing article p",
+    "expected": "25 хв",
+    "feedback": "Збережи відображення тривалості картки після перенесення formatMinutes."
+  },
+  {
+    "id": "public-duration",
+    "kind": "moduleCallEquals",
+    "path": "src/domain/index.js",
+    "binding": "formatTaskDuration",
+    "args": [
+      0
+    ],
+    "expected": "0 хв",
+    "feedback": "Реекспортуй форматування як formatTaskDuration і збережи випадок 0 хв."
+  },
+  {
+    "id": "public-validation",
+    "kind": "moduleCallEquals",
+    "path": "src/domain/index.js",
+    "binding": "validateTitle",
+    "args": [
+      "   "
+    ],
+    "expected": "Введіть назву задачі.",
+    "feedback": "Реекспортуй validateTitle і збережи валідацію назви з пробілів."
+  },
+  {
+    "id": "initial-status",
+    "kind": "domTextEquals",
+    "selector": "#save-status",
+    "expected": "",
+    "feedback": "На початку статус має бути порожнім, доки учень не змінив дані."
+  },
+  {
+    "id": "save-status",
+    "kind": "domTextEquals",
+    "selector": "#save-status",
+    "expected": "Збережено",
+    "feedback": "Після зміни стану збережи задачі як JSON і покажи статус.",
+    "steps": [
+      {
+        "kind": "input",
+        "selector": "#task-title",
+        "value": "Новий план"
+      },
+      {
+        "kind": "submit",
+        "selector": "#task-form"
+      }
+    ]
+  }
+]

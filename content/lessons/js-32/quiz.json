@@ -1,0 +1,53 @@
+[
+  {
+    "id": "create-tag",
+    "prompt": "Що передати в createElement, щоб створити абзац?",
+    "options": [
+      {
+        "id": "other",
+        "label": "<p>",
+        "explanation": "Кутові дужки використовують у HTML, а метод очікує назву тегу."
+      },
+      {
+        "id": "correct",
+        "label": "p",
+        "explanation": "Метод приймає назву тегу."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "attach-card",
+    "prompt": "Коли нова картка з’явиться в DOM?",
+    "options": [
+      {
+        "id": "other",
+        "label": "Одразу після createElement",
+        "explanation": "Метод створює від’єднаний елемент."
+      },
+      {
+        "id": "correct",
+        "label": "Після додавання до контейнера на сторінці",
+        "explanation": "append приєднує елемент до дерева."
+      }
+    ],
+    "correctOptionId": "correct"
+  },
+  {
+    "id": "literal-title",
+    "prompt": "Яка властивість покаже <b> як частину назви?",
+    "options": [
+      {
+        "id": "other",
+        "label": "innerHTML",
+        "explanation": "Властивість розбирає <b> як HTML-тег."
+      },
+      {
+        "id": "correct",
+        "label": "textContent",
+        "explanation": "Властивість записує весь рядок як текст."
+      }
+    ],
+    "correctOptionId": "correct"
+  }
+]

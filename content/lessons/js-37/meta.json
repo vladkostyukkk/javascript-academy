@@ -1,0 +1,19 @@
+{
+  "id": "js-37",
+  "number": 37,
+  "title": "Редагування й видалення",
+  "module": 4,
+  "prerequisites": [
+    "js-36"
+  ],
+  "durationMinutes": 35,
+  "objectives": [
+    "Спрямувати делегований клік за data-action.",
+    "Оновити назву наявної задачі, зберігши її ID.",
+    "Видалити з масиву саме вибрану задачу."
+  ],
+  "editablePaths": [
+    "src/app.js"
+  ],
+  "courseContentVersion": 1
+}

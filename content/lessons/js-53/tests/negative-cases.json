@@ -1,0 +1,42 @@
+[
+  {
+    "id": "empty-entry",
+    "category": "empty",
+    "path": "src/app.js",
+    "source": "",
+    "failedCheckIds": [
+      "board-ready",
+      "initial-card"
+    ]
+  },
+  {
+    "id": "drops-response",
+    "category": "invalid",
+    "path": "src/services/tasks-api.js",
+    "source": "export function waitForTasks(milliseconds = 80) {\n  const duration = Math.max(0, milliseconds);\n  return new Promise((resolve) => {\n    setTimeout(() => resolve(duration), duration);\n  });\n}\n\nexport async function loadInitialTasks(tasks, milliseconds = 80) {\n  await waitForTasks(milliseconds);\n  return Array.isArray(tasks) ? [...tasks] : [];\n}\n\nexport async function countLoadedTasks(tasks) {\n  return (await loadInitialTasks(tasks, 0)).length;\n}\n\nexport async function fetchTasks(signal) {\n  const response = await fetch(\"/mock/tasks.json\", { signal });\n  if (!response.ok) throw new Error(\"Не вдалося завантажити задачі.\");\n  const tasks = await response.json();\n  if (!Array.isArray(tasks)) throw new Error(\"API має повертати масив задач.\");\n  return [];\n}\n\nexport async function countRemoteTasks() {\n  return (await fetchTasks()).length;\n}\n",
+    "failedCheckIds": [
+      "loads-mock",
+      "initial-card"
+    ]
+  },
+  {
+    "id": "misses-json",
+    "category": "edge",
+    "path": "src/services/tasks-api.js",
+    "source": "export function waitForTasks(milliseconds = 80) {\n  const duration = Math.max(0, milliseconds);\n  return new Promise((resolve) => {\n    setTimeout(() => resolve(duration), duration);\n  });\n}\n\nexport async function loadInitialTasks(tasks, milliseconds = 80) {\n  await waitForTasks(milliseconds);\n  return Array.isArray(tasks) ? [...tasks] : [];\n}\n\nexport async function countLoadedTasks(tasks) {\n  return (await loadInitialTasks(tasks, 0)).length;\n}\n\nexport async function fetchTasks(signal) {\n  const response = await fetch(\"/mock/tasks.json\", { signal });\n  if (!response.ok) throw new Error(\"Не вдалося завантажити задачі.\");\n  const tasks = response;\n  if (!Array.isArray(tasks)) throw new Error(\"API має повертати масив задач.\");\n  return tasks;\n}\n\nexport async function countRemoteTasks() {\n  return (await fetchTasks()).length;\n}\n",
+    "failedCheckIds": [
+      "board-ready",
+      "loads-mock",
+      "initial-card"
+    ]
+  },
+  {
+    "id": "wrong-count",
+    "category": "edge",
+    "path": "src/services/tasks-api.js",
+    "source": "export function waitForTasks(milliseconds = 80) {\n  const duration = Math.max(0, milliseconds);\n  return new Promise((resolve) => {\n    setTimeout(() => resolve(duration), duration);\n  });\n}\n\nexport async function loadInitialTasks(tasks, milliseconds = 80) {\n  await waitForTasks(milliseconds);\n  return Array.isArray(tasks) ? [...tasks] : [];\n}\n\nexport async function countLoadedTasks(tasks) {\n  return (await loadInitialTasks(tasks, 0)).length;\n}\n\nexport async function fetchTasks(signal) {\n  const response = await fetch(\"/mock/tasks.json\", { signal });\n  if (!response.ok) throw new Error(\"Не вдалося завантажити задачі.\");\n  const tasks = await response.json();\n  if (!Array.isArray(tasks)) throw new Error(\"API має повертати масив задач.\");\n  return tasks;\n}\n\nexport async function countRemoteTasks() {\n  return 0;\n}\n",
+    "failedCheckIds": [
+      "loads-mock"
+    ]
+  }
+]

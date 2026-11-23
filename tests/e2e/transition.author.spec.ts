@@ -1,9 +1,22 @@
 import { expect, test, type Page } from "@playwright/test";
+import { readFile } from "node:fs/promises";
 import { readLessonBundle } from "../../lib/lessons/content-files";
+import { checkpointSchema } from "../../lib/progress/checkpoint-schema";
+import { createLessonRunner } from "./helpers/lesson-runner";
+import { verifyIndependentProject } from "./helpers/project-zip";
 import { openWorkspace, writeCode, checkCode } from "./helpers/workspace";
 
-async function pasteFixture(page: Page, source: string) {
-  const editor = page.getByRole("textbox", { name: /Код src\/app.js/ });
+async function pasteFixture(page: Page, source: string, path = "src/app.js") {
+  if (
+    !(await page
+      .getByRole("textbox", { name: "Код " + path, exact: true })
+      .isVisible())
+  )
+    await page.getByRole("tab", { name: path, exact: true }).click();
+  const editor = page.getByRole("textbox", {
+    name: "Код " + path,
+    exact: true,
+  });
   await editor.press("ControlOrMeta+a");
   // Exercise Monaco's paste handling without Chromium's long-text IME path.
   await editor.evaluate((target, text) => {
@@ -17,6 +30,22 @@ async function pasteFixture(page: Page, source: string) {
       }),
     );
   }, source);
+}
+
+async function pasteLessonFiles(
+  page: Page,
+  bundle: Awaited<ReturnType<typeof readLessonBundle>>,
+) {
+  for (const file of bundle.solution) {
+    if (
+      file.path === "src/app.js" ||
+      !bundle.meta.editablePaths.includes(file.path)
+    )
+      continue;
+    const original = bundle.starter.find(({ path }) => path === file.path);
+    if (original?.content === file.content) continue;
+    await pasteFixture(page, file.content, file.path);
+  }
 }
 
 async function read(page: Page, store: string, key: string) {
@@ -317,6 +346,18 @@ for (const lesson of [
     { number: 29, title: "sort", count: 32, missing: 4 },
     { number: 30, title: "reduce", count: 32, missing: 5 },
     { number: 31, title: "Пошук DOM-елементів", count: 2, missing: 1 },
+    { number: 32, title: "Створення елементів", count: 4, missing: 2 },
+    { number: 33, title: "Рендеринг списку", count: 6, missing: 3 },
+    { number: 34, title: "Події та форми", count: 4, missing: 2 },
+    { number: 35, title: "Делегування подій", count: 4, missing: 2 },
+    { number: 36, title: "Валідація інтерфейсу", count: 6, missing: 4 },
+    { number: 37, title: "Редагування й видалення", count: 5, missing: 3 },
+    { number: 38, title: "Фільтри", count: 6, missing: 3 },
+    { number: 39, title: "Пошук", count: 6, missing: 4 },
+    { number: 40, title: "Kanban-подання", count: 8, missing: 6 },
+    { number: 41, title: "ES-модулі", count: 7, missing: 3 },
+    { number: 50, title: "Історія змін", count: 7, missing: 2 },
+    { number: 60, title: "Фінальне складання", count: 4, missing: 2 },
   ].map(({ number, title, count, missing }) => ({
     id: `js-${number}`,
     previous: `js-${number - 1}`,
@@ -332,7 +373,7 @@ for (const lesson of [
   test(
     lesson.id + " inherits files, validates fixtures and preserves source",
     async ({ page }) => {
-      test.setTimeout(240_000);
+      test.setTimeout(300_000);
       await completeFirst(page);
       await page.goto("/learn/javascript/" + lesson.id);
       await expect(
@@ -344,6 +385,7 @@ for (const lesson of [
       for (const id of lesson.prerequisites) {
         await page.goto("/learn/javascript/" + id);
         const bundle = await openLessonPractice(page, id);
+        await pasteLessonFiles(page, bundle);
         await pasteFixture(
           page,
           bundle.solution.find((file) => file.path === "src/app.js")!.content +
@@ -383,10 +425,11 @@ for (const lesson of [
       await expect(
         page.locator('[data-check-id][data-passed="false"]:visible'),
       ).toHaveCount(lesson.missing);
-      for (const scenario of bundle.negativeCases) {
-        if (scenario.category === "edge")
-          await pasteFixture(page, scenario.source);
-        else await writeCode(page, scenario.source || "// empty");
+      const entryOnlyScenarios = bundle.negativeCases.filter(
+        ({ path }) => path === undefined,
+      );
+      for (const scenario of entryOnlyScenarios) {
+        await pasteFixture(page, scenario.source || "// empty");
         await check();
         const failures = await page
           .locator('[data-check-id][data-passed="false"]:visible')
@@ -397,12 +440,185 @@ for (const lesson of [
           [...scenario.failedCheckIds].sort(),
         );
       }
-      await pasteFixture(
-        page,
-        bundle.solution.find((file) => file.path === "src/app.js")!.content +
-          "\n// learner target " +
-          lesson.id,
-      );
+      const solution = bundle.solution.find(
+        (file) => file.path === "src/app.js",
+      )!.content;
+      if (lesson.id === "js-32" || lesson.id === "js-33") {
+        const preview = page.frameLocator(
+          'iframe[title="Ізольований перегляд FocusBoard"]',
+        );
+        const run = () =>
+          page.getByRole("button", { name: "Запустити", exact: true }).click();
+        if (lesson.id === "js-32") {
+          const literalTitle = "Порівняти <b> і <i>";
+          await pasteFixture(
+            page,
+            solution.replace(
+              '"Вивчити JavaScript"',
+              JSON.stringify(literalTitle),
+            ),
+          );
+          await run();
+          const heading = preview.locator("#tasks article h2");
+          await expect(heading).toHaveText(literalTitle);
+          await expect(heading.locator("*")).toHaveCount(0);
+        } else {
+          await pasteFixture(
+            page,
+            solution + '\nrenderTasks([]);\nconsole.log("Список очищено");',
+          );
+          await run();
+          await expect(preview.locator("#tasks")).toBeAttached();
+          await expect(
+            page.getByText("Список очищено", { exact: true }),
+          ).toBeVisible();
+          await expect(preview.locator("#tasks article")).toHaveCount(0);
+
+          await pasteFixture(page, solution + "\nrenderTasks(tasks);");
+          await run();
+          await expect(preview.locator("#tasks article h2")).toHaveText([
+            "Вивчити JavaScript",
+            "Перевірити план",
+            "Зробити перерву",
+          ]);
+        }
+      }
+      if (lesson.id === "js-41") {
+        expect(JSON.stringify(await read(page, "drafts", lesson.id))).toContain(
+          "src/domain/tasks.js",
+        );
+      }
+      await pasteLessonFiles(page, bundle);
+      await pasteFixture(page, solution + "\n// learner target " + lesson.id);
+      if (lesson.id === "js-50") {
+        await expect
+          .poll(async () => {
+            const snapshot = (await read(page, "drafts", lesson.id)) as
+              { fileMap: { path: string; content: string }[] } | undefined;
+            return snapshot?.fileMap.map((file) => ({
+              ...file,
+              content: file.content.replace(/\r\n/g, "\n"),
+            }));
+          })
+          .toEqual(
+            expect.arrayContaining(
+              bundle.solution.map((file) =>
+                file.path === "src/app.js"
+                  ? {
+                      ...file,
+                      content: solution + "\n// learner target " + lesson.id,
+                    }
+                  : file,
+              ),
+            ),
+          );
+        const preview = page.frameLocator(
+          'iframe[title="Ізольований перегляд FocusBoard"]',
+        );
+        const run = () =>
+          page.getByRole("button", { name: "Запустити", exact: true }).click();
+        await page.evaluate(() => {
+          sessionStorage.setItem(
+            "academy-preview:js-50:1:main",
+            JSON.stringify([
+              {
+                id: 17,
+                title: "Стара задача",
+                status: "Заплановано",
+                priority: 1,
+                minutes: 0,
+              },
+            ]),
+          );
+        });
+        await run();
+        await expect(preview.locator("#todo article h2")).toHaveText(
+          "Стара задача",
+        );
+        const title = preview.getByRole("textbox", {
+          name: "Назва задачі",
+          exact: true,
+        });
+        await title.fill("Перевірка збереження");
+        await title.press("Enter");
+        await preview
+          .getByRole("button", { name: "Найновіші", exact: true })
+          .click();
+        await expect(
+          preview.locator("#todo article:first-child h2"),
+        ).toHaveText("Перевірка збереження");
+        await expect
+          .poll(() =>
+            page.evaluate(() =>
+              sessionStorage.getItem("academy-preview:js-50:1:main"),
+            ),
+          )
+          .toContain('"order":"newest"');
+        await page.reload();
+        await run();
+        await expect(
+          preview.locator("#todo article:first-child h2"),
+        ).toHaveText("Перевірка збереження");
+        await page.evaluate(() =>
+          sessionStorage.setItem("academy-preview:js-50:1:main", "{broken"),
+        );
+        await run();
+        await expect(preview.locator("#todo article h2")).toHaveText(
+          "Зробити перерву",
+        );
+      }
+      if (lesson.id === "js-40") {
+        await page
+          .getByRole("button", { name: "Запустити", exact: true })
+          .click();
+        const board = page.frameLocator(
+          'iframe[title="Ізольований перегляд FocusBoard"]',
+        );
+        const title = board.getByRole("textbox", {
+          name: "Назва задачі",
+          exact: true,
+        });
+        await title.fill("Перевірити дошку");
+        await title.press("Enter");
+        await expect(board.locator("#todo article h2")).toHaveText([
+          "Зробити перерву",
+          "Перевірити дошку",
+        ]);
+        await title.fill("Друга задача");
+        await board
+          .getByRole("button", { name: "Додати задачу", exact: true })
+          .click();
+        const added = board
+          .locator("#todo article")
+          .filter({ hasText: "Друга задача" });
+        await expect(added).toHaveCount(1);
+        await added
+          .getByRole("button", { name: "Позначити виконаною" })
+          .click();
+        const done = board
+          .locator("#done article")
+          .filter({ hasText: "Друга задача" });
+        await expect(done).toHaveCount(1);
+        await board
+          .getByRole("button", { name: "Завершені", exact: true })
+          .click();
+        await board
+          .getByRole("searchbox", { name: "Пошук задач" })
+          .fill("друга");
+        await expect(board.locator("#done article h2")).toHaveText([
+          "Друга задача",
+        ]);
+        await done.getByRole("textbox").fill("Друга перевірка");
+        await done.getByRole("button", { name: "Зберегти назву" }).click();
+        await expect(board.locator("#done article h2")).toHaveText([
+          "Друга перевірка",
+        ]);
+        await board
+          .locator("#done article")
+          .getByRole("button", { name: "Видалити" })
+          .click();
+        await expect(board.locator("#tasks article")).toHaveCount(0);
+      }
       if (lesson.id === "js-31") {
         await page
           .getByRole("button", { name: "Запустити", exact: true })
@@ -438,6 +654,20 @@ for (const lesson of [
       expect(await read(page, "checkpoints", lesson.previous + "@1")).toEqual(
         source,
       );
+      if (lesson.id === "js-41") {
+        const checkpoint = checkpointSchema.parse(
+          await read(page, "checkpoints", lesson.id + "@1"),
+        );
+        const savedFiles = checkpoint.fileMap.map((file) => ({
+          ...file,
+          content: file.content.replace(/\r\n/g, "\n"),
+        }));
+        expect(savedFiles).toEqual(
+          expect.arrayContaining(
+            bundle.solution.filter(({ path }) => path !== "src/app.js"),
+          ),
+        );
+      }
       await page.goto("/course/javascript");
       await page
         .getByRole("searchbox", { name: "Пошук уроків" })
@@ -448,6 +678,36 @@ for (const lesson of [
           exact: true,
         }),
       ).toBeVisible();
+      if (lesson.id === "js-50") {
+        await page.goto("/project");
+        const download = page.waitForEvent("download");
+        await page
+          .locator(".checkpoint-history li")
+          .filter({ hasText: "js-50" })
+          .getByRole("button", { name: "Завантажити checkpoint JSON" })
+          .click();
+        const exported = checkpointSchema.parse(
+          JSON.parse(await readFile(await (await download).path(), "utf8")),
+        );
+        expect(exported.lessonId).toBe("js-50");
+        const replay = await createLessonRunner(page);
+        expect(
+          (await replay(exported.fileMap, bundle.checks)).at(-1),
+        ).toMatchObject({
+          kind: "execution",
+          checks: bundle.checks.map(({ id }) => ({ id, passed: true })),
+        });
+      }
+      if (lesson.id === "js-60") {
+        await page.goto("/project");
+        const download = page.waitForEvent("download");
+        await page
+          .getByRole("button", { name: "Завантажити FocusBoard ZIP" })
+          .click();
+        const archive = await download;
+        expect(archive.suggestedFilename()).toBe("FocusBoard.zip");
+        await verifyIndependentProject(page, await archive.path());
+      }
     },
   );
 }
