@@ -80,7 +80,7 @@ test("quiz gives feedback, requires explicit transition and revokes access after
   ).toHaveCount(0);
 });
 
-test("reload preserves saved quiz; query parameters cannot unlock the next lesson", async ({
+test("reload preserves saved quiz; direct links retain the new lesson quiz gate", async ({
   page,
 }) => {
   await page.goto("/learn/javascript/js-01");
@@ -99,12 +99,11 @@ test("reload preserves saved quiz; query parameters cannot unlock the next lesso
   await page.getByRole("button", { name: "Перейти до практики" }).click();
   await page.goto("/learn/javascript/js-02?completed=js-01");
   await expect(
-    page.getByText(
-      "Спочатку заверши попередній урок, щоб продовжити свій FocusBoard.",
-      { exact: true },
-    ),
+    page.getByRole("tab", { name: "Теорія", exact: true }),
   ).toBeVisible();
-  await expect(page.getByRole("tab")).toHaveCount(0);
+  await expect(
+    page.getByRole("tab", { name: "Практика", exact: true }),
+  ).toBeDisabled();
 });
 
 test("quiz is keyboard reachable and reference source is not shipped in the page", async ({

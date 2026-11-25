@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { MonacoEditor } from "./monaco-editor";
 import { DraftBackups } from "./draft-backups";
 import type { WorkspaceController } from "./use-workspace";
+import { localRunnerNotice } from "@/lib/runner/local-access";
 
 class EditorBoundary extends Component<
   { children: ReactNode; fallback: ReactNode },
@@ -195,10 +196,14 @@ export function LessonWorkspace({
       <DraftBackups workspace={workspace} />
       {workspace.storage.canView && (
         <>
+          {!workspace.canRun && <p>{localRunnerNotice}</p>}
           <div className="workspace-toolbar">
             <Button
               disabled={
-                workspace.busy || !visible || !workspace.storage.canEdit
+                !workspace.canRun ||
+                workspace.busy ||
+                !visible ||
+                !workspace.storage.canEdit
               }
               onClick={() => void workspace.execute("run")}
             >
@@ -207,7 +212,10 @@ export function LessonWorkspace({
             <Button
               variant="outline"
               disabled={
-                workspace.busy || !visible || !workspace.storage.canEdit
+                !workspace.canRun ||
+                workspace.busy ||
+                !visible ||
+                !workspace.storage.canEdit
               }
               onClick={() => void workspace.execute("check")}
             >

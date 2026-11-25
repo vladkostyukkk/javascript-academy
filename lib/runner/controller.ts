@@ -1,4 +1,5 @@
 import { createSandboxDocument } from "./document";
+import { isLocalRunnerHost, localRunnerNotice } from "./local-access";
 import {
   acceptMessage,
   limits,
@@ -16,6 +17,9 @@ export function startRunner(
   onEvent: (event: RunnerEvent) => void,
   requestedPreviewStorageKey?: string,
 ) {
+  if (!isLocalRunnerHost(container.ownerDocument.location?.hostname ?? ""))
+    throw new Error(localRunnerNotice);
+
   const previewStorageKey =
     plan.mode === "lesson-module" &&
     plan.assertion.kind === "lesson" &&

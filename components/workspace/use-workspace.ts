@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { FileMap, LessonCheck, LessonId } from "@/lib/lessons/schema";
 import { useDraftStorage } from "./use-draft-storage";
 import { startRunner, type RunnerEvent } from "@/lib/runner/controller";
+import { useLocalRunnerAccess } from "@/lib/runner/local-access";
 import { prepareRun, SourceParseError } from "@/lib/runner/prepare";
 import { editDraft, isDirty, lessonRun } from "@/lib/workspace/state";
 import type {
@@ -21,6 +22,7 @@ export function useWorkspace(
   forkId?: string,
   learningPending = false,
 ) {
+  const canRun = useLocalRunnerAccess();
   const [draft, setDraft] = useState({
     files: structuredClone(starter),
     revision: 0,
@@ -136,6 +138,7 @@ export function useWorkspace(
     setStatus("Початковий код відновлено.");
   }
   async function execute(operation: "run" | "check") {
+    if (!canRun) return;
     if (!storage.canEdit || completionLock.current) return;
     verified.current = null;
     setPassedRevision(null);
@@ -260,6 +263,7 @@ export function useWorkspace(
     }
   }
   const canComplete =
+    canRun &&
     !busy &&
     storage.phase === "ready" &&
     !storage.pending &&
@@ -332,6 +336,7 @@ export function useWorkspace(
     suspend,
     execute,
     canComplete,
+    canRun,
     complete,
     restoreBackup: (backup: DraftBackup) =>
       restoreFiles({ kind: "local", backup }),

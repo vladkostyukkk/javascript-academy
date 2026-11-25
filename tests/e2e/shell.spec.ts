@@ -54,7 +54,7 @@ test("home → roadmap → theory → project; no fabricated progress", async ({
   expect(errors).toEqual([]);
 });
 
-test("roadmap search, empty state and locked lesson survive reload", async ({
+test("roadmap search, empty state and direct lesson access survive reload", async ({
   page,
 }) => {
   await page.goto("/course/javascript");
@@ -70,11 +70,13 @@ test("roadmap search, empty state and locked lesson survive reload", async ({
     "Знайдено уроків: 1 із 60",
   );
   await page.locator("[data-lesson-id='js-51'] a").click();
-  const access = page.getByRole("region", { name: "Доступ до уроку" });
-  await expect(access).toContainText("Спочатку заверши попередній урок");
-  await expect(page.getByRole("tab")).toHaveCount(0);
+  await expect(
+    page.getByRole("tab", { name: "Теорія", exact: true }),
+  ).toBeVisible();
   await page.reload();
-  await expect(access).toContainText("Спочатку заверши попередній урок");
+  await expect(
+    page.getByRole("tab", { name: "Теорія", exact: true }),
+  ).toBeVisible();
   await page
     .getByRole("main")
     .getByRole("link", { name: "До програми курсу" })

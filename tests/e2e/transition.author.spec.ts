@@ -103,17 +103,19 @@ async function secondCheck(page: Page) {
   await page.getByRole("button", { name: "Перевірити", exact: true }).click();
   await expect(page.locator("[data-check-id]:visible")).toHaveCount(5);
 }
-test("js-02 requires completed js-01 even through direct navigation", async ({
+test("js-60 opens directly with its starter and without fabricated progress", async ({
   page,
 }) => {
-  await page.goto("/learn/javascript/js-02");
+  await page.goto("/learn/javascript/js-60");
   await expect(
-    page.getByText(
-      "Спочатку заверши попередній урок, щоб продовжити свій FocusBoard.",
-    ),
+    page.getByRole("tab", { name: "Теорія", exact: true }),
   ).toBeVisible();
-  await expect(page.locator(".monaco-editor")).toHaveCount(0);
-  expect(await read(page, "drafts", "js-02")).toBeUndefined();
+  const bundle = await openLessonPractice(page, "js-60");
+  expect(await read(page, "drafts", "js-60")).toMatchObject({
+    fileMap: bundle.starter,
+  });
+  expect(await read(page, "checkpoints", "js-59@1")).toBeUndefined();
+  expect(await read(page, "checkpoints", "js-60@1")).toBeUndefined();
 });
 test("js-02 inherits learner files; reference and edge cases execute in isolated runner", async ({
   page,
@@ -375,13 +377,6 @@ for (const lesson of [
     async ({ page }) => {
       test.setTimeout(300_000);
       await completeFirst(page);
-      await page.goto("/learn/javascript/" + lesson.id);
-      await expect(
-        page.getByText(
-          "Спочатку заверши попередній урок, щоб продовжити свій FocusBoard.",
-        ),
-      ).toBeVisible();
-      expect(await read(page, "drafts", lesson.id)).toBeUndefined();
       for (const id of lesson.prerequisites) {
         await page.goto("/learn/javascript/" + id);
         const bundle = await openLessonPractice(page, id);

@@ -16,19 +16,15 @@ export default function HomePage() {
   return (
     <div className="page-content">
       <section className="welcome-heading">
-        <span className="eyebrow">
-          <span className="tiny-square" />
-          ТВОЯ НОВА НАВИЧКА ПОЧИНАЄТЬСЯ ТУТ
-        </span>
+        <span className="eyebrow">Курс JavaScript українською</span>
         <h1>
           Від першого рядка.
           <br />
           <span className="text-accent">До власного застосунку.</span>
         </h1>
         <p>
-          Вивчай JavaScript українською. Кожен урок — нова можливість
-          <br className="desktop-break" /> твого FocusBoard. Кожен крок — трохи
-          більше впевненості.
+          Відкрий перший урок, напиши свою команду й крок за кроком створи
+          FocusBoard, власну дошку задач.
         </p>
         <div className="hero-actions">
           <Button asChild>
@@ -43,11 +39,17 @@ export default function HomePage() {
         <span className="preview-caption">
           Перший урок · теорія та перевірка розуміння
         </span>
-        <div className="hero-code" aria-hidden="true">
-          <span>{"{"}</span>
-          <span className="code-star">✳</span>
-          <span>{"}"}</span>
-        </div>
+        <figure className="hero-code">
+          <figcaption>Перша команда · src/app.js</figcaption>
+          <pre>
+            <code>
+              <span>console</span>.log(<span>&quot;FocusBoard&quot;</span>);
+            </code>
+          </pre>
+          <p>
+            <span>Консоль</span> FocusBoard
+          </p>
+        </figure>
       </section>
       <div className="course-facts" aria-label="Про курс">
         <div>
@@ -68,7 +70,7 @@ export default function HomePage() {
           <span className="fact-icon">
             <Code2 />
           </span>
-          <strong>01</strong>
+          <strong>1</strong>
           <span>твій власний проєкт</span>
         </div>
       </div>
@@ -134,8 +136,7 @@ export default function HomePage() {
       <section className="learning-path">
         <div className="section-heading">
           <div>
-            <span className="eyebrow">ЗРОЗУМІЛИЙ МАРШРУТ</span>
-            <h2>Один шлях. Шість кроків уперед.</h2>
+            <h2>Модулі курсу</h2>
           </div>
           <Link className="text-link" href="/course/javascript">
             Усі уроки <ArrowRight size={16} />

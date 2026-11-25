@@ -46,12 +46,6 @@ export async function initializeNextDraft(
           source.result,
           sourceProgress.result,
         );
-        if (
-          !checkpoint ||
-          checkpoint.lessonId !== previousId ||
-          checkpoint.courseContentVersion !== sourceVersion
-        )
-          throw new Error("Спочатку заверши попередній урок поточної версії.");
         const existingCompletion = validateCompletion(
           completed.result,
           completedProgress.result,
@@ -65,13 +59,17 @@ export async function initializeNextDraft(
           throw new Error("Несумісне завершення уроку.");
         // Existing drafts, even invalid ones, belong to the learner and use normal recovery.
         if (target.result !== undefined || existingCompletion) return;
-        const files = useOfficialStarter
-          ? starter
-          : inheritCheckpointFiles(
-              checkpoint,
-              { meta, starter },
-              sourceVersion,
-            );
+        const files =
+          useOfficialStarter ||
+          !checkpoint ||
+          checkpoint.lessonId !== previousId ||
+          checkpoint.courseContentVersion !== sourceVersion
+            ? starter
+            : inheritCheckpointFiles(
+                checkpoint,
+                { meta, starter },
+                sourceVersion,
+              );
         drafts.add(
           draftSnapshotSchema.parse({
             schemaVersion: 1,

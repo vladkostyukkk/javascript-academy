@@ -24,9 +24,7 @@ export function CourseRoadmap({
   availableVersions: AvailableVersion[];
 }) {
   const progress = useCourseCompletion(availableVersions);
-  const accessible = (lesson: (typeof lessons)[number]) =>
-    canReadTheory(lesson) &&
-    lesson.prerequisites.every((id) => progress.completed?.has(id));
+  const accessible = canReadTheory;
   const [query, setQuery] = useState("");
   const normalized = query.trim().toLocaleLowerCase("uk");
   const matchingModules = courseModules

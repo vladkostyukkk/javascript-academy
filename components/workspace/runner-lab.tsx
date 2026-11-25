@@ -3,10 +3,15 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { startRunner, type RunnerEvent } from "@/lib/runner/controller";
+import {
+  localRunnerNotice,
+  useLocalRunnerAccess,
+} from "@/lib/runner/local-access";
 import { runnerFixtures, securityFixtures } from "@/lib/runner/fixtures";
 import { prepareRun } from "@/lib/runner/prepare";
 
 export function RunnerLab() {
+  const canRun = useLocalRunnerAccess();
   const [selection, setSelection] = useState("pure");
   const [negative, setNegative] = useState(false);
   const [events, setEvents] = useState<RunnerEvent[]>([]);
@@ -39,6 +44,7 @@ export function RunnerLab() {
     setStatus("Запуск зупинено");
   }
   async function run() {
+    if (!canRun) return;
     active.current?.dispose();
     const version = ++generation.current;
     setEvents([]);
@@ -140,7 +146,8 @@ export function RunnerLab() {
             Негативний сценарій
           </label>
         )}
-        <Button onClick={() => void run()} disabled={busy}>
+        {!canRun && <p>{localRunnerNotice}</p>}
+        <Button onClick={() => void run()} disabled={!canRun || busy}>
           Запустити сценарій
         </Button>
         <Button variant="outline" onClick={stop} disabled={!busy && !preview}>

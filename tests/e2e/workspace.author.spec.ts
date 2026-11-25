@@ -84,7 +84,7 @@ test("editing during a pending check cancels its result; shortcuts execute curre
   ).toBeVisible();
   await expect(page.locator("[data-check-id]:visible")).toHaveCount(0);
 });
-test("dirty navigation can be cancelled and next lesson remains locked", async ({
+test("dirty navigation can be cancelled and another lesson opens independently", async ({
   page,
 }) => {
   await openWorkspace(page);
@@ -104,6 +104,6 @@ test("dirty navigation can be cancelled and next lesson remains locked", async (
     .click();
   await page.locator('[data-lesson-id="js-02"] a').click();
   await expect(
-    page.getByRole("region", { name: "Доступ до уроку" }),
-  ).toContainText("Спочатку заверши попередній урок");
+    page.getByRole("tab", { name: "Теорія", exact: true }),
+  ).toBeVisible();
 });

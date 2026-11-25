@@ -240,7 +240,12 @@
 }
 .reset-dialog {
   margin: auto;
-  width: min(480px, calc(100vw - 32px));
+  inline-size: min(480px, calc(100% - 32px));
+  max-block-size: calc(100vh - 32px);
+  max-block-size: calc(100dvh - 32px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  overflow-wrap: anywhere;
   padding: 28px;
   color: var(--foreground);
   background: #191c19;
@@ -416,7 +421,6 @@
   box-sizing: border-box;
 }
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 24px;
 }
 body {
@@ -733,6 +737,7 @@ pre {
 }
 main {
   min-height: calc(100vh - 150px);
+  min-height: calc(100dvh - 150px);
 }
 .page-content {
   max-width: 1450px;
@@ -764,8 +769,9 @@ main {
 .welcome-heading > p {
   margin-top: 19px;
   color: var(--muted-foreground);
-  font-size: 13px;
-  line-height: 1.85;
+  max-width: 54ch;
+  font-size: 15px;
+  line-height: 1.65;
 }
 .hero-actions {
   display: flex;
@@ -798,23 +804,48 @@ main {
 }
 .hero-code {
   position: absolute;
-  right: 1%;
-  top: 24px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
+  inset-inline-end: 0;
+  inset-block-start: 35px;
+  width: min(29%, 23rem);
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(145deg, #242c20, #191c19 65%);
   font-family: var(--font-mono);
-  font-size: clamp(60px, 9vw, 130px);
-  line-height: 1;
-  color: #4b5841;
-  font-weight: 200;
-  transform: rotate(-8deg);
-  user-select: none;
+  font-size: 12px;
 }
-.code-star {
+.hero-code figcaption,
+.hero-code p {
+  padding: 12px 14px;
+  font-size: 11px;
+}
+.hero-code figcaption,
+.hero-code p span {
+  color: var(--muted-foreground);
+}
+.hero-code pre {
+  margin: 0;
+  padding: 20px 14px;
+  overflow: auto;
+  border-block: 1px solid var(--border);
+}
+.hero-code code span:first-child {
+  color: #9adcff;
+}
+.hero-code code span:last-child {
   color: var(--primary);
-  font-size: 0.72em;
-  text-shadow: 0 0 70px #c5ef7820;
+}
+.hero-code p {
+  margin: 0;
+}
+.hero-code p span {
+  margin-inline-end: 0.5em;
+}
+@media (min-width: 1251px) {
+  .welcome-heading {
+    padding-inline-end: 32%;
+  }
 }
 .course-facts {
   display: grid;
@@ -1752,9 +1783,6 @@ main {
 }
 
 @media (min-width: 1600px) {
-  .hero-code {
-    right: 8%;
-  }
   .page-content {
     padding-top: 55px;
   }
@@ -1789,12 +1817,6 @@ main {
   }
   .page-content {
     padding: 32px 30px;
-  }
-  .hero-code {
-    opacity: 0.5;
-    right: 0;
-    top: 60px;
-    font-size: 90px;
   }
   .welcome-heading h1 {
     font-size: 38px;
@@ -2410,15 +2432,16 @@ main {
     padding: 14px 9px;
   }
 }
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: no-preference) {
   html {
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
   }
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-item,
+  .module-tile,
+  .disclosure-icon {
+    transition: none;
   }
 }
 
